@@ -1,0 +1,37 @@
+{
+  "name": "@area44/vite-monopage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "check": "oxlint && oxfmt"
+  },
+  "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-react": "^5.1.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.2.0",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.18",
+    "vite": "8.0.0-beta.7"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "typescript": "^5.9.3"
+  }
+}
