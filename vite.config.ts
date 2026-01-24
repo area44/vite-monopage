@@ -15,10 +15,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     mdx({
-      remarkPlugins: [
-        remarkFrontmatter,
-        [remarkMdxFrontmatter, { name: "frontmatter" }],
-      ],
+      remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: "frontmatter" }]],
     }),
   ],
   resolve: {
