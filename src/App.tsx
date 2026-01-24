@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Page, { frontmatter } from "@/pages/index.mdx";
 
 export default function App() {
@@ -6,8 +7,16 @@ export default function App() {
   }
 
   return (
-    <main className="min-h-screen max-w-3xl mx-auto p-8">
-      <Page />
-    </main>
+    <body
+    className={cn(
+      "group/body overscroll-none antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]",
+    )}
+    >
+      <div className="bg-background relative z-10 flex min-h-svh flex-col">
+        <main className="flex flex-1 flex-col">
+          <Page />
+        </main>
+      </div>
+    </body>
   );
 }
