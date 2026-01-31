@@ -15,7 +15,7 @@ export default function App() {
       <div data-slot="layout" className="bg-background relative z-10 flex min-h-svh flex-col">
         <main className="flex flex-1 flex-col">
           <div className="container-wrapper flex flex-1 flex-col px-2 py-4 lg:py-20">
-            <div className="mx-auto my-0 py-0 px-4 lg:px-32">
+            <div className="mx-auto my-0 py-0 px-4 lg:px-32 max-w-5xl">
               <Page />
             </div>
           </div>
