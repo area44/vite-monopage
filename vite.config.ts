@@ -1,5 +1,6 @@
 import path from "node:path";
 import mdx from "@mdx-js/rollup";
+import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import tailwindcss from "@tailwindcss/vite";
@@ -15,7 +16,11 @@ export default defineConfig({
     react(),
     tailwindcss(),
     mdx({
-      remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: "frontmatter" }]],
+      remarkPlugins: [
+        remarkFrontmatter,
+        [remarkMdxFrontmatter, { name: "frontmatter" }],
+        remarkGfm,
+      ],
     }),
   ],
   resolve: {

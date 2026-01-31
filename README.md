@@ -1,6 +1,6 @@
 # Vite Monopage
 
-This template provides a minimal setup to get **React**, **Tailwind CSS** working with **Vite**.
+This is a website built with Vite, MDX and Tailwind CSS.
 
 ## Development
 
