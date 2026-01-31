@@ -14,15 +14,11 @@ export default function App() {
     >
       <div data-slot="layout" className="bg-background relative z-10 flex min-h-svh flex-col">
         <main className="flex flex-1 flex-col">
-          <div className="container-wrapper flex flex-1 flex-col px-2">
-            <div className="flex scroll-mt-24 items-stretch pb-8 text-[1.05rem] sm:text-[15px] xl:w-full">
-              <div className="h-full w-full">
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <article className="prose">
-                    <Page />
-                  </article>
-                </div>
-              </div>
+          <div className="container-wrapper flex flex-1 flex-col px-2 py-4 lg:py-20">
+            <div className="mx-auto my-0 py-0 px-4 lg:px-32">
+              <article className="prose lg:prose-lg">
+                <Page />
+              </article>
             </div>
           </div>
         </main>
