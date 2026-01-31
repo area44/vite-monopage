@@ -16,7 +16,7 @@ export default function App() {
         <main className="flex flex-1 flex-col">
           <div className="container-wrapper flex flex-1 flex-col px-2 py-4 lg:py-20">
             <div className="mx-auto my-0 py-0 px-4 lg:px-32">
-                <Page />
+              <Page />
             </div>
           </div>
         </main>
