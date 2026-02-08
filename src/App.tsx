@@ -15,7 +15,7 @@ export default function App() {
         "group/body overscroll-none antialiased",
         "[--footer-height:calc(var(--spacing)*14)]",
         "[--header-height:calc(var(--spacing)*14)]",
-        "xl:[--footer-height:calc(var(--spacing)*24)]"
+        "xl:[--footer-height:calc(var(--spacing)*24)]",
       )}
     >
       <div className="relative z-10 flex min-h-svh flex-col bg-background">
