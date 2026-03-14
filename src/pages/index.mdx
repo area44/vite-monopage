@@ -1,121 +1,101 @@
 ---
-title: "Monopage"
-description: "This is a website built with MDX"
+title: "Vite Monopage"
+description: "A comprehensive guide to building documentation with Vite 8, MDX, and Tailwind CSS 4."
 ---
 
-# Hello
+# Vite Monopage
 
-Welcome to **Monopage**, a **single-page MDX site** powered by modern tooling.
+Welcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.
 
-## Features
+<div className="my-8">
+  <CopyMarkdown />
+</div>
 
-- ⚡ **Vite v8** for fast dev & builds
-- 🎨 **Tailwind CSS v4** for styling
-- 🧩 **MDX v3** (Markdown + JSX)
-- 🧱 **shadcn-ui style components**
-- 🧠 **TypeScript** everywhere
+## Preview
 
-## Typography
+Check out how the documentation looks in different modes and devices.
 
-### Headings
+![Vite Monopage Preview](https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072&ixlib=rb-4.0.3)
 
-## H2 Heading
+<Callout type="default">
+  This is a custom `Callout` component. It's perfect for highlighting important information that
+  doesn't fit in the standard flow.
+</Callout>
 
-### H3 Heading
+## Interactive Features
 
-#### H4 Heading
+### Theme Management
 
-### Paragraph
+The theme toggle is now a floating button in the top-right corner. It persists your preference using `localStorage` and respects system settings by default.
 
-This is a normal paragraph with **bold text**, _italic text_, ~~strikethrough~~, and `inline code`.
+### Syntax Highlighting
 
-### Blockquote
+We now use **Shiki** for high-quality syntax highlighting. It supports hundreds of languages and themes.
 
-> “Simplicity is the ultimate sophistication.”
->
-> - Leonardo da Vinci
-
-## Lists
-
-### Unordered
-
-- First item
-- Second item
-  - Nested item
-  - Another nested item
-- Third item
-
-### Ordered
-
-1. Step one
-2. Step two
-3. Step three
-
-## Links
-
-- [Vite](https://vitejs.dev)
-- [Tailwind CSS](https://tailwindcss.com)
-- [MDX](https://mdxjs.com)
-
-## Images
-
-![Placeholder image](https://cdn.martingarrix.com/garrix/aPotxrpReVYa3m4H_MartinGarrix-Origo.jpg)
-
-## Code Blocks
-
-### JavaScript
-
-```js
-export function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-```
-
-### TypeScript
-
-```ts
-type User = {
-  id: number;
+```typescript
+interface User {
+  id: string;
   name: string;
-};
+  email: string;
+}
 
-const user: User = {
-  id: 1,
-  name: "Alice",
+const getUser = async (id: string): Promise<User> => {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
 };
 ```
 
-### Bash
+## Documentation Steps
 
-```bash
-npm install
-npm run dev
-```
+Use the `Steps` component to guide your users through a process. This style is inspired by **Fumadocs**.
 
-## JSX / MDX Components
+<Steps>
+  <Step title="Installation">
+    Clone the repository and install the dependencies. ```bash pnpm install ```
+  </Step>
+  <Step title="Configuration">Edit your `vite.config.ts` to add the Shiki and MDX plugins.</Step>
+  <Step title="Build & Deploy">
+    Run the build command to generate a static site. ```bash pnpm build ```
+  </Step>
+</Steps>
 
-You can mix JSX directly inside Markdown:
+## GFM Style Alerts
 
-<button className="inline-flex items-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/90">
-  Click me
-</button>
+We support GitHub Flavored Markdown alerts natively via the `blockquote` component.
 
-## Tables
+> [!NOTE]
+> This is a note alert. Useful for general information.
 
-| Feature          | Supported |
-| ---------------- | --------- |
-| Markdown         | ✅        |
-| JSX              | ✅        |
-| YAML Frontmatter | ✅        |
-| TypeScript       | ✅        |
+> [!TIP]
+> This is a tip alert. Perfect for helpful advice.
 
-## Conclusion
+> [!IMPORTANT]
+> This is an important alert. Key information the user shouldn't miss.
 
-You are now looking at a **fully-featured MDX document** with:
+> [!WARNING]
+> This is a warning alert. Use this to signal potential issues.
 
-- real YAML frontmatter
-- rich Markdown support
-- JSX components
-- Tailwind styling
+> [!CAUTION]
+> This is a caution alert. Critical warnings that require immediate attention.
 
-Just edit **`index.mdx`** and you’re done 🚀
+## Rich Content
+
+### Tables
+
+| Feature        | Status   | Technology        |
+| :------------- | :------- | :---------------- |
+| **Vite 8**     | Ready    | ESBuild / Rollup  |
+| **Tailwind 4** | Fast     | Lightning CSS     |
+| **MDX 3**      | Flexible | Remark / Rehype   |
+| **Shiki**      | Vibrant  | TextMate Grammars |
+
+### Links
+
+Links are clean and styled following Vercel's design: [Vite 8 Docs](https://vitejs.dev).
+
+---
+
+<Callout type="success">
+  **Ready to get started?** Edit `src/pages/index.mdx` and start building your own documentation
+  today.
+</Callout>
