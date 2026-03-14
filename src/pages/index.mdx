@@ -1,65 +1,112 @@
 ---
-title: "Web Interface Guidelines"
-description: "A living, non-exhaustive list of design and interaction decisions for building high-quality web interfaces."
+title: "Modern Web Documentation"
+description: "A comprehensive guide to building documentation with Vite 8, MDX, and Tailwind CSS 4."
 ---
 
-# Web Interface Guidelines
+# Modern Web Documentation
 
-Interfaces succeed because of hundreds of choices. This is a living, non-exhaustive list of those decisions. Most guidelines are framework-agnostic, some specific to React/Next.js.
+Welcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.
 
 <Callout type="default">
-  Feedback is welcome. These guidelines reflect Vercel's brand and product choices but are broadly
-  applicable to modern web development.
+  This is a custom `Callout` component. It's perfect for highlighting important information that
+  doesn't fit in the standard flow.
 </Callout>
 
-## Interactions
+## Interactive Features
 
-- **Keyboard Works Everywhere.** All flows are keyboard-operable & follow the [WAI-ARIA Authoring Patterns](https://www.w3.org/WAI/ARIA/apg/patterns/).
-- **Clear Focus.** Every focusable element shows a visible focus ring. Prefer `:focus-visible` over `:focus` to avoid distracting pointer users.
-- **Manage Focus.** Use focus traps, move & return focus according to the WAI-ARIA Patterns.
-- **Match Visual & Hit Targets.** If the visual target is < 24px, expand its hit target to ≥ 24px. On mobile, the minimum size is 44px.
-- **Mobile Input Size.** `<input>` font size is ≥ 16px on mobile to prevent iOS Safari auto-zoom/pan on focus.
-- **Respect Zoom.** Never disable browser zoom.
-- **Hydration-Safe Inputs.** Inputs must not lose focus or value after hydration.
-- **Don't Block Paste.** Never disable paste in `<input>` or `<textarea>`.
-- **Loading Buttons.** Show a loading indicator & keep the original label.
-- **URL as State.** Persist state in the URL so share, refresh, and Back/Forward navigation work.
-- **Confirm Destructive Actions.** Require confirmation or provide Undo with a safe window.
+### Dark Mode
 
-## Animations
+Try the theme toggle in the header! It persists your preference using `localStorage` and respects system settings by default.
 
-- **Honor prefers-reduced-motion.** Provide a reduced-motion variant.
-- **Implementation Preference.** Prefer CSS, avoid main-thread JS-driven animations when possible.
-- **Compositor-Friendly.** Prioritize GPU-accelerated properties (`transform`, `opacity`) & avoid properties that trigger reflows (`width`, `height`).
-- **Interruptible.** Animations should be cancelable by user input.
-- **Never Transition: All.** Explicitly list only the properties you intend to animate.
+### Copy to Clipboard
 
-## Layout
+Hover over any code block to see the copy button. It works on both multi-line blocks and individual snippets.
 
-- **Optical Alignment.** Adjust ±1px when perception beats geometry.
-- **Deliberate Alignment.** Every element aligns with something intentionally.
-- **Responsive Coverage.** Verify on mobile, laptop, & ultra-wide.
-- **Let the Browser Size Things.** Prefer flex/grid/intrinsic layout over measuring in JS.
+## Markdown Examples
 
-## Content
+### Rich Text
 
-- **Inline Help First.** Prefer inline explanations; use tooltips as a last resort.
-- **Stable Skeletons.** Skeletons mirror final content exactly to avoid layout shift.
-- **Typographic Quotes.** Prefer curly quotes (“ ”) over straight quotes (" ").
-- **Tabular Numbers.** Use `font-variant-numeric: tabular-nums` for comparisons.
-- **Icons Have Labels.** Convey the same meaning with text for non-sighted users.
-- **Anchored Headings.** Set `scroll-margin-top` for headers when linking to sections.
+You can use **bold**, _italic_, ~~strikethrough~~, and `inline code` easily. Links are automatically enhanced with an external icon if they point to another domain: [Vite 8 Docs](https://vitejs.dev).
 
-## Copywriting
+### Lists
 
-- **Active Voice.** Instead of “The CLI will be installed,” say “Install the CLI.”
-- **Title Case for Headings.** Use Title Case for headings and buttons.
-- **Be Clear & Concise.** Use as few words as possible.
-- **Action-Oriented Language.** Instead of “You will need the CLI…” say “Install the CLI…”.
+- Unordered list item 1
+- Unordered list item 2
+  - Nested item A
+  - Nested item B
+- Unordered list item 3
+
+1. Ordered list item 1
+2. Ordered list item 2
+3. Ordered list item 3
+
+### Tables
+
+| Feature        | Status      | Technology       |
+| :------------- | :---------- | :--------------- |
+| **Vite 8**     | ✅ Ready    | ESBuild / Rollup |
+| **Tailwind 4** | 🚀 Fast     | Lightning CSS    |
+| **MDX 3**      | 🧩 Flexible | Remark / Rehype  |
+| **Dark Mode**  | 🌙 Included | CSS Variables    |
+
+### Images
+
+![Vite Logo](https://vitejs.dev/logo.svg)
+
+## Custom Components
+
+### Steps Guide
+
+Use the `Steps` and `Step` components to create beautiful ordered guides.
+
+<Steps>
+  <Step title="Initialize Project">
+    Clone the repository and install dependencies using pnpm. ```bash pnpm install ```
+  </Step>
+  <Step title="Start Development">
+    Run the dev server to see your changes in real-time. ```bash pnpm dev ```
+  </Step>
+  <Step title="Deploy to Production">
+    Build the static site and deploy it to your favorite host. ```bash pnpm build ```
+  </Step>
+</Steps>
+
+## GFM Style Alerts
+
+We support GitHub Flavored Markdown alerts natively via the `blockquote` component.
+
+> [!NOTE]
+> This is a note alert. Useful for general information.
+
+> [!TIP]
+> This is a tip alert. Perfect for helpful advice.
+
+> [!IMPORTANT]
+> This is an important alert. Key information the user shouldn't miss.
+
+> [!WARNING]
+> This is a warning alert. Use this to signal potential issues.
+
+> [!CAUTION]
+> This is a caution alert. Critical warnings that require immediate attention.
+
+## Code Blocks
+
+```tsx
+// Example of a React component in MDX
+export const MyComponent = () => {
+  return (
+    <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+      <h3 className="text-blue-900 dark:text-blue-100 font-bold">Hello from JSX!</h3>
+      <p className="text-blue-700 dark:text-blue-300">This is rendered directly in MDX.</p>
+    </div>
+  );
+};
+```
 
 ---
 
 <Callout type="success">
-  **Ready to build?** Use these guidelines with AI coding agents to audit and generate high-quality
-  interfaces.
+  **Ready to get started?** Edit `src/pages/index.mdx` and start building your own documentation
+  today.
 </Callout>
