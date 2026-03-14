@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
+// @ts-ignore - raw import for copy functionality
+import rawContent from "@/pages/index.mdx?raw";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
@@ -45,17 +47,32 @@ export default function App() {
     }
   }, []);
 
+  // Enrich components with raw content for CopyMarkdown
+  const enrichedComponents = {
+    ...components,
+    CopyMarkdown: (props: any) => <components.CopyMarkdown {...props} content={rawContent} />,
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
       <ThemeToggle />
       <main className="mx-auto max-w-3xl px-6 py-12 md:py-24">
         <article className="max-w-none">
-          <Page components={components} />
+          <Page components={enrichedComponents} />
         </article>
       </main>
       <footer className="mt-12 border-t border-border py-12 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Vite Monopage. Built with Vite 8 & Tailwind 4.</p>
+          <p>
+            Vite Monopage. Built with love by{" "}
+            <a
+              href="https://github.com/area44"
+              className="font-medium text-foreground hover:underline"
+            >
+              @area44
+            </a>
+            .
+          </p>
         </div>
       </footer>
     </div>

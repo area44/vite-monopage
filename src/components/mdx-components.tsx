@@ -27,12 +27,15 @@ const CopyButton = ({ text }: { text: string }) => {
   );
 };
 
-export const CopyMarkdown = ({ content }: { content: string }) => {
+export const CopyMarkdown = ({ content }: { content?: string }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
+    const textToCopy = content || "";
+    if (!textToCopy) return;
+
     try {
-      await navigator.clipboard.writeText(content);
+      await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -43,7 +46,7 @@ export const CopyMarkdown = ({ content }: { content: string }) => {
   return (
     <button
       onClick={copy}
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-muted hover:text-foreground"
+      className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-muted hover:text-foreground active:scale-95"
     >
       {copied ? (
         <>
@@ -119,13 +122,12 @@ export const components = {
     <li className={cn("mt-2", className)} {...props} />
   ),
   blockquote: ({ className, children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
-    // Check for GFM-style alerts: [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]
+    // Check for GFM-style alerts
     const childrenArray = React.Children.toArray(children);
     const firstChild = childrenArray[0];
 
     if (React.isValidElement(firstChild) && firstChild.props.children) {
       const textChildren = React.Children.toArray(firstChild.props.children);
-      // Find the first string child, which might be nested or have leading whitespace
       let firstText = "";
       let firstTextIndex = -1;
 
@@ -180,25 +182,27 @@ export const components = {
     );
   },
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img
-      className={cn("mx-auto my-8 rounded-md border border-border", className)}
-      alt={alt}
-      {...props}
-    />
+    <div className="my-8 overflow-hidden rounded-lg border border-border shadow-sm">
+      <img
+        className={cn("w-full transition-transform hover:scale-[1.02]", className)}
+        alt={alt}
+        {...props}
+      />
+    </div>
   ),
-  hr: ({ ...props }) => <hr className="my-8 border-border" {...props} />,
+  hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
       <table className={cn("w-full border-collapse text-sm", className)} {...props} />
     </div>
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr className={cn("m-0 border-t border-border p-0 even:bg-muted/50", className)} {...props} />
+    <tr className={cn("m-0 border-t border-border p-0 even:bg-muted/30", className)} {...props} />
   ),
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "border border-border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -207,7 +211,7 @@ export const components = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border border-border px-4 py-2 text-left text-muted-foreground [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -228,7 +232,7 @@ export const components = {
         <pre
           ref={preRef}
           className={cn(
-            "overflow-x-auto rounded-lg border border-border bg-muted/30 p-4 font-mono text-sm",
+            "overflow-x-auto rounded-lg border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed",
             className,
           )}
           {...props}
@@ -242,7 +246,7 @@ export const components = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium text-foreground",
+        "relative rounded bg-muted/80 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground",
         className,
       )}
       {...props}
@@ -270,13 +274,13 @@ export const components = {
   }) => {
     const styles = {
       default:
-        "bg-blue-50/50 border-blue-200 text-blue-900 dark:bg-blue-950/20 dark:border-blue-900 dark:text-blue-200",
+        "bg-blue-50/40 border-blue-200 text-blue-900 dark:bg-blue-950/10 dark:border-blue-900/50 dark:text-blue-200",
       warning:
-        "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-950/20 dark:border-amber-900 dark:text-amber-200",
+        "bg-amber-50/40 border-amber-200 text-amber-900 dark:bg-amber-950/10 dark:border-amber-900/50 dark:text-amber-200",
       error:
-        "bg-red-50/50 border-red-200 text-red-900 dark:bg-red-950/20 dark:border-red-900 dark:text-red-200",
+        "bg-red-50/40 border-red-200 text-red-900 dark:bg-red-950/10 dark:border-red-900/50 dark:text-red-200",
       success:
-        "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-950/20 dark:border-emerald-900 dark:text-emerald-200",
+        "bg-emerald-50/40 border-emerald-200 text-emerald-900 dark:bg-emerald-950/10 dark:border-emerald-900/50 dark:text-emerald-200",
     };
 
     return (
@@ -292,15 +296,15 @@ export const components = {
     );
   },
   Steps: ({ children }: { children: React.ReactNode }) => (
-    <div className="steps-container my-12 ml-4 border-l border-border pl-8 [counter-reset:step]">
+    <div className="steps-container my-12 ml-4 border-l border-border pl-9 [counter-reset:step]">
       {children}
     </div>
   ),
   Step: ({ children, title }: { children: React.ReactNode; title?: string }) => (
-    <div className="relative mb-8 [counter-increment:step] last:mb-0">
-      <div className="absolute -left-[calc(2rem+1px)] flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background text-sm font-bold text-foreground shadow-sm ring-4 ring-background transition-all before:content-[counter(step)]" />
+    <div className="relative mb-12 [counter-increment:step] last:mb-0">
+      <div className="absolute -left-[calc(2.25rem+1px)] flex h-8 w-8 translate-y-1 items-center justify-center rounded-full border border-border bg-background text-[13px] font-bold text-foreground shadow-sm ring-8 ring-background before:content-[counter(step)]" />
       {title && <h3 className="mt-0 text-xl font-bold tracking-tight text-foreground">{title}</h3>}
-      <div className="mt-3 text-muted-foreground">{children}</div>
+      <div className="mt-4 text-muted-foreground">{children}</div>
     </div>
   ),
   CopyMarkdown: CopyMarkdown,

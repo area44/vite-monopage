@@ -60,23 +60,24 @@
 }
 
 .dark {
-  --background: oklch(0.05 0 0);
+  /* Softer dark background */
+  --background: oklch(0.13 0 0);
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.1 0 0);
+  --card: oklch(0.16 0 0);
   --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.1 0 0);
+  --popover: oklch(0.16 0 0);
   --popover-foreground: oklch(0.98 0 0);
   --primary: oklch(1 0 0);
   --primary-foreground: oklch(0 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.12 0 0);
-  --muted-foreground: oklch(0.5 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.6 0 0);
   --accent: oklch(0.2 0 0);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.396 0.141 25.723);
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.2 0 0);
+  --border: oklch(0.22 0 0);
+  --input: oklch(0.22 0 0);
   --ring: oklch(1 0 0 / 0.2);
   --selection: oklch(1 0 0 / 0.2);
   --selection-foreground: inherit;
@@ -92,7 +93,8 @@
   }
 
   html {
-    @apply overscroll-y-none scroll-smooth font-sans antialiased;
+    /* Removed overscroll-y-none to allow Android pull-to-refresh */
+    @apply scroll-smooth font-sans antialiased;
     color-scheme: light dark;
   }
 
@@ -123,17 +125,9 @@
 }
 
 @layer utilities {
-  /* Steps specific styling to ensure continuity */
   .steps-container {
     position: relative;
   }
-
-  /* Ensure the last step line is hidden if we used border-l on container */
-  /* But we use border-l on the whole container, so we might need a different approach
-     if we want the line to stop at the last circle.
-     Fumadocs usually handles this with individual step lines.
-     Let's stick to the current container-based line for now as it's cleaner in JSX.
-  */
 }
 
 /* Shiki Overrides to match Vercel style */
@@ -143,4 +137,10 @@ pre {
 
 .dark pre {
   background-color: transparent !important;
+}
+
+/* Ensure no background on code inside pre */
+pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
 }
