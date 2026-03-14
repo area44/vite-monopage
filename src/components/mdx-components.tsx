@@ -1,4 +1,4 @@
-import { Info, AlertCircle, CheckCircle, ExternalLink, Copy, Check } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
@@ -86,9 +86,10 @@ export const components = {
     if (React.isValidElement(firstChild) && firstChild.props.children) {
       const text = firstChild.props.children;
       if (typeof text === "string") {
-        const match = text.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
-        if (match) {
-          const type = match[1].toLowerCase();
+        // Escaping fix for cat/EOF
+        const actualMatch = text.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
+        if (actualMatch) {
+          const type = actualMatch[1].toLowerCase();
           const cleanChildren = [
             React.cloneElement(firstChild as React.ReactElement, {
               children: text.replace(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/, ""),
@@ -122,7 +123,6 @@ export const components = {
     );
   },
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       className={cn(
         "mx-auto my-8 rounded-md border border-gray-200 dark:border-gray-800",
@@ -211,7 +211,6 @@ export const components = {
       {...props}
     >
       {props.children}
-      {props.href?.startsWith("http") && <ExternalLink className="h-3 w-3" />}
     </a>
   ),
   Callout: ({
@@ -223,14 +222,6 @@ export const components = {
     type?: "default" | "warning" | "error" | "success";
     className?: string;
   }) => {
-    const icons = {
-      default: Info,
-      warning: AlertCircle,
-      error: AlertCircle,
-      success: CheckCircle,
-    };
-    const Icon = icons[type];
-
     const styles = {
       default:
         "bg-blue-50 border-blue-200 text-blue-900 dark:bg-blue-950/30 dark:border-blue-900 dark:text-blue-200",
@@ -250,7 +241,6 @@ export const components = {
           className,
         )}
       >
-        <Icon className="mt-1 h-5 w-5 shrink-0" />
         <div className="flex-1 text-sm leading-relaxed">{children}</div>
       </div>
     );

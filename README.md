@@ -2,21 +2,21 @@
 
 A high-performance, beautiful documentation starter powered by the latest web technologies.
 
-## ✨ Features
+## Features
 
-- ⚡ **Vite 8:** Extremely fast builds and dev server.
-- 🎨 **Tailwind CSS 4:** Modern styling with zero-runtime CSS.
-- 🧩 **MDX 3:** Seamlessly blend Markdown and React components.
-- 🌙 **Dark Mode:** Built-in theme toggle with system preference support and persistence.
-- 📝 **Rich MDX Components:**
+- **Vite 8:** Extremely fast builds and dev server.
+- **Tailwind CSS 4:** Modern styling with zero-runtime CSS.
+- **MDX 3:** Seamlessly blend Markdown and React components.
+- **Dark Mode:** Built-in theme toggle with system preference support and persistence.
+- **Rich MDX Components:**
   - `Steps` & `Step`: For ordered guides.
   - `Callout`: For highlighting information.
   - `CopyButton`: One-click code copying.
   - **GFM Alerts:** Support for `[!NOTE]`, `[!TIP]`, etc.
-- 📱 **Fully Responsive:** Optimized for all screen sizes.
-- 🧠 **TypeScript:** Type-safe development throughout.
+- **Fully Responsive:** Optimized for all screen sizes.
+- **TypeScript:** Type-safe development throughout.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -56,7 +56,7 @@ A high-performance, beautiful documentation starter powered by the latest web te
 - `src/App.tsx`: The main application shell and layout.
 - `src/index.css`: Global styles and Tailwind 4 configuration.
 
-## 🛠️ Customization
+## Customization
 
 ### Adding Components
 
@@ -66,6 +66,6 @@ You can add new components to `src/components/mdx-components.tsx` and register t
 
 Tailwind CSS 4 uses a new CSS-first configuration. Check `src/index.css` to modify the theme, colors, and global styles.
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
