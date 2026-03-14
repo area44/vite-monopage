@@ -61,7 +61,7 @@ const ViteLogo = () => (
 export default function App() {
   useEffect(() => {
     if (frontmatter?.title) {
-      document.title = `${frontmatter.title} – Vite 8 + MDX`;
+      document.title = `${frontmatter.title} – Vite Monopage`;
     }
   }, []);
 
@@ -71,7 +71,7 @@ export default function App() {
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <div className="flex items-center gap-2 font-bold tracking-tighter">
             <ViteLogo />
-            <span>Vite 8 + MDX</span>
+            <span>Vite Monopage</span>
           </div>
           <ThemeToggle />
         </div>
@@ -83,7 +83,7 @@ export default function App() {
       </main>
       <footer className="border-t border-border py-12 md:py-20">
         <div className="mx-auto max-w-5xl px-6 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Monopage. Built with Vite 8 & Tailwind 4.</p>
+          <p>© {new Date().getFullYear()} Vite Monopage. Built with Vite 8 & Tailwind 4.</p>
         </div>
       </footer>
     </div>

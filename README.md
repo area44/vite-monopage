@@ -1,4 +1,4 @@
-# Vite 8 + MDX + Tailwind 4 Documentation Starter
+# Vite Monopage
 
 A high-performance, beautiful documentation starter powered by the latest web technologies.
 
