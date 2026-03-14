@@ -1,4 +1,5 @@
 import mdx from "@mdx-js/rollup";
+import rehypeShiki from "@shikijs/rehype";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
@@ -20,6 +21,14 @@ export default defineConfig({
         remarkFrontmatter,
         [remarkMdxFrontmatter, { name: "frontmatter" }],
         remarkGfm,
+      ],
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            theme: "vitesse-dark",
+          },
+        ],
       ],
     }),
   ],

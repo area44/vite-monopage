@@ -7,6 +7,12 @@ description: "A comprehensive guide to building documentation with Vite 8, MDX, 
 
 Welcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.
 
+<div className="my-8">
+  <CopyMarkdown
+    content={`# Vite Monopage\n\nWelcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.\n\n...`}
+  />
+</div>
+
 <Callout type="default">
   This is a custom `Callout` component. It's perfect for highlighting important information that
   doesn't fit in the standard flow.
@@ -14,56 +20,38 @@ Welcome to the ultimate starter for modern web documentation. This site is power
 
 ## Interactive Features
 
-### Dark Mode
+### Theme Management
 
-Try the theme toggle in the header! It persists your preference using `localStorage` and respects system settings by default.
+The theme toggle is now a floating button in the top-right corner. It persists your preference using `localStorage` and respects system settings by default.
 
-### Copy to Clipboard
+### Syntax Highlighting
 
-Hover over any code block to see the copy button. It works on both multi-line blocks and individual snippets.
+We now use **Shiki** for high-quality syntax highlighting. It supports hundreds of languages and themes.
 
-## Markdown Examples
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
 
-### Rich Text
+const getUser = async (id: string): Promise<User> => {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
+};
+```
 
-You can use **bold**, _italic_, ~~strikethrough~~, and `inline code` easily. Links are automatically enhanced with an external icon if they point to another domain: [Vite 8 Docs](https://vitejs.dev).
+## Documentation Steps
 
-### Lists
-
-- Unordered list item 1
-- Unordered list item 2
-  - Nested item A
-  - Nested item B
-- Unordered list item 3
-
-1. Ordered list item 1
-2. Ordered list item 2
-3. Ordered list item 3
-
-### Tables
-
-| Feature        | Status   | Technology       |
-| :------------- | :------- | :--------------- |
-| **Vite 8**     | Ready    | ESBuild / Rollup |
-| **Tailwind 4** | Fast     | Lightning CSS    |
-| **MDX 3**      | Flexible | Remark / Rehype  |
-| **Dark Mode**  | Included | CSS Variables    |
-
-## Custom Components
-
-### Steps Guide
-
-Use the `Steps` and `Step` components to create beautiful ordered guides.
+Use the `Steps` component to guide your users through a process. This style is inspired by **Fumadocs**.
 
 <Steps>
-  <Step title="Initialize Project">
-    Clone the repository and install dependencies using pnpm. ```bash pnpm install ```
+  <Step title="Installation">
+    Clone the repository and install the dependencies. ```bash pnpm install ```
   </Step>
-  <Step title="Start Development">
-    Run the dev server to see your changes in real-time. ```bash pnpm dev ```
-  </Step>
-  <Step title="Deploy to Production">
-    Build the static site and deploy it to your favorite host. ```bash pnpm build ```
+  <Step title="Configuration">Edit your `vite.config.ts` to add the Shiki and MDX plugins.</Step>
+  <Step title="Build & Deploy">
+    Run the build command to generate a static site. ```bash pnpm build ```
   </Step>
 </Steps>
 
@@ -86,19 +74,20 @@ We support GitHub Flavored Markdown alerts natively via the `blockquote` compone
 > [!CAUTION]
 > This is a caution alert. Critical warnings that require immediate attention.
 
-## Code Blocks
+## Rich Content
 
-```tsx
-// Example of a React component in MDX
-export const MyComponent = () => {
-  return (
-    <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
-      <h3 className="text-blue-900 dark:text-blue-100 font-bold">Hello from JSX!</h3>
-      <p className="text-blue-700 dark:text-blue-300">This is rendered directly in MDX.</p>
-    </div>
-  );
-};
-```
+### Tables
+
+| Feature        | Status   | Technology        |
+| :------------- | :------- | :---------------- |
+| **Vite 8**     | Ready    | ESBuild / Rollup  |
+| **Tailwind 4** | Fast     | Lightning CSS     |
+| **MDX 3**      | Flexible | Remark / Rehype   |
+| **Shiki**      | Vibrant  | TextMate Grammars |
+
+### Links
+
+Links are clean and styled following Vercel's design: [Vite 8 Docs](https://vitejs.dev).
 
 ---
 
