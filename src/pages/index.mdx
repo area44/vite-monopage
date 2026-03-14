@@ -1,121 +1,65 @@
 ---
-title: "Monopage"
-description: "This is a website built with MDX"
+title: "Web Interface Guidelines"
+description: "A living, non-exhaustive list of design and interaction decisions for building high-quality web interfaces."
 ---
 
-# Hello
+# Web Interface Guidelines
 
-Welcome to **Monopage**, a **single-page MDX site** powered by modern tooling.
+Interfaces succeed because of hundreds of choices. This is a living, non-exhaustive list of those decisions. Most guidelines are framework-agnostic, some specific to React/Next.js.
 
-## Features
+<Callout type="default">
+  Feedback is welcome. These guidelines reflect Vercel's brand and product choices but are broadly
+  applicable to modern web development.
+</Callout>
 
-- ⚡ **Vite v8** for fast dev & builds
-- 🎨 **Tailwind CSS v4** for styling
-- 🧩 **MDX v3** (Markdown + JSX)
-- 🧱 **shadcn-ui style components**
-- 🧠 **TypeScript** everywhere
+## Interactions
 
-## Typography
+- **Keyboard Works Everywhere.** All flows are keyboard-operable & follow the [WAI-ARIA Authoring Patterns](https://www.w3.org/WAI/ARIA/apg/patterns/).
+- **Clear Focus.** Every focusable element shows a visible focus ring. Prefer `:focus-visible` over `:focus` to avoid distracting pointer users.
+- **Manage Focus.** Use focus traps, move & return focus according to the WAI-ARIA Patterns.
+- **Match Visual & Hit Targets.** If the visual target is < 24px, expand its hit target to ≥ 24px. On mobile, the minimum size is 44px.
+- **Mobile Input Size.** `<input>` font size is ≥ 16px on mobile to prevent iOS Safari auto-zoom/pan on focus.
+- **Respect Zoom.** Never disable browser zoom.
+- **Hydration-Safe Inputs.** Inputs must not lose focus or value after hydration.
+- **Don't Block Paste.** Never disable paste in `<input>` or `<textarea>`.
+- **Loading Buttons.** Show a loading indicator & keep the original label.
+- **URL as State.** Persist state in the URL so share, refresh, and Back/Forward navigation work.
+- **Confirm Destructive Actions.** Require confirmation or provide Undo with a safe window.
 
-### Headings
+## Animations
 
-## H2 Heading
+- **Honor prefers-reduced-motion.** Provide a reduced-motion variant.
+- **Implementation Preference.** Prefer CSS, avoid main-thread JS-driven animations when possible.
+- **Compositor-Friendly.** Prioritize GPU-accelerated properties (`transform`, `opacity`) & avoid properties that trigger reflows (`width`, `height`).
+- **Interruptible.** Animations should be cancelable by user input.
+- **Never Transition: All.** Explicitly list only the properties you intend to animate.
 
-### H3 Heading
+## Layout
 
-#### H4 Heading
+- **Optical Alignment.** Adjust ±1px when perception beats geometry.
+- **Deliberate Alignment.** Every element aligns with something intentionally.
+- **Responsive Coverage.** Verify on mobile, laptop, & ultra-wide.
+- **Let the Browser Size Things.** Prefer flex/grid/intrinsic layout over measuring in JS.
 
-### Paragraph
+## Content
 
-This is a normal paragraph with **bold text**, _italic text_, ~~strikethrough~~, and `inline code`.
+- **Inline Help First.** Prefer inline explanations; use tooltips as a last resort.
+- **Stable Skeletons.** Skeletons mirror final content exactly to avoid layout shift.
+- **Typographic Quotes.** Prefer curly quotes (“ ”) over straight quotes (" ").
+- **Tabular Numbers.** Use `font-variant-numeric: tabular-nums` for comparisons.
+- **Icons Have Labels.** Convey the same meaning with text for non-sighted users.
+- **Anchored Headings.** Set `scroll-margin-top` for headers when linking to sections.
 
-### Blockquote
+## Copywriting
 
-> “Simplicity is the ultimate sophistication.”
->
-> - Leonardo da Vinci
+- **Active Voice.** Instead of “The CLI will be installed,” say “Install the CLI.”
+- **Title Case for Headings.** Use Title Case for headings and buttons.
+- **Be Clear & Concise.** Use as few words as possible.
+- **Action-Oriented Language.** Instead of “You will need the CLI…” say “Install the CLI…”.
 
-## Lists
+---
 
-### Unordered
-
-- First item
-- Second item
-  - Nested item
-  - Another nested item
-- Third item
-
-### Ordered
-
-1. Step one
-2. Step two
-3. Step three
-
-## Links
-
-- [Vite](https://vitejs.dev)
-- [Tailwind CSS](https://tailwindcss.com)
-- [MDX](https://mdxjs.com)
-
-## Images
-
-![Placeholder image](https://cdn.martingarrix.com/garrix/aPotxrpReVYa3m4H_MartinGarrix-Origo.jpg)
-
-## Code Blocks
-
-### JavaScript
-
-```js
-export function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-```
-
-### TypeScript
-
-```ts
-type User = {
-  id: number;
-  name: string;
-};
-
-const user: User = {
-  id: 1,
-  name: "Alice",
-};
-```
-
-### Bash
-
-```bash
-npm install
-npm run dev
-```
-
-## JSX / MDX Components
-
-You can mix JSX directly inside Markdown:
-
-<button className="inline-flex items-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/90">
-  Click me
-</button>
-
-## Tables
-
-| Feature          | Supported |
-| ---------------- | --------- |
-| Markdown         | ✅        |
-| JSX              | ✅        |
-| YAML Frontmatter | ✅        |
-| TypeScript       | ✅        |
-
-## Conclusion
-
-You are now looking at a **fully-featured MDX document** with:
-
-- real YAML frontmatter
-- rich Markdown support
-- JSX components
-- Tailwind styling
-
-Just edit **`index.mdx`** and you’re done 🚀
+<Callout type="success">
+  **Ready to build?** Use these guidelines with AI coding agents to audit and generate high-quality
+  interfaces.
+</Callout>
