@@ -1,11 +1,23 @@
 import { Check, FileText } from "lucide-react";
 import { useState } from "react";
 
-export const CopyMarkdown = ({ content }: { content?: string }) => {
+export const CopyMarkdown = ({ content, url }: { content?: string; url?: string }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
-    const textToCopy = content || "";
+    let textToCopy = content || "";
+
+    if (url) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          textToCopy = await response.text();
+        }
+      } catch (err) {
+        console.error("Failed to fetch raw content from URL!", err);
+      }
+    }
+
     if (!textToCopy) return;
 
     try {
