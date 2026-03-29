@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
-import { Navbar } from "@/components/ui/navbar";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
+  const [theme] = useState(() => {
     if (typeof window !== "undefined") {
       return (
         localStorage.getItem("theme") ||
@@ -47,7 +46,6 @@ export default function App() {
 
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
-      <Navbar theme={theme} setTheme={setTheme} />
       <div className="container mx-auto flex-1 items-start px-4 md:px-8">
         <main className="relative py-6 lg:gap-10 lg:py-8">
           <div className="mx-auto w-full max-w-3xl min-w-0">
