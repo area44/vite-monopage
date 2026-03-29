@@ -17,6 +17,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
     mdx({
+      // Explicitly only handle .mdx files and exclude those with ?raw
+      include: [/\.mdx$/],
       exclude: [/\?raw$/],
       remarkPlugins: [
         remarkFrontmatter,

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
-import rawContent from "@/pages/index.mdx?raw";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
@@ -40,10 +39,18 @@ const ThemeToggle = () => {
 };
 
 export default function App() {
+  const [rawContent, setRawContent] = useState("");
+
   useEffect(() => {
     if (frontmatter?.title) {
       document.title = `${frontmatter.title} – Vite Monopage`;
     }
+
+    // Fetch the raw content manually to avoid issues with ?raw loader in MDX
+    fetch("/src/pages/index.mdx")
+      .then((res) => res.text())
+      .then((text) => setRawContent(text))
+      .catch((err) => console.error("Failed to fetch raw MDX", err));
   }, []);
 
   // Enrich components with raw content for CopyMarkdown
