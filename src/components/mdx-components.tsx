@@ -63,6 +63,53 @@ export const CopyMarkdown = ({ content }: { content?: string }) => {
   );
 };
 
+const Callout = ({
+  children,
+  type = "default",
+  className,
+}: {
+  children: React.ReactNode;
+  type?: "default" | "warning" | "error" | "success";
+  className?: string;
+}) => {
+  const styles = {
+    default:
+      "bg-blue-50/40 border-blue-200 text-blue-900 dark:bg-blue-950/10 dark:border-blue-900/50 dark:text-blue-200",
+    warning:
+      "bg-amber-50/40 border-amber-200 text-amber-900 dark:bg-amber-950/10 dark:border-amber-900/50 dark:text-amber-200",
+    error:
+      "bg-red-50/40 border-red-200 text-red-900 dark:bg-red-950/10 dark:border-red-900/50 dark:text-red-200",
+    success:
+      "bg-emerald-50/40 border-emerald-200 text-emerald-900 dark:bg-emerald-950/10 dark:border-emerald-900/50 dark:text-emerald-200",
+  };
+
+  return (
+    <div
+      className={cn(
+        "my-6 flex items-start space-x-4 rounded-lg border p-4 shadow-sm transition-all",
+        styles[type],
+        className,
+      )}
+    >
+      <div className="flex-1 text-sm leading-relaxed">{children}</div>
+    </div>
+  );
+};
+
+const Steps = ({ children }: { children: React.ReactNode }) => (
+  <div className="steps-container my-12 ml-4 border-l border-border pl-9 [counter-reset:step]">
+    {children}
+  </div>
+);
+
+const Step = ({ children, title }: { children: React.ReactNode; title?: string }) => (
+  <div className="relative mb-12 [counter-increment:step] last:mb-0">
+    <div className="absolute -left-[calc(2.25rem+1px)] flex h-8 w-8 translate-y-1 items-center justify-center rounded-full border border-border bg-background text-[13px] font-bold text-foreground shadow-sm ring-8 ring-background before:content-[counter(step)]" />
+    {title && <h3 className="mt-0 text-xl font-bold tracking-tight text-foreground">{title}</h3>}
+    <div className="mt-4 text-muted-foreground">{children}</div>
+  </div>
+);
+
 export const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
@@ -122,51 +169,72 @@ export const components = {
     <li className={cn("mt-2", className)} {...props} />
   ),
   blockquote: ({ className, children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
-    // Check for GFM-style alerts
     const childrenArray = React.Children.toArray(children);
-    const firstChild = childrenArray[0];
 
-    if (React.isValidElement(firstChild) && firstChild.props.children) {
-      const textChildren = React.Children.toArray(firstChild.props.children);
-      let firstText = "";
-      let firstTextIndex = -1;
+    let alertType: string | undefined;
+    const updatedChildren = [...childrenArray];
 
-      for (let i = 0; i < textChildren.length; i++) {
-        if (typeof textChildren[i] === "string") {
-          firstText = textChildren[i] as string;
-          firstTextIndex = i;
+    const extractAlert = (text: string) => {
+      const match = text.match(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/);
+      if (match) {
+        return {
+          type: match[1].toLowerCase(),
+          matchedLength: match[0].length,
+        };
+      }
+      return null;
+    };
+
+    // Find the first element or string that contains the alert tag
+    for (let i = 0; i < updatedChildren.length; i++) {
+      const child = updatedChildren[i];
+
+      if (typeof child === "string") {
+        const result = extractAlert(child);
+        if (result) {
+          alertType = result.type;
+          updatedChildren[i] = child.slice(result.matchedLength);
           break;
         }
+        if (child.trim() !== "") break;
+      } else if (React.isValidElement(child)) {
+        // Handle MDX usually wrapping content in <p>
+        const grandChildren = React.Children.toArray((child.props as any).children);
+        for (let j = 0; j < grandChildren.length; j++) {
+          const grandChild = grandChildren[j];
+          if (typeof grandChild === "string") {
+            const result = extractAlert(grandChild);
+            if (result) {
+              alertType = result.type;
+              const newGrandChildren = [...grandChildren];
+              newGrandChildren[j] = grandChild.slice(result.matchedLength);
+              updatedChildren[i] = React.cloneElement(child as React.ReactElement, {
+                ...(child.props as any),
+                children: newGrandChildren,
+              });
+              break;
+            }
+            if (grandChild.trim() !== "") break;
+          } else {
+            break;
+          }
+        }
+        if (alertType) break;
+        // If we found an element that didn't have the alert, stop looking
+        break;
       }
+    }
 
-      const match = firstText.trim().match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
-      if (match) {
-        const type = match[1].toLowerCase();
-        const cleanFirstText = firstText.replace(
-          /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/,
-          "",
-        );
+    if (alertType) {
+      const typeMap: Record<string, "default" | "success" | "warning" | "error"> = {
+        note: "default",
+        tip: "success",
+        important: "default",
+        warning: "warning",
+        caution: "error",
+      };
 
-        const newTextChildren = [...textChildren];
-        newTextChildren[firstTextIndex] = cleanFirstText;
-
-        const cleanChildren = [
-          React.cloneElement(firstChild as React.ReactElement, {
-            children: newTextChildren,
-          }),
-          ...childrenArray.slice(1),
-        ];
-
-        const typeMap: Record<string, "default" | "success" | "warning" | "error"> = {
-          note: "default",
-          tip: "success",
-          important: "default",
-          warning: "warning",
-          caution: "error",
-        };
-
-        return <components.Callout type={typeMap[type]}>{cleanChildren}</components.Callout>;
-      }
+      return <Callout type={typeMap[alertType]}>{updatedChildren}</Callout>;
     }
 
     return (
@@ -263,49 +331,8 @@ export const components = {
       {props.children}
     </a>
   ),
-  Callout: ({
-    children,
-    type = "default",
-    className,
-  }: {
-    children: React.ReactNode;
-    type?: "default" | "warning" | "error" | "success";
-    className?: string;
-  }) => {
-    const styles = {
-      default:
-        "bg-blue-50/40 border-blue-200 text-blue-900 dark:bg-blue-950/10 dark:border-blue-900/50 dark:text-blue-200",
-      warning:
-        "bg-amber-50/40 border-amber-200 text-amber-900 dark:bg-amber-950/10 dark:border-amber-900/50 dark:text-amber-200",
-      error:
-        "bg-red-50/40 border-red-200 text-red-900 dark:bg-red-950/10 dark:border-red-900/50 dark:text-red-200",
-      success:
-        "bg-emerald-50/40 border-emerald-200 text-emerald-900 dark:bg-emerald-950/10 dark:border-emerald-900/50 dark:text-emerald-200",
-    };
-
-    return (
-      <div
-        className={cn(
-          "my-6 flex items-start space-x-4 rounded-lg border p-4 shadow-sm transition-all",
-          styles[type],
-          className,
-        )}
-      >
-        <div className="flex-1 text-sm leading-relaxed">{children}</div>
-      </div>
-    );
-  },
-  Steps: ({ children }: { children: React.ReactNode }) => (
-    <div className="steps-container my-12 ml-4 border-l border-border pl-9 [counter-reset:step]">
-      {children}
-    </div>
-  ),
-  Step: ({ children, title }: { children: React.ReactNode; title?: string }) => (
-    <div className="relative mb-12 [counter-increment:step] last:mb-0">
-      <div className="absolute -left-[calc(2.25rem+1px)] flex h-8 w-8 translate-y-1 items-center justify-center rounded-full border border-border bg-background text-[13px] font-bold text-foreground shadow-sm ring-8 ring-background before:content-[counter(step)]" />
-      {title && <h3 className="mt-0 text-xl font-bold tracking-tight text-foreground">{title}</h3>}
-      <div className="mt-4 text-muted-foreground">{children}</div>
-    </div>
-  ),
-  CopyMarkdown: CopyMarkdown,
+  Callout,
+  Steps,
+  Step,
+  CopyMarkdown,
 };
