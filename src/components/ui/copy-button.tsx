@@ -1,7 +1,9 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 
-export const CopyButton = ({ text }: { text: string }) => {
+import { cn } from "@/lib/utils";
+
+export const CopyButton = ({ text, className }: { text: string; className?: string }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -17,7 +19,10 @@ export const CopyButton = ({ text }: { text: string }) => {
   return (
     <button
       onClick={copy}
-      className="absolute top-3 right-3 rounded-md border border-border bg-background p-1.5 text-muted-foreground opacity-0 shadow-sm transition-all group-hover:opacity-100 hover:bg-muted hover:text-foreground"
+      className={cn(
+        "inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+        className,
+      )}
       aria-label="Copy to clipboard"
     >
       {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}

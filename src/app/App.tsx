@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import { Navbar } from "@/components/ui/navbar";
-import { Sidebar } from "@/components/ui/sidebar";
-import { TableOfContents } from "@/components/ui/toc";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
@@ -50,10 +48,9 @@ export default function App() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
       <Navbar theme={theme} setTheme={setTheme} />
-      <div className="container mx-auto flex-1 items-start px-4 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 md:px-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
-        <Sidebar />
-        <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-          <div className="mx-auto w-full min-w-0">
+      <div className="container mx-auto flex-1 items-start px-4 md:px-8">
+        <main className="relative py-6 lg:gap-10 lg:py-8">
+          <div className="mx-auto w-full max-w-3xl min-w-0">
             <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
               <div className="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
               <svg
@@ -87,50 +84,7 @@ export default function App() {
                 <Page components={enrichedComponents} />
               </article>
             </div>
-            <div className="flex flex-row items-center justify-between py-10">
-              <a
-                className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-                href="/"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mr-2 h-4 w-4"
-                >
-                  <path d="m15 18-6-6 6-6"></path>
-                </svg>
-                Previous
-              </a>
-              <a
-                className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-                href="/"
-              >
-                Next
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="ml-2 h-4 w-4"
-                >
-                  <path d="m9 18 6-6-6-6"></path>
-                </svg>
-              </a>
-            </div>
           </div>
-          <TableOfContents />
         </main>
       </div>
       <footer className="border-t border-border py-6 md:px-8 md:py-0">
