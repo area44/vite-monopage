@@ -187,7 +187,7 @@ export const components = {
 
     useEffect(() => {
       if (preRef.current) {
-        setRawText(preRef.current.innerText);
+        setRawText(preRef.current.textContent || "");
       }
     }, [children]);
 
