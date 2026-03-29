@@ -62,7 +62,7 @@ export const components = {
     />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2", className)} {...props} />
+    <li className={cn("mt-2 leading-7", className)} {...props} />
   ),
   blockquote: ({ className, children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
     const childrenArray = React.Children.toArray(children);
@@ -136,7 +136,7 @@ export const components = {
     return (
       <blockquote
         className={cn(
-          "mt-6 border-l-2 border-foreground pl-6 text-muted-foreground italic",
+          "mt-6 border-l-2 border-foreground/30 pl-6 text-muted-foreground italic",
           className,
         )}
         {...props}
@@ -148,7 +148,7 @@ export const components = {
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <div className="my-8 overflow-hidden rounded-lg border border-border shadow-sm">
       <img
-        className={cn("w-full transition-transform hover:scale-[1.02]", className)}
+        className={cn("w-full transition-transform hover:scale-[1.01]", className)}
         alt={alt}
         {...props}
       />
@@ -203,7 +203,9 @@ export const components = {
         >
           {children}
         </pre>
-        <CopyButton text={rawText} />
+        <div className="absolute top-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+          <CopyButton text={rawText} />
+        </div>
       </div>
     );
   },
