@@ -7,62 +7,78 @@ import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
 export const components = {
-  h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
         "mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-foreground md:text-5xl",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </h1>
   ),
-  h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h2: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
         "mt-12 scroll-m-20 border-b border-border pb-2 text-2xl font-semibold tracking-tight text-foreground transition-colors first:mt-0 md:text-3xl",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </h2>
   ),
-  h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h3: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
         "mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-foreground md:text-2xl",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </h3>
   ),
-  h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h4: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
         "mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-foreground md:text-xl",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </h4>
   ),
-  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+  p: ({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       className={cn("leading-7 text-muted-foreground [&:not(:first-child)]:mt-6", className)}
       {...props}
-    />
+    >
+      {children}
+    </p>
   ),
-  ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+  ul: ({ className, children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
       className={cn("my-6 ml-6 list-disc text-muted-foreground [&>li]:mt-2", className)}
       {...props}
-    />
+    >
+      {children}
+    </ul>
   ),
-  ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
+  ol: ({ className, children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
       className={cn("my-6 ml-6 list-decimal text-muted-foreground [&>li]:mt-2", className)}
       {...props}
-    />
+    >
+      {children}
+    </ol>
   ),
-  li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2", className)} {...props} />
+  li: ({ className, children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
+    <li className={cn("mt-2 leading-7", className)} {...props}>
+      {children}
+    </li>
   ),
   blockquote: ({ className, children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
     const childrenArray = React.Children.toArray(children);
@@ -136,7 +152,7 @@ export const components = {
     return (
       <blockquote
         className={cn(
-          "mt-6 border-l-2 border-foreground pl-6 text-muted-foreground italic",
+          "mt-6 border-l-2 border-foreground/30 pl-6 text-muted-foreground italic",
           className,
         )}
         {...props}
@@ -148,38 +164,46 @@ export const components = {
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <div className="my-8 overflow-hidden rounded-lg border border-border shadow-sm">
       <img
-        className={cn("w-full transition-transform hover:scale-[1.02]", className)}
+        className={cn("w-full transition-transform hover:scale-[1.01]", className)}
         alt={alt}
         {...props}
       />
     </div>
   ),
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
-  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+  table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
-      <table className={cn("w-full border-collapse text-sm", className)} {...props} />
+      <table className={cn("w-full border-collapse text-sm", className)} {...props}>
+        {children}
+      </table>
     </div>
   ),
-  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr className={cn("m-0 border-t border-border p-0 even:bg-muted/30", className)} {...props} />
+  tr: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr className={cn("m-0 border-t border-border p-0 even:bg-muted/30", className)} {...props}>
+      {children}
+    </tr>
   ),
-  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+  th: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
         "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </th>
   ),
-  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+  td: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
         "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </td>
   ),
   pre: ({ className, children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
     const preRef = React.useRef<HTMLPreElement>(null);
@@ -203,20 +227,24 @@ export const components = {
         >
           {children}
         </pre>
-        <CopyButton text={rawText} />
+        <div className="absolute top-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+          <CopyButton text={rawText} />
+        </div>
       </div>
     );
   },
-  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
         "relative rounded bg-muted/80 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground",
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </code>
   ),
-  a: ({ className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  a: ({ className, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
       className={cn(
         "inline-flex items-center gap-1 font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground",
@@ -224,7 +252,7 @@ export const components = {
       )}
       {...props}
     >
-      {props.children}
+      {children}
     </a>
   ),
   Callout,

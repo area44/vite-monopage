@@ -1,4 +1,4 @@
-import { Moon, Sun } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
@@ -6,7 +6,7 @@ import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
 
-const ThemeToggle = () => {
+export default function App() {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
       return (
@@ -27,20 +27,6 @@ const ThemeToggle = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  return (
-    <div className="fixed top-6 right-6 z-50">
-      <button
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm backdrop-blur-sm transition-all hover:bg-muted hover:shadow-md focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none"
-        aria-label="Toggle theme"
-      >
-        {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-      </button>
-    </div>
-  );
-};
-
-export default function App() {
   useEffect(() => {
     if (frontmatter?.title) {
       document.title = `${frontmatter.title} – Vite Monopage`;
@@ -60,22 +46,47 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
-      <ThemeToggle />
-      <main className="mx-auto max-w-3xl px-6 py-12 md:py-24">
-        <article className="max-w-none">
-          <Page components={enrichedComponents} />
-        </article>
-      </main>
-      <footer className="mt-12 border-t border-border py-12 md:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center text-sm text-muted-foreground">
-          <p>
-            Vite Monopage. Built with love by{" "}
+    <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
+      <div className="fixed top-4 right-4 z-50">
+        <button
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background/95 p-0 font-medium backdrop-blur transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+        >
+          {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          <span className="sr-only">Toggle theme</span>
+        </button>
+      </div>
+      <div className="container mx-auto flex-1 items-start px-4 md:px-8">
+        <main className="relative py-6 lg:gap-10 lg:py-8">
+          <div className="mx-auto w-full max-w-3xl min-w-0">
+            <div className="pt-8 pb-12">
+              <article className="prose prose-zinc dark:prose-invert max-w-none">
+                <Page components={enrichedComponents} />
+              </article>
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer className="border-t border-border py-6 md:px-8 md:py-0">
+        <div className="container mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+          <p className="text-center text-sm leading-loose text-balance text-muted-foreground md:text-left">
+            Built by{" "}
             <a
               href="https://github.com/area44"
-              className="font-medium text-foreground hover:underline"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
             >
               @area44
+            </a>
+            . The source code is available on{" "}
+            <a
+              href="https://github.com/area44/vite-monopage"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              GitHub
             </a>
             .
           </p>
