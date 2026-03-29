@@ -20,8 +20,8 @@ A high-performance, beautiful documentation starter powered by the latest web te
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm 9+
+- Node.js 22+
+- pnpm 10+
 
 ### Installation
 
@@ -49,12 +49,12 @@ A high-performance, beautiful documentation starter powered by the latest web te
    pnpm build
    ```
 
-## 📂 Project Structure
+## Project Structure
 
 - `src/pages/index.mdx`: The main content of your site. Just edit this file!
 - `src/components/mdx-components.tsx`: Custom React components used within your MDX.
 - `src/App.tsx`: The main application shell and layout.
-- `src/index.css`: Global styles and Tailwind 4 configuration.
+- `src/styles/index.css`: Global styles and Tailwind 4 configuration.
 
 ## Customization
 
@@ -64,8 +64,10 @@ You can add new components to `src/components/mdx-components.tsx` and register t
 
 ### Styling
 
-Tailwind CSS 4 uses a new CSS-first configuration. Check `src/index.css` to modify the theme, colors, and global styles.
+Tailwind CSS 4 uses a new CSS-first configuration. Check `src/styles/index.css` to modify the theme, colors, and global styles.
 
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+Made with [Vite Monopage](https://github.com/area44/vite-monopage)
