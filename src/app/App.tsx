@@ -51,26 +51,6 @@ export default function App() {
       <div className="container mx-auto flex-1 items-start px-4 md:px-8">
         <main className="relative py-6 lg:gap-10 lg:py-8">
           <div className="mx-auto w-full max-w-3xl min-w-0">
-            <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
-              <div className="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
-              <div className="font-medium text-foreground">
-                {frontmatter?.title || "Introduction"}
-              </div>
-            </div>
             <div className="space-y-2">
               <h1 className="scroll-m-20 text-4xl font-bold tracking-tight text-foreground">
                 {frontmatter?.title}
