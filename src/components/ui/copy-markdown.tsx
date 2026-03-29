@@ -6,7 +6,7 @@ export const CopyMarkdown = ({ content }: { content?: string }) => {
 
   const copy = async () => {
     const textToCopy = content || "";
-    if (!textToCopy) return;
+    if (typeof textToCopy !== "string" || !textToCopy) return;
 
     try {
       await navigator.clipboard.writeText(textToCopy);

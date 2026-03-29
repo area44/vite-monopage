@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
-// @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
 
 const ThemeToggle = () => {

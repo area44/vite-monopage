@@ -9,3 +9,8 @@ declare module "*.mdx" {
   const MDXComponent: ComponentType;
   export default MDXComponent;
 }
+
+declare module "*.mdx?raw" {
+  const content: string;
+  export default content;
+}

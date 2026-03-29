@@ -5,6 +5,8 @@ export const CopyButton = ({ text }: { text: string }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
+    if (typeof text !== "string") return;
+
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
