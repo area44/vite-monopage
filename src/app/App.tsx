@@ -1,10 +1,8 @@
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
-// @ts-ignore - raw import for copy functionality
-import rawContent from "@/pages/index.mdx?raw";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
@@ -28,17 +26,34 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <div className="fixed top-6 right-6 z-50">
-      <button
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm backdrop-blur-sm transition-all hover:bg-muted hover:shadow-md focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none"
-        aria-label="Toggle theme"
-      >
-        {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-      </button>
-    </div>
+    <button
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-transparent text-foreground transition-all hover:bg-muted focus:ring-2 focus:ring-ring focus:outline-none"
+      aria-label="Toggle theme"
+    >
+      {theme === "light" ? (
+        <Moon className="h-[1.2rem] w-[1.2rem]" />
+      ) : (
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
+      )}
+    </button>
   );
 };
+
+const Header = () => (
+  <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
+    <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-4 md:px-8">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-bold tracking-tight tracking-wider text-foreground uppercase">
+          Vite Monopage
+        </span>
+      </div>
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+      </div>
+    </div>
+  </header>
+);
 
 export default function App() {
   useEffect(() => {
@@ -47,38 +62,40 @@ export default function App() {
     }
   }, []);
 
-  // Enrich components with raw content for CopyMarkdown
   const enrichedComponents = {
     ...components,
     CopyMarkdown: (props: any) => (
       <components.CopyMarkdown
         {...props}
-        content={rawContent}
         url="https://raw.githubusercontent.com/area44/vite-monopage/main/src/pages/index.mdx"
       />
     ),
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
-      <ThemeToggle />
-      <main className="mx-auto max-w-3xl px-6 py-12 md:py-24">
-        <article className="max-w-none">
-          <Page components={enrichedComponents} />
-        </article>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <Header />
+      <main className="mx-auto max-w-[1400px] px-4 py-8 md:px-8 md:py-12 lg:py-16">
+        <div className="mx-auto max-w-3xl">
+          <article className="max-w-none">
+            <Page components={enrichedComponents} />
+          </article>
+        </div>
       </main>
-      <footer className="mt-12 border-t border-border py-12 md:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center text-sm text-muted-foreground">
-          <p>
-            Vite Monopage. Built with love by{" "}
-            <a
-              href="https://github.com/area44"
-              className="font-medium text-foreground hover:underline"
-            >
-              @area44
-            </a>
-            .
-          </p>
+      <footer className="mt-12 border-t border-border py-12">
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <div className="mx-auto max-w-3xl text-center text-sm text-muted-foreground">
+            <p>
+              Vite Monopage. Built with love by{" "}
+              <a
+                href="https://github.com/area44"
+                className="font-medium text-foreground hover:underline"
+              >
+                @area44
+              </a>
+              .
+            </p>
+          </div>
         </div>
       </footer>
     </div>

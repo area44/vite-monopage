@@ -43,43 +43,42 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0 0 0);
-  --primary-foreground: oklch(1 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.45 0 0);
+  --muted-foreground: oklch(0.441 0.048 256.23);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0 0 0 / 0.1);
-  --selection: oklch(0 0 0 / 0.1);
+  --ring: oklch(0.441 0.048 256.23 / 0.5);
+  --selection: oklch(0.441 0.048 256.23 / 0.1);
   --selection-foreground: inherit;
 }
 
 .dark {
-  /* Softer dark background */
-  --background: oklch(0.13 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.16 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.16 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(1 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(0.98 0 0);
+  --background: oklch(0.129 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.129 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.129 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.129 0 0);
+  --secondary: oklch(0.208 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.208 0 0);
+  --muted-foreground: oklch(0.706 0 0);
+  --accent: oklch(0.208 0 0);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.22 0 0);
-  --ring: oklch(1 0 0 / 0.2);
-  --selection: oklch(1 0 0 / 0.2);
+  --border: oklch(0.208 0 0);
+  --input: oklch(0.208 0 0);
+  --ring: oklch(0.985 0 0 / 0.3);
+  --selection: oklch(0.985 0 0 / 0.2);
   --selection-foreground: inherit;
 }
 
@@ -93,7 +92,6 @@
   }
 
   html {
-    /* Removed overscroll-y-none to allow Android pull-to-refresh */
     @apply scroll-smooth font-sans antialiased;
     color-scheme: light dark;
   }
@@ -104,12 +102,10 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Improved focus states */
   :focus-visible {
-    @apply ring-2 ring-black ring-offset-2 ring-offset-background outline-none dark:ring-white;
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background outline-none;
   }
 
-  /* Typography following Vercel's style */
   h1,
   h2,
   h3,
@@ -122,6 +118,11 @@
   a {
     @apply transition-colors duration-200;
   }
+
+  /* Specific typography refinements for Fumadocs aesthetic */
+  p {
+    @apply leading-7;
+  }
 }
 
 @layer utilities {
@@ -130,16 +131,11 @@
   }
 }
 
-/* Shiki Overrides to match Vercel style */
+/* Shiki Overrides */
 pre {
   background-color: transparent !important;
 }
 
-.dark pre {
-  background-color: transparent !important;
-}
-
-/* Ensure no background on code inside pre */
 pre code {
   background-color: transparent !important;
   padding: 0 !important;
