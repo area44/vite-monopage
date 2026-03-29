@@ -9,11 +9,29 @@ export const CopyMarkdown = ({ content }: { content?: string }) => {
     if (typeof textToCopy !== "string" || !textToCopy) return;
 
     try {
+      if (!navigator.clipboard) {
+        throw new Error("Clipboard API not available");
+      }
       await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy!", err);
+    } catch {
+      const textArea = document.createElement("textarea");
+      textArea.value = textToCopy;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (copyErr) {
+        console.error("Fallback: Failed to copy!", copyErr);
+      }
+      document.body.removeChild(textArea);
     }
   };
 

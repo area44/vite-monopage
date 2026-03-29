@@ -146,13 +146,13 @@ export const components = {
     );
   },
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <div className="my-8 overflow-hidden rounded-lg border border-border shadow-sm">
+    <span className="my-8 block overflow-hidden rounded-lg border border-border shadow-sm">
       <img
         className={cn("w-full transition-transform hover:scale-[1.02]", className)}
         alt={alt}
         {...props}
       />
-    </div>
+    </span>
   ),
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -187,7 +187,7 @@ export const components = {
 
     useEffect(() => {
       if (preRef.current) {
-        setRawText(preRef.current.innerText);
+        setRawText(preRef.current.textContent || "");
       }
     }, [children]);
 
