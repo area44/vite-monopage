@@ -20,8 +20,8 @@ A high-performance, beautiful documentation starter powered by the latest web te
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm 9+
+- Node.js 22+
+- pnpm 10+
 
 ### Installation
 
@@ -49,7 +49,7 @@ A high-performance, beautiful documentation starter powered by the latest web te
    pnpm build
    ```
 
-## 📂 Project Structure
+## Project Structure
 
 - `src/pages/index.mdx`: The main content of your site. Just edit this file!
 - `src/components/mdx-components.tsx`: Custom React components used within your MDX.
