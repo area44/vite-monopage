@@ -9,9 +9,7 @@ export const Steps = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={cn("my-12 ml-4 border-l border-border pl-10 [counter-reset:step]", className)}>
-    {children}
-  </div>
+  <div className={cn("mb-12 ml-4 border-l pl-8 [counter-reset:step]", className)}>{children}</div>
 );
 
 export const Step = ({
@@ -24,8 +22,10 @@ export const Step = ({
   className?: string;
 }) => (
   <div className={cn("relative mb-12 [counter-increment:step] last:mb-0", className)}>
-    <div className="absolute -left-[calc(2.5rem+1px)] flex h-9 w-9 items-center justify-center rounded-full border border-border bg-muted text-[15px] font-bold text-foreground shadow-sm ring-8 ring-background before:content-[counter(step)]" />
-    {title && <h3 className="mt-0 text-xl font-bold tracking-tight text-foreground">{title}</h3>}
+    <div className="absolute -left-[50px] flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-base font-semibold text-foreground shadow-sm before:content-[counter(step)]" />
+    {title && (
+      <h3 className="mt-0 text-xl font-semibold tracking-tight text-foreground">{title}</h3>
+    )}
     <div className="mt-4 text-muted-foreground">{children}</div>
   </div>
 );
