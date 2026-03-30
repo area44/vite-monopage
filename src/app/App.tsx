@@ -68,8 +68,8 @@ export default function App() {
         </main>
       </div>
       <footer className="border-t border-border py-6 md:px-8 md:py-0">
-        <div className="container mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <p className="text-center text-sm leading-loose text-balance text-muted-foreground md:text-left">
+        <div className="container mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-4 md:h-24">
+          <p className="text-center text-sm leading-loose text-balance text-muted-foreground">
             Built by{" "}
             <a
               href="https://github.com/area44"
