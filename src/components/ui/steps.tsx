@@ -22,10 +22,10 @@ export const Step = ({
   className?: string;
 }) => (
   <div className={cn("relative mb-12 [counter-increment:step] last:mb-0", className)}>
-    <div className="absolute -left-[50px] flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-base font-semibold text-foreground shadow-sm before:content-[counter(step)]" />
+    <div className="absolute -left-[50px] flex h-9 w-9 items-center justify-center rounded-full bg-muted text-base font-semibold text-foreground shadow-sm before:content-[counter(step)]" />
     {title && (
       <h3 className="mt-0 text-xl font-semibold tracking-tight text-foreground">{title}</h3>
     )}
-    <div className="mt-4 text-muted-foreground">{children}</div>
+    <div className="mt-4">{children}</div>
   </div>
 );
