@@ -8,7 +8,9 @@ export const Steps = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => <div className={cn("mb-12 ml-4 pl-8 [counter-reset:step]", className)}>{children}</div>;
+}) => (
+  <div className={cn("mb-12 ml-4 border-l pl-8 [counter-reset:step]", className)}>{children}</div>
+);
 
 export const Step = ({
   children,
