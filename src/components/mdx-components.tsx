@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Callout } from "@/components/ui/callout";
 import { CopyButton } from "@/components/ui/copy-button";
 import { CopyMarkdown } from "@/components/ui/copy-markdown";
+import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
@@ -75,7 +76,7 @@ export const components = {
       {children}
     </ol>
   ),
-  li: ({ className, children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
+  li: ({ className, children, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
     <li className={cn("mt-2 leading-7", className)} {...props}>
       {children}
     </li>
@@ -246,19 +247,54 @@ export const components = {
     </td>
   ),
   pre: ({ className, children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-    const preRef = React.useRef<HTMLPreElement>(null);
-    const [rawText, setRawText] = useState("");
+    // Extract raw text from children recursively to avoid FOUC and provide raw text for copying
+    const getRawText = (node: React.ReactNode): string => {
+      if (typeof node === "string") return node;
+      if (typeof node === "number") return String(node);
+      if (Array.isArray(node)) return node.map(getRawText).join("");
+      if (React.isValidElement(node)) return getRawText(node.props.children);
+      return "";
+    };
 
-    useEffect(() => {
-      if (preRef.current) {
-        setRawText(preRef.current.textContent || "");
-      }
-    }, [children]);
+    const rawText = getRawText(children);
+
+    // Detect mermaid
+    const hasMermaidClass =
+      className?.includes("language-mermaid") ||
+      React.Children.toArray(children).some(
+        (child) =>
+          React.isValidElement(child) &&
+          (child.props as any).className?.includes("language-mermaid"),
+      );
+
+    const mermaidKeywords = [
+      "graph ",
+      "graph\n",
+      "flowchart ",
+      "flowchart\n",
+      "sequenceDiagram",
+      "gantt",
+      "classDiagram",
+      "stateDiagram",
+      "erDiagram",
+      "journey",
+      "pie",
+      "quadrantChart",
+      "mindmap",
+      "timeline",
+      "zenuml",
+      "architecture",
+    ];
+    const isMermaid =
+      hasMermaidClass || mermaidKeywords.some((kw) => rawText.trim().startsWith(kw));
+
+    if (isMermaid) {
+      return <Mermaid chart={rawText.trim()} />;
+    }
 
     return (
       <div className="group relative my-6">
         <pre
-          ref={preRef}
           className={cn(
             "overflow-x-auto rounded-xl border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed shadow-[rgba(0,0,0,0.03)_0px_2px_4px]",
             className,
@@ -299,4 +335,5 @@ export const components = {
   Steps,
   Step,
   CopyMarkdown,
+  Mermaid,
 };

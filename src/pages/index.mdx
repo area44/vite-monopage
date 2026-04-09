@@ -57,6 +57,7 @@ Vite Monopage is built on the principles of **clarity**, **speed**, and **readab
 - **Modern Styling**: Tailwind CSS 4 with OKLCH colors and Inter Variable font.
 - **Native MDX**: Write documentation using React components directly in Markdown.
 - **Syntax Highlighting**: Beautiful code blocks powered by Shiki.
+- **Diagrams**: Built-in support for **Mermaid.js** diagrams.
 
 ### Image Preview
 
@@ -65,6 +66,18 @@ Images are automatically enhanced with a click-to-zoom preview feature.
 ![Vite Monopage Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop)
 
 ## Interactive Components
+
+### Diagrams (Mermaid)
+
+Vite Monopage supports Mermaid diagrams natively in code blocks. Just use the `mermaid` language tag.
+
+```mermaid
+graph TD
+    A[Start] --> B{Is it working?}
+    B -- Yes --> C[Great!]
+    B -- No --> D[Check logs]
+    D --> B
+```
 
 ### Code Blocks
 
