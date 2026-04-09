@@ -8,9 +8,7 @@ export const Steps = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => (
-  <div className={cn("mb-12 ml-4 border-l pl-8 [counter-reset:step]", className)}>{children}</div>
-);
+}) => <div className={cn("mb-12 ml-4 pl-8 [counter-reset:step]", className)}>{children}</div>;
 
 export const Step = ({
   children,
@@ -26,6 +24,6 @@ export const Step = ({
     {title && (
       <h3 className="mt-0 text-xl font-semibold tracking-tight text-foreground">{title}</h3>
     )}
-    <div className="mt-4 text-muted-foreground">{children}</div>
+    <div className="mt-4">{children}</div>
   </div>
 );

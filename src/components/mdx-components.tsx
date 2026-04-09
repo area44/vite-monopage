@@ -161,15 +161,55 @@ export const components = {
       </blockquote>
     );
   },
-  img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <div className="my-8 overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
-      <img
-        className={cn("w-full transition-transform hover:scale-[1.01]", className)}
-        alt={alt}
-        {...props}
-      />
-    </div>
-  ),
+  img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsOpen(false);
+      };
+      if (isOpen) {
+        window.addEventListener("keydown", handleEsc);
+        document.body.style.overflow = "hidden";
+      }
+      return () => {
+        window.removeEventListener("keydown", handleEsc);
+        document.body.style.overflow = "auto";
+      };
+    }, [isOpen]);
+
+    return (
+      <>
+        <button
+          className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
+          onClick={() => setIsOpen(true)}
+          type="button"
+        >
+          <img
+            className={cn(
+              "w-full transition-transform duration-500 group-hover:scale-[1.02]",
+              className,
+            )}
+            alt={alt}
+            {...props}
+          />
+        </button>
+        {isOpen && (
+          <button
+            className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
+            onClick={() => setIsOpen(false)}
+            type="button"
+          >
+            <img
+              src={props.src}
+              alt={alt}
+              className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
+            />
+          </button>
+        )}
+      </>
+    );
+  },
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto rounded-xl border border-border">
