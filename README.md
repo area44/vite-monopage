@@ -1,17 +1,15 @@
-<div align="center">
-  <img src="public/logo.svg" alt="Vite Monopage Logo" width="80" height="80" />
-  <h1>Vite Monopage</h1>
-  <p>A high-performance, beautiful documentation starter powered by the latest web technologies.</p>
+# Vite Monopage
 
-  <p>
-    <img src="https://img.shields.io/badge/Vite-8.0-646CFF?style=flat-square&logo=vite" alt="Vite" />
-    <img src="https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react" alt="React" />
-    <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind" />
-    <img src="https://img.shields.io/badge/MDX-3.0-F9AC00?style=flat-square&logo=mdx" alt="MDX" />
-    <img src="https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License" />
-  </p>
-</div>
+A high-performance, beautiful documentation starter powered by the latest web technologies.
+
+<p>
+  <img src="https://img.shields.io/badge/Vite-8.0-646CFF?style=flat-square&logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/MDX-3.0-F9AC00?style=flat-square&logo=mdx" alt="MDX" />
+  <img src="https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License" />
+</p>
 
 ---
 
@@ -71,7 +69,7 @@ Your main documentation content lives in `src/pages/index.mdx`. Simply edit this
 
 ### Adding Components
 
-You can create new React components in `src/components/ui" and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
+You can create new React components in `src/components/ui` and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
 
 ### Design Tokens
 
@@ -98,9 +96,3 @@ Vite Monopage is inspired by the aesthetics of **Mintlify** and **Shadcn UI**. I
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-<div align="center">
-  Made with by <b>Vite Monopage</b>
-</div>

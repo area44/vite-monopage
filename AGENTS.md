@@ -22,7 +22,7 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 
 ## Design System (Mintlify-Inspired)
 
-Follow these rules to maintain visual consistency:
+Follow these rules to maintain visual consistency. For a detailed guide on component-level styling and layout principles, refer to [DESIGN.md](DESIGN.md).
 
 ### Colors & Typography
 
