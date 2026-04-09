@@ -2,7 +2,7 @@
 
 Welcome to the **Vite Monopage** repository. This guide is intended for AI agents working on this codebase.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [React 19](https://react.dev/)
 - **Build Tool**: [Vite 8](https://vitejs.dev/)
@@ -12,7 +12,7 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 - **Linting/Formatting**: [oxlint](https://oxlint.dev/) and [oxfmt](https://github.com/oxc-project/oxc)
 - **Icons**: [lucide-react](https://lucide.dev/) (v1.7.0)
 
-## 📁 Project Structure
+## Project Structure
 
 - `src/pages/index.mdx`: Primary entry point for documentation content. Edit this file to change the main page content.
 - `src/components/mdx-components.tsx`: Contains custom React components used within MDX and the logic for GFM-style alerts.
@@ -20,7 +20,7 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 - `src/styles/index.css`: Global styles and Tailwind 4 configuration using `@theme`.
 - `public/`: Static assets (logos, icons).
 
-## 🎨 Design System (Mintlify-Inspired)
+## Design System (Mintlify-Inspired)
 
 Follow these rules to maintain visual consistency:
 
@@ -38,7 +38,7 @@ Follow these rules to maintain visual consistency:
 - **Spacing**: Base unit is 8px.
 - **Shadows**: Minimal usage. Depth is primarily border-driven.
 
-## ⚠️ Technical Constraints & Gotchas
+## Technical Constraints & Gotchas
 
 - **MDX Imports**: DO NOT import `rawContent` from MDX files in application code (e.g., `App.tsx`) as it triggers a `MISSING_EXPORT` error during Vite builds.
 - **Code Blocks**: Always use `textContent` instead of `innerText` to extract text from code blocks in `mdx-components.tsx`.
@@ -46,7 +46,7 @@ Follow these rules to maintain visual consistency:
 - **Custom Brand Icons**: Use custom SVG components for brand logos (like GitHub) as `lucide-react` v1.7.0 has limitations with some brand icons.
 - **MDX Page Rendering**: Pass custom components directly to the MDX page component (e.g., `<Page components={components} />`).
 
-## 🚀 Development Workflows
+## Development Workflows
 
 ### Commands
 
@@ -60,6 +60,6 @@ Follow these rules to maintain visual consistency:
 - **Tailwind 4 Configuration**: Theme overrides should be placed in the `@theme` block in `src/styles/index.css`.
 - **GFM Alerts**: Supports `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, and `> [!CAUTION]`. These are automatically mapped to the `Callout` component.
 
-## 📦 Deployment
+## Deployment
 
 The project is configured for [Vercel](https://vercel.com/) (see `vercel.json`).

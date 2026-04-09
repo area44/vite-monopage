@@ -15,7 +15,7 @@
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Blazing Fast Performance**: Powered by **Vite 8** for near-instant hot module replacement and lightning-fast builds.
 - **Modern Styling**: Built with **Tailwind CSS 4**, utilizing the new CSS-first configuration and OKLCH colors.
@@ -30,7 +30,7 @@
 - **Enhanced Images**: Automated click-to-zoom preview for all images in your documentation.
 - **Type Safe**: Fully written in **TypeScript** for the best developer experience.
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -63,7 +63,7 @@
    pnpm build
    ```
 
-## 🎨 Customization
+## Customization
 
 ### Editing Content
 
@@ -71,13 +71,13 @@ Your main documentation content lives in `src/pages/index.mdx`. Simply edit this
 
 ### Adding Components
 
-You can create new React components in `src/components/ui` and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
+You can create new React components in `src/components/ui" and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
 
 ### Design Tokens
 
 The visual identity (colors, fonts, radius) is defined in `src/styles/index.css` using Tailwind 4's `@theme` block.
 
-## 📁 Project Structure
+## Project Structure
 
 | Path              | Description                                       |
 | :---------------- | :------------------------------------------------ |
@@ -87,7 +87,7 @@ The visual identity (colors, fonts, radius) is defined in `src/styles/index.css`
 | `src/styles/`     | Global CSS and Tailwind theme configuration.      |
 | `public/`         | Static assets like logos and icons.               |
 
-## 🧠 Design Philosophy
+## Design Philosophy
 
 Vite Monopage is inspired by the aesthetics of **Mintlify** and **Shadcn UI**. It prioritizes:
 
@@ -95,12 +95,12 @@ Vite Monopage is inspired by the aesthetics of **Mintlify** and **Shadcn UI**. I
 - **Readability**: High-quality typography and subtle border-driven depth.
 - **Simplicity**: A low-config, "just-works" approach to technical documentation.
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
 <div align="center">
-  Made with 💚 by <b>Vite Monopage</b>
+  Made with by <b>Vite Monopage</b>
 </div>
