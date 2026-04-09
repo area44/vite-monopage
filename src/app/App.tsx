@@ -1,10 +1,11 @@
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
+import { cn } from "@/lib/utils";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -17,6 +18,8 @@ export default function App() {
     return "light";
   });
 
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -26,6 +29,14 @@ export default function App() {
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (frontmatter?.title) {
@@ -46,50 +57,116 @@ export default function App() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 selection:bg-black/10 dark:selection:bg-white/20">
-      <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background/95 p-0 font-medium backdrop-blur transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-        >
-          {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-          <span className="sr-only">Toggle theme</span>
-        </button>
-      </div>
-      <div className="container mx-auto flex-1 items-start px-4 md:px-8">
-        <main className="relative py-6 lg:gap-10 lg:py-8">
-          <div className="mx-auto w-full max-w-3xl min-w-0">
-            <div className="pt-8 pb-12">
-              <article className="prose prose-zinc dark:prose-invert max-w-none">
-                <Page components={enrichedComponents} />
-              </article>
-            </div>
-          </div>
-        </main>
-      </div>
-      <footer className="border-t border-border py-6 md:px-8 md:py-0">
-        <div className="container mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-4 md:h-24">
-          <p className="text-center text-sm leading-loose text-balance text-muted-foreground">
-            Built by{" "}
-            <a
-              href="https://github.com/area44"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              @area44
+    <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
+      {/* Navigation */}
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full transition-all duration-200",
+          scrolled
+            ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
+            : "bg-transparent"
+        )}
+      >
+        <div className="container mx-auto flex h-16 items-center justify-between px-6 md:px-8">
+          <div className="flex items-center gap-8">
+            <a href="/" className="flex items-center space-x-2 font-bold text-xl tracking-tight text-foreground">
+              Vite Monopage
             </a>
-            . The source code is available on{" "}
+            <nav className="hidden md:flex items-center gap-6">
+              <a href="#features" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">Features</a>
+              <a href="#docs" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">Docs</a>
+              <a href="https://github.com/area44/vite-monopage" target="_blank" rel="noreferrer" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">GitHub</a>
+            </nav>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
+            >
+              {theme === "light" ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
+              <span className="sr-only">Toggle theme</span>
+            </button>
             <a
               href="https://github.com/area44/vite-monopage"
               target="_blank"
               rel="noreferrer"
-              className="font-medium underline underline-offset-4"
+              className="hidden sm:inline-flex h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 focus-visible:ring-brand focus-visible:outline-none"
             >
-              GitHub
+              Get Started
             </a>
-            .
-          </p>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24">
+        {/* Atmospheric Background */}
+        <div className="absolute top-0 left-1/2 -z-10 h-[600px] w-full -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.15)_0%,rgba(255,255,255,0)_100%)] dark:bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.1)_0%,rgba(13,13,13,0)_100%)]" />
+
+        <div className="container mx-auto px-6 text-center md:px-8">
+          <div className="mx-auto max-w-4xl">
+            <h1 className="text-5xl font-semibold tracking-[-1.28px] text-foreground md:text-7xl leading-[1.1]">
+              {frontmatter?.title || "Vite Monopage"}
+            </h1>
+            <p className="mt-8 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto leading-relaxed">
+              {frontmatter?.description || "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="#docs"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground transition-all hover:opacity-90"
+              >
+                View Documentation
+              </a>
+              <a
+                href="https://github.com/area44/vite-monopage"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-input bg-background px-8 text-base font-medium text-foreground transition-all hover:bg-accent"
+              >
+                View on GitHub
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="container mx-auto flex-1 items-start px-6 md:px-8">
+        <main className="relative pb-16 lg:pb-24">
+          <div className="mx-auto w-full max-w-3xl min-w-0">
+            <article className="prose prose-zinc dark:prose-invert max-w-none">
+              <Page components={enrichedComponents} />
+            </article>
+          </div>
+        </main>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-muted/30 py-12">
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div className="flex items-center gap-2 font-semibold tracking-tight">
+              <span>Vite Monopage</span>
+            </div>
+            <p className="text-center text-sm text-muted-foreground md:text-left">
+              Built by{" "}
+              <a
+                href="https://github.com/area44"
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-foreground hover:text-brand transition-colors underline underline-offset-4"
+              >
+                @area44
+              </a>
+              . Open source under the MIT License.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="https://github.com/area44/vite-monopage" target="_blank" rel="noreferrer" className="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">GitHub</a>
+              <a href="https://twitter.com/area44" target="_blank" rel="noreferrer" className="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">Twitter</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

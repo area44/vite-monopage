@@ -4,14 +4,17 @@
 
 @import "shadcn/tailwind.css";
 
+@import "@fontsource-variable/inter";
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --breakpoint-3xl: 1600px;
-  --font-sans: "Geist Variable", sans-serif;
+  --font-sans: "Inter Variable", "Geist Variable", sans-serif;
   --font-mono: "Geist Mono", monospace;
+
+  --color-brand: #18E299;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -34,51 +37,54 @@
 
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
+
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #ffffff;
+  --foreground: #0d0d0d;
+  --card: #ffffff;
+  --card-foreground: #0d0d0d;
+  --popover: #ffffff;
+  --popover-foreground: #0d0d0d;
+  --primary: #0d0d0d;
+  --primary-foreground: #ffffff;
+  --secondary: #fafafa;
+  --secondary-foreground: #0d0d0d;
+  --muted: #fafafa;
+  --muted-foreground: #666666;
+  --accent: #fafafa;
+  --accent-foreground: #0d0d0d;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.145 0 0);
-  --selection: oklch(0 0 0 / 0.1);
+  --border: rgba(0, 0, 0, 0.05);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #18E299;
+  --selection: rgba(24, 226, 153, 0.2);
   --selection-foreground: inherit;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: #0d0d0d;
+  --foreground: #ededed;
+  --card: #141414;
+  --card-foreground: #ededed;
+  --popover: #141414;
+  --popover-foreground: #ededed;
+  --primary: #ededed;
+  --primary-foreground: #0d0d0d;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ededed;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --accent: #1a1a1a;
+  --accent-foreground: #ededed;
   --destructive: oklch(0.396 0.141 25.723);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.708 0 0);
-  --selection: oklch(1 0 0 / 0.2);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #18E299;
+  --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
 }
 
@@ -103,7 +109,7 @@
   }
 
   :focus-visible {
-    @apply ring-2 ring-black ring-offset-2 ring-offset-background outline-none dark:ring-white;
+    @apply ring-2 ring-brand ring-offset-2 ring-offset-background outline-none;
   }
 
   h1,
@@ -112,7 +118,7 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold tracking-tight text-balance;
+    @apply font-semibold tracking-tight text-balance text-foreground;
   }
 
   a {
@@ -122,11 +128,11 @@
 
 @layer utilities {
   .container {
-    max-width: 1400px !important;
+    max-width: 1200px !important;
   }
 }
 
-/* Shiki Overrides to match Vercel style */
+/* Shiki Overrides */
 pre {
   background-color: transparent !important;
 }
