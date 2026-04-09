@@ -1,9 +1,9 @@
 ---
 title: "Vite Monopage"
-description: "A comprehensive guide to building documentation with Vite 8, MDX, and Tailwind CSS 4."
+description: "The high-performance documentation starter for Vite and MDX."
 ---
 
-# Vite Monopage
+<div id="docs" className="scroll-m-20" />
 
 Welcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.
 
@@ -11,26 +11,42 @@ Welcome to the ultimate starter for modern web documentation. This site is power
   <CopyMarkdown />
 </div>
 
-## Preview
+## Quick Start
 
-Check out how the documentation looks in different modes and devices.
+Get your documentation up and running in seconds. Clone the template and start writing in MDX.
 
-![Vite Monopage Preview](https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072&ixlib=rb-4.0.3)
+<Steps>
+  <Step title="Clone Template">
+    Clone the repository to your local machine. ```bash git clone
+    https://github.com/area44/vite-monopage.git ```
+  </Step>
+  <Step title="Install Dependencies">
+    Install the required packages using pnpm. ```bash pnpm install ```
+  </Step>
+  <Step title="Start Developing">Launch the development server. ```bash pnpm dev ```</Step>
+</Steps>
 
 <Callout type="default">
   This is a custom `Callout` component. It's perfect for highlighting important information that
   doesn't fit in the standard flow.
 </Callout>
 
-## Interactive Features
+## Design Philosophy
 
-### Theme Management
+Vite Monopage is built on the principles of **clarity**, **speed**, and **readability**. Inspired by Mintlify and Shadcn UI, it provides a clean, single-page experience that puts your content first.
 
-The theme toggle is now a floating button in the top-right corner. It persists your preference using `localStorage` and respects system settings by default.
+### Key Features
 
-### Syntax Highlighting
+- **Blazing Fast**: Powered by Vite 8 and Rolldown for near-instant builds.
+- **Modern Styling**: Tailwind CSS 4 with OKLCH colors and Inter Variable font.
+- **Native MDX**: Write documentation using React components directly in Markdown.
+- **Syntax Highlighting**: Beautiful code blocks powered by Shiki.
 
-We now use **Shiki** for high-quality syntax highlighting. It supports hundreds of languages and themes.
+## Interactive Components
+
+### Code Blocks
+
+We use **Shiki** for high-quality syntax highlighting. It supports hundreds of languages and themes.
 
 ```typescript
 interface User {
@@ -45,57 +61,27 @@ const getUser = async (id: string): Promise<User> => {
 };
 ```
 
-## Documentation Steps
+### GFM Alerts
 
-Use the `Steps` component to guide your users through a process. This style is inspired by **Fumadocs**.
-
-<Steps>
-  <Step title="Installation">
-    Clone the repository and install the dependencies. ```bash pnpm install ```
-  </Step>
-  <Step title="Configuration">Edit your `vite.config.ts` to add the Shiki and MDX plugins.</Step>
-  <Step title="Build & Deploy">
-    Run the build command to generate a static site. ```bash pnpm build ```
-  </Step>
-</Steps>
-
-## GFM Style Alerts
-
-We support GitHub Flavored Markdown alerts natively via the `blockquote` component.
-
-> [!NOTE]
-> This is a note alert. Useful for general information.
+We support GitHub Flavored Markdown alerts natively.
 
 > [!TIP]
-> This is a tip alert. Perfect for helpful advice.
-
-> [!IMPORTANT]
-> This is an important alert. Key information the user shouldn't miss.
+> This is a tip alert. Perfect for providing helpful advice or shortcuts.
 
 > [!WARNING]
-> This is a warning alert. Use this to signal potential issues.
+> This is a warning alert. Use this to signal potential issues to your users.
 
-> [!CAUTION]
-> This is a caution alert. Critical warnings that require immediate attention.
+## Project Structure
 
-## Rich Content
-
-### Tables
-
-| Feature        | Status   | Technology        |
-| :------------- | :------- | :---------------- |
-| **Vite 8**     | Ready    | Rolldown          |
-| **Tailwind 4** | Fast     | Lightning CSS     |
-| **MDX 3**      | Flexible | Remark / Rehype   |
-| **Shiki**      | Vibrant  | TextMate Grammars |
-
-### Links
-
-Links are clean and styled following Vercel's design: [Vite 8 Docs](https://vitejs.dev).
+| Directory        | Purpose                           |
+| :--------------- | :-------------------------------- |
+| `src/app`        | Main application logic and layout |
+| `src/components` | UI and MDX components             |
+| `src/pages`      | Documentation content in MDX      |
+| `src/styles`     | Global CSS and design tokens      |
 
 ---
 
 <Callout type="success">
-  **Ready to get started?** Edit `src/pages/index.mdx` and start building your own documentation
-  today.
+  **Ready to build?** Edit `src/pages/index.mdx` and start building your own documentation today.
 </Callout>

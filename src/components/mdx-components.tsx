@@ -10,7 +10,7 @@ export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-foreground md:text-5xl",
+        "mt-2 scroll-m-20 text-4xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
         className,
       )}
       {...props}
@@ -21,7 +21,7 @@ export const components = {
   h2: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "mt-12 scroll-m-20 border-b border-border pb-2 text-2xl font-semibold tracking-tight text-foreground transition-colors first:mt-0 md:text-3xl",
+        "mt-12 scroll-m-20 border-b border-border pb-2 text-2xl leading-tight font-semibold tracking-[-0.8px] text-foreground transition-colors first:mt-0 md:text-3xl",
         className,
       )}
       {...props}
@@ -32,7 +32,7 @@ export const components = {
   h3: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-foreground md:text-2xl",
+        "mt-8 scroll-m-20 text-xl font-semibold tracking-[-0.24px] text-foreground md:text-2xl",
         className,
       )}
       {...props}
@@ -162,7 +162,7 @@ export const components = {
     );
   },
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <div className="my-8 overflow-hidden rounded-lg border border-border shadow-sm">
+    <div className="my-8 overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
       <img
         className={cn("w-full transition-transform hover:scale-[1.01]", className)}
         alt={alt}
@@ -172,7 +172,7 @@ export const components = {
   ),
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
+    <div className="my-6 w-full overflow-y-auto rounded-xl border border-border">
       <table className={cn("w-full border-collapse text-sm", className)} {...props}>
         {children}
       </table>
@@ -220,7 +220,7 @@ export const components = {
         <pre
           ref={preRef}
           className={cn(
-            "overflow-x-auto rounded-lg border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed",
+            "overflow-x-auto rounded-xl border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed shadow-[rgba(0,0,0,0.03)_0px_2px_4px]",
             className,
           )}
           {...props}
@@ -236,7 +236,7 @@ export const components = {
   code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded bg-muted/80 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground",
+        "relative rounded-sm bg-muted/80 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground",
         className,
       )}
       {...props}
@@ -247,7 +247,7 @@ export const components = {
   a: ({ className, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
       className={cn(
-        "inline-flex items-center gap-1 font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground",
+        "inline-flex items-center gap-1 font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-brand hover:decoration-brand",
         className,
       )}
       {...props}
