@@ -68,57 +68,23 @@ export default function App() {
         )}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-6 md:px-8">
-          <div className="flex items-center gap-8">
-            <a
-              href="/"
-              className="flex items-center space-x-2 text-xl font-bold tracking-tight text-foreground"
-            >
-              Vite Monopage
-            </a>
-            <nav className="hidden items-center gap-6 md:flex">
-              <a
-                href="#features"
-                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
-              >
-                Features
-              </a>
-              <a
-                href="#docs"
-                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
-              >
-                Docs
-              </a>
-              <a
-                href="https://github.com/area44/vite-monopage"
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
-              >
-                GitHub
-              </a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
-            >
-              {theme === "light" ? (
-                <Moon className="h-[18px] w-[18px]" />
-              ) : (
-                <Sun className="h-[18px] w-[18px]" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </button>
-            <a
-              href="https://github.com/area44/vite-monopage"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 focus-visible:ring-brand focus-visible:outline-none sm:inline-flex"
-            >
-              Get Started
-            </a>
-          </div>
+          <a
+            href="/"
+            className="flex items-center space-x-2 text-xl font-bold tracking-tight text-foreground"
+          >
+            Vite Monopage
+          </a>
+          <button
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
+          >
+            {theme === "light" ? (
+              <Moon className="h-[18px] w-[18px]" />
+            ) : (
+              <Sun className="h-[18px] w-[18px]" />
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </button>
         </div>
       </header>
 
@@ -171,11 +137,8 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-12">
         <div className="container mx-auto px-6 md:px-8">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-center gap-2 font-semibold tracking-tight">
-              <span>Vite Monopage</span>
-            </div>
-            <p className="text-center text-sm text-muted-foreground md:text-left">
+          <div className="flex flex-col items-center justify-center gap-6">
+            <p className="text-center text-sm text-muted-foreground">
               Built by{" "}
               <a
                 href="https://github.com/area44"
@@ -187,24 +150,6 @@ export default function App() {
               </a>
               . Open source under the MIT License.
             </p>
-            <div className="flex items-center gap-6">
-              <a
-                href="https://github.com/area44/vite-monopage"
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-brand"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://twitter.com/area44"
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-brand"
-              >
-                Twitter
-              </a>
-            </div>
           </div>
         </div>
       </footer>
