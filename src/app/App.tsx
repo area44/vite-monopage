@@ -2,10 +2,10 @@ import { Sun, Moon, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
+import { cn } from "@/lib/utils";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
-import { cn } from "@/lib/utils";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -64,18 +64,38 @@ export default function App() {
           "sticky top-0 z-50 w-full transition-all duration-200",
           scrolled
             ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
-            : "bg-transparent"
+            : "bg-transparent",
         )}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-6 md:px-8">
           <div className="flex items-center gap-8">
-            <a href="/" className="flex items-center space-x-2 font-bold text-xl tracking-tight text-foreground">
+            <a
+              href="/"
+              className="flex items-center space-x-2 text-xl font-bold tracking-tight text-foreground"
+            >
               Vite Monopage
             </a>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#features" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">Features</a>
-              <a href="#docs" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">Docs</a>
-              <a href="https://github.com/area44/vite-monopage" target="_blank" rel="noreferrer" className="text-sm font-medium text-foreground/70 hover:text-brand transition-colors">GitHub</a>
+            <nav className="hidden items-center gap-6 md:flex">
+              <a
+                href="#features"
+                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
+              >
+                Features
+              </a>
+              <a
+                href="#docs"
+                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
+              >
+                Docs
+              </a>
+              <a
+                href="https://github.com/area44/vite-monopage"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-foreground/70 transition-colors hover:text-brand"
+              >
+                GitHub
+              </a>
             </nav>
           </div>
           <div className="flex items-center gap-3">
@@ -83,14 +103,18 @@ export default function App() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
             >
-              {theme === "light" ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
+              {theme === "light" ? (
+                <Moon className="h-[18px] w-[18px]" />
+              ) : (
+                <Sun className="h-[18px] w-[18px]" />
+              )}
               <span className="sr-only">Toggle theme</span>
             </button>
             <a
               href="https://github.com/area44/vite-monopage"
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:inline-flex h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 focus-visible:ring-brand focus-visible:outline-none"
+              className="hidden h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 focus-visible:ring-brand focus-visible:outline-none sm:inline-flex"
             >
               Get Started
             </a>
@@ -105,11 +129,12 @@ export default function App() {
 
         <div className="container mx-auto px-6 text-center md:px-8">
           <div className="mx-auto max-w-4xl">
-            <h1 className="text-5xl font-semibold tracking-[-1.28px] text-foreground md:text-7xl leading-[1.1]">
+            <h1 className="text-5xl leading-[1.1] font-semibold tracking-[-1.28px] text-foreground md:text-7xl">
               {frontmatter?.title || "Vite Monopage"}
             </h1>
-            <p className="mt-8 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto leading-relaxed">
-              {frontmatter?.description || "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {frontmatter?.description ||
+                "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <a
@@ -156,15 +181,29 @@ export default function App() {
                 href="https://github.com/area44"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-foreground hover:text-brand transition-colors underline underline-offset-4"
+                className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand"
               >
                 @area44
               </a>
               . Open source under the MIT License.
             </p>
             <div className="flex items-center gap-6">
-              <a href="https://github.com/area44/vite-monopage" target="_blank" rel="noreferrer" className="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">GitHub</a>
-              <a href="https://twitter.com/area44" target="_blank" rel="noreferrer" className="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">Twitter</a>
+              <a
+                href="https://github.com/area44/vite-monopage"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://twitter.com/area44"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-brand"
+              >
+                Twitter
+              </a>
             </div>
           </div>
         </div>

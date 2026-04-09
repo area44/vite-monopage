@@ -17,23 +17,13 @@ Get your documentation up and running in seconds. Clone the template and start w
 
 <Steps>
   <Step title="Clone Template">
-    Clone the repository to your local machine.
-    ```bash
-    git clone https://github.com/area44/vite-monopage.git
-    ```
+    Clone the repository to your local machine. ```bash git clone
+    https://github.com/area44/vite-monopage.git ```
   </Step>
   <Step title="Install Dependencies">
-    Install the required packages using pnpm.
-    ```bash
-    pnpm install
-    ```
+    Install the required packages using pnpm. ```bash pnpm install ```
   </Step>
-  <Step title="Start Developing">
-    Launch the development server.
-    ```bash
-    pnpm dev
-    ```
-  </Step>
+  <Step title="Start Developing">Launch the development server. ```bash pnpm dev ```</Step>
 </Steps>
 
 <Callout type="default">
@@ -68,7 +58,7 @@ interface User {
 const getUser = async (id: string): Promise<User> => {
   const response = await fetch(`/api/users/${id}`);
   return response.json();
-}
+};
 ```
 
 ### GFM Alerts
@@ -83,16 +73,15 @@ We support GitHub Flavored Markdown alerts natively.
 
 ## Project Structure
 
-| Directory | Purpose |
-| :--- | :--- |
-| `src/app` | Main application logic and layout |
-| `src/components` | UI and MDX components |
-| `src/pages` | Documentation content in MDX |
-| `src/styles` | Global CSS and design tokens |
+| Directory        | Purpose                           |
+| :--------------- | :-------------------------------- |
+| `src/app`        | Main application logic and layout |
+| `src/components` | UI and MDX components             |
+| `src/pages`      | Documentation content in MDX      |
+| `src/styles`     | Global CSS and design tokens      |
 
 ---
 
 <Callout type="success">
-  **Ready to build?** Edit `src/pages/index.mdx` and start building your own documentation
-  today.
+  **Ready to build?** Edit `src/pages/index.mdx` and start building your own documentation today.
 </Callout>

@@ -14,7 +14,7 @@
   --font-sans: "Inter Variable", "Geist Variable", sans-serif;
   --font-mono: "Geist Mono", monospace;
 
-  --color-brand: #18E299;
+  --color-brand: #18e299;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -60,7 +60,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: rgba(0, 0, 0, 0.05);
   --input: rgba(0, 0, 0, 0.08);
-  --ring: #18E299;
+  --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.2);
   --selection-foreground: inherit;
 }
@@ -83,7 +83,7 @@
   --destructive: oklch(0.396 0.141 25.723);
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #18E299;
+  --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
 }
