@@ -267,7 +267,7 @@ export const components = {
         >
           {children}
         </pre>
-        <div className="absolute top-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="absolute top-4 right-4">
           <CopyButton text={rawText} />
         </div>
       </div>
