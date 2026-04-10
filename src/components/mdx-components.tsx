@@ -1,4 +1,4 @@
-import { Hash } from "lucide-react";
+import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { Callout } from "@/components/ui/callout";
@@ -34,7 +34,7 @@ export const components = {
         className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Hash className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -42,7 +42,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Hash className="h-4 w-4" />
+        <Link className="h-4 w-4" />
       </a>
     </h2>
   ),
@@ -60,7 +60,7 @@ export const components = {
         className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Hash className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -68,7 +68,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Hash className="h-4 w-4" />
+        <Link className="h-4 w-4" />
       </a>
     </h3>
   ),
@@ -86,7 +86,7 @@ export const components = {
         className="absolute top-0.5 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Hash className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -94,7 +94,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Hash className="h-4 w-4" />
+        <Link className="h-4 w-4" />
       </a>
     </h4>
   ),
