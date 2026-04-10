@@ -31,12 +31,19 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-1 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
+        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-6 md:w-6" />
+        <Link className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
+      <a
+        href={`#${id}`}
+        className="ml-2 text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        aria-label="Link to section"
+      >
+        #
+      </a>
     </h2>
   ),
   h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -50,12 +57,19 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-1 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
+        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-5 md:w-5" />
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
+      <a
+        href={`#${id}`}
+        className="ml-2 text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        aria-label="Link to section"
+      >
+        #
+      </a>
     </h3>
   ),
   h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -69,12 +83,19 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-0.5 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
+        className="absolute top-0.5 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-5 md:w-5" />
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
+      <a
+        href={`#${id}`}
+        className="ml-2 text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        aria-label="Link to section"
+      >
+        #
+      </a>
     </h4>
   ),
   p: ({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
