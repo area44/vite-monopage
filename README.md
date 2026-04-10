@@ -3,12 +3,11 @@
 A high-performance, beautiful documentation starter powered by the latest web technologies.
 
 <p>
-  <img src="https://img.shields.io/badge/Vite-8.0-646CFF?style=flat-square&logo=vite" alt="Vite" />
-  <img src="https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/MDX-3.0-F9AC00?style=flat-square&logo=mdx" alt="MDX" />
-  <img src="https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/MDX-3-F9AC00?logo=mdx" alt="MDX" />
+  <img src="https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript" alt="TypeScript" />
 </p>
 
 ---
@@ -95,4 +94,4 @@ Vite Monopage is inspired by the aesthetics of **Mintlify** and **Shadcn UI**. I
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

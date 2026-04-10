@@ -1,41 +1,35 @@
 {
   "compilerOptions": {
     /* Language & Environment */
-    "target": "ESNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
     /* React JSX Settings */
     "jsx": "react-jsx",
-
     /* Bundler Mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-
     /* React Type Performance */
     "jsxImportSource": "react",
-
     /* Strictness & Linting */
     "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "skipLibCheck": true,
+    "isolatedModules": true,
+    "incremental": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
     "erasableSyntaxOnly": true,
-
-    /* Path Aliases */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-
     /* Type Declarations */
-    "types": ["vite/client"]
+    "types": ["node", "react", "react-dom", "vite/client"]
   },
-
   "include": ["src"]
 }
