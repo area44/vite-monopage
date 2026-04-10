@@ -95,7 +95,7 @@ export default function App() {
 
         <div className="container mx-auto px-6 text-center md:px-8">
           <div className="mx-auto max-w-4xl">
-            <h1 className="text-5xl leading-[1.1] font-semibold tracking-[-1.28px] text-foreground md:text-7xl">
+            <h1 className="text-4xl leading-[1.1] font-semibold tracking-[-1.28px] text-foreground md:text-7xl">
               {frontmatter?.title || "Vite Monopage"}
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
