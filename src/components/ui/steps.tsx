@@ -24,7 +24,9 @@ export const Step = ({
   <div className={cn("relative mb-12 [counter-increment:step] last:mb-0", className)}>
     <div className="absolute -left-[50px] flex h-9 w-9 items-center justify-center rounded-full bg-muted text-base font-semibold text-foreground shadow-sm before:content-[counter(step)]" />
     {title && (
-      <h3 className="mt-0 text-xl font-semibold tracking-tight text-foreground">{title}</h3>
+      <h3 className="mt-0 text-xl font-semibold text-foreground md:text-[20px] md:leading-[1.3] md:tracking-[-0.2px]">
+        {title}
+      </h3>
     )}
     <div className="mt-4">{children}</div>
   </div>
