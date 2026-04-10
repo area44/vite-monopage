@@ -16,11 +16,15 @@ export const TableOfContents = () => {
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll("h2, h3"))
-      .map((el) => ({
-        id: el.id,
-        title: el.textContent || "",
-        level: Number.parseInt(el.tagName.replace("H", ""), 10),
-      }))
+      .map((el) => {
+        // Remove trailing # from the title if it exists
+        const title = (el.textContent || "").replace(/#$/, "").trim();
+        return {
+          id: el.id,
+          title,
+          level: Number.parseInt(el.tagName.replace("H", ""), 10),
+        };
+      })
       .filter((heading) => heading.id);
     setHeadings(elements);
 
@@ -47,8 +51,8 @@ export const TableOfContents = () => {
 
   return (
     <nav className="toc-container">
-      {/* Mobile TOC */}
-      <div className="mb-8 block xl:hidden">
+      {/* Mobile TOC - Sticky */}
+      <div className="sticky top-16 z-40 -mx-6 mb-8 block bg-background/80 px-6 py-2 backdrop-blur-xl xl:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex w-full items-center justify-between rounded-xl border border-border bg-muted/30 p-4 text-left transition-colors hover:bg-muted/50"
@@ -69,7 +73,7 @@ export const TableOfContents = () => {
           )}
         >
           <div className="overflow-hidden">
-            <ul className="space-y-2 rounded-xl border border-border bg-background p-4 shadow-sm">
+            <ul className="max-h-[60vh] space-y-2 overflow-y-auto rounded-xl border border-border bg-background p-4 shadow-sm">
               {headings.map((heading) => (
                 <li
                   key={heading.id}
