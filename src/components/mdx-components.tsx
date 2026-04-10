@@ -12,7 +12,7 @@ export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-4xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
+        "mt-2 scroll-m-20 text-3xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
         className,
       )}
       {...props}
@@ -31,10 +31,10 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        className="absolute top-1 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
         aria-label="Link to section"
       >
-        <Link className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-6 md:w-6" />
       </a>
       {children}
     </h2>
@@ -50,10 +50,10 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        className="absolute top-1 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
         aria-label="Link to section"
       >
-        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-5 md:w-5" />
       </a>
       {children}
     </h3>
@@ -69,10 +69,10 @@ export const components = {
     >
       <a
         href={`#${id}`}
-        className="absolute top-0.5 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        className="absolute top-0.5 -left-5 opacity-100 transition-opacity group-hover:opacity-100 md:-left-8 md:opacity-0"
         aria-label="Link to section"
       >
-        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="h-4 w-4 text-muted-foreground/50 hover:text-brand md:h-5 md:w-5" />
       </a>
       {children}
     </h4>
