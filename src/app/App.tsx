@@ -126,11 +126,11 @@ export default function App() {
 
       {/* Main Content Layout */}
       <div className="container mx-auto px-6 md:px-8">
-        <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-12 xl:gap-24">
+        <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
           {/* Spacer for centering on LG+ */}
           <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
 
-          <main className="max-w-3xl min-w-0 flex-1 pb-16 lg:pb-24">
+          <main className="max-w-4xl min-w-0 flex-1 pb-16 lg:pb-24">
             <div className="lg:hidden">
               <TableOfContents />
             </div>
