@@ -3,6 +3,7 @@ import rehypeShiki from "@shikijs/rehype";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
+import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
@@ -23,6 +24,7 @@ export default defineConfig({
         remarkGfm,
       ],
       rehypePlugins: [
+        rehypeSlug,
         [
           rehypeShiki,
           {

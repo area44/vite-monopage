@@ -1,3 +1,4 @@
+import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { Callout } from "@/components/ui/callout";
@@ -19,36 +20,60 @@ export const components = {
       {children}
     </h1>
   ),
-  h2: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
+      id={id}
       className={cn(
-        "mt-12 scroll-m-20 border-b border-border pb-2 text-2xl leading-tight font-semibold tracking-[-0.8px] text-foreground transition-colors first:mt-0 md:text-3xl",
+        "group relative mt-12 scroll-m-20 border-b border-border pb-2 text-2xl leading-tight font-semibold tracking-[-0.8px] text-foreground transition-colors first:mt-0 md:text-3xl",
         className,
       )}
       {...props}
     >
+      <a
+        href={`#${id}`}
+        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        aria-label="Link to section"
+      >
+        <Link className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
+      </a>
       {children}
     </h2>
   ),
-  h3: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
+      id={id}
       className={cn(
-        "mt-8 scroll-m-20 text-xl font-semibold tracking-[-0.24px] text-foreground md:text-2xl",
+        "group relative mt-8 scroll-m-20 text-xl font-semibold tracking-[-0.24px] text-foreground md:text-2xl",
         className,
       )}
       {...props}
     >
+      <a
+        href={`#${id}`}
+        className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        aria-label="Link to section"
+      >
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+      </a>
       {children}
     </h3>
   ),
-  h4: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
+      id={id}
       className={cn(
-        "mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-foreground md:text-xl",
+        "group relative mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-foreground md:text-xl",
         className,
       )}
       {...props}
     >
+      <a
+        href={`#${id}`}
+        className="absolute top-0.5 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
+        aria-label="Link to section"
+      >
+        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+      </a>
       {children}
     </h4>
   ),
