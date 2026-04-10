@@ -2,6 +2,7 @@ import { Sun, Moon, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
+import { TableOfContents } from "@/components/ui/toc";
 import { cn } from "@/lib/utils";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
@@ -124,14 +125,22 @@ export default function App() {
       </section>
 
       {/* Main Content */}
-      <div className="container mx-auto flex-1 items-start px-6 md:px-8">
-        <main className="relative pb-16 lg:pb-24">
-          <div className="mx-auto w-full max-w-3xl min-w-0">
-            <article className="prose prose-zinc dark:prose-invert max-w-none">
-              <Page components={enrichedComponents} />
-            </article>
-          </div>
-        </main>
+      <div className="container mx-auto flex-1 px-6 md:px-8">
+        <div className="flex flex-col gap-10 xl:flex-row xl:gap-16">
+          <main className="min-w-0 flex-1 pb-16 lg:pb-24">
+            <div className="mx-auto max-w-3xl">
+              <div className="xl:hidden">
+                <TableOfContents />
+              </div>
+              <article className="prose prose-zinc dark:prose-invert max-w-none">
+                <Page components={enrichedComponents} />
+              </article>
+            </div>
+          </main>
+          <aside className="hidden w-64 shrink-0 xl:block">
+            <TableOfContents />
+          </aside>
+        </div>
       </div>
 
       {/* Footer */}

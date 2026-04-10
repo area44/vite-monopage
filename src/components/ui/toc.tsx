@@ -1,35 +1,129 @@
-import React from "react";
+import { ChevronDown, List } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-export const TableOfContents = ({ className }: { className?: string }) => {
-  const headings = [
-    { title: "Introduction", href: "#introduction" },
-    { title: "Installation", href: "#installation" },
-    { title: "Syntax Highlighting", href: "#syntax-highlighting" },
-    { title: "Steps", href: "#steps" },
-    { title: "Alerts", href: "#alerts" },
-  ];
+interface Heading {
+  id: string;
+  title: string;
+  level: number;
+}
+
+export const TableOfContents = () => {
+  const [headings, setHeadings] = useState<Heading[]>([]);
+  const [activeId, setActiveId] = useState<string>("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll("h2, h3"))
+      .map((el) => ({
+        id: el.id,
+        title: el.textContent || "",
+        level: Number.parseInt(el.tagName.replace("H", ""), 10),
+      }))
+      .filter((heading) => heading.id);
+    setHeadings(elements);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "0% 0% -80% 0%" },
+    );
+
+    for (const el of elements) {
+      const element = document.getElementById(el.id);
+      if (element) observer.observe(element);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  if (headings.length === 0) return null;
 
   return (
-    <div className={cn("hidden text-sm xl:block", className)}>
-      <div className="sticky top-20 -mt-10 h-[calc(100vh-5rem)] overflow-y-auto pt-10">
-        <div className="space-y-2">
-          <p className="font-medium">On This Page</p>
-          <ul className="m-0 list-none">
-            {headings.map((heading, i) => (
-              <li key={i} className="mt-0 pt-2">
-                <a
-                  href={heading.href}
-                  className="inline-block text-muted-foreground transition-colors hover:text-foreground"
+    <nav className="toc-container">
+      {/* Mobile TOC */}
+      <div className="mb-8 block xl:hidden">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex w-full items-center justify-between rounded-xl border border-border bg-muted/30 p-4 text-left transition-colors hover:bg-muted/50"
+          type="button"
+        >
+          <div className="flex items-center gap-2 font-medium">
+            <List className="h-4 w-4 text-brand" />
+            <span>On This Page</span>
+          </div>
+          <ChevronDown
+            className={cn("h-4 w-4 transition-transform duration-200", isOpen && "rotate-180")}
+          />
+        </button>
+        <div
+          className={cn(
+            "grid transition-all duration-200 ease-in-out",
+            isOpen ? "mt-2 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+          )}
+        >
+          <div className="overflow-hidden">
+            <ul className="space-y-2 rounded-xl border border-border bg-background p-4 shadow-sm">
+              {headings.map((heading) => (
+                <li
+                  key={heading.id}
+                  style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}
+                  className="list-none"
                 >
-                  {heading.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+                  <a
+                    href={`#${heading.id}`}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "inline-block py-1 text-sm transition-colors",
+                      activeId === heading.id
+                        ? "font-medium text-brand"
+                        : "text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    {heading.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Desktop TOC */}
+      <div className="hidden text-sm xl:block">
+        <div className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto">
+          <div className="space-y-4">
+            <p className="font-medium tracking-tight">On This Page</p>
+            <ul className="m-0 list-none space-y-2">
+              {headings.map((heading) => (
+                <li
+                  key={heading.id}
+                  style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}
+                  className="mt-0 pt-0"
+                >
+                  <a
+                    href={`#${heading.id}`}
+                    className={cn(
+                      "inline-block border-l-2 py-1 pl-4 transition-colors",
+                      activeId === heading.id
+                        ? "border-brand font-medium text-brand"
+                        : "border-transparent text-muted-foreground hover:border-border hover:text-foreground",
+                    )}
+                  >
+                    {heading.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
