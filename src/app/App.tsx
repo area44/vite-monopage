@@ -82,21 +82,18 @@ export default function App() {
       {/* Main Content Layout */}
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
-          {/* Spacer for centering on LG+ */}
-          <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
+          <aside className="hidden w-64 shrink-0 lg:block xl:w-72">
+            <TableOfContents />
+          </aside>
 
           <main className="max-w-4xl min-w-0 flex-1 pb-16 lg:pb-24">
-            <div className="lg:hidden">
-              <TableOfContents />
-            </div>
             <article className="prose prose-zinc dark:prose-invert max-w-none">
               <Page components={enrichedComponents} />
             </article>
           </main>
 
-          <aside className="hidden w-64 shrink-0 lg:block xl:w-72">
-            <TableOfContents />
-          </aside>
+          {/* Spacer for centering on LG+ */}
+          <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
         </div>
       </div>
 
