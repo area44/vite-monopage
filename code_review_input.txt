@@ -1,7 +1,0 @@
-I have completed the following changes:
-1. Removed the Hero section buttons in App.tsx to achieve a more minimalist look.
-2. Refactored App.tsx to use a shared Navbar component.
-3. Updated the Navbar component to accept a `scrolled` prop.
-4. Updated the TableOfContents component to support a `variant="navbar"` which renders a compact dropdown menu.
-5. Integrated the TableOfContents dropdown into the Navbar, making it visible only when the user has scrolled past the hero section.
-6. Fixed linting and accessibility warnings found by oxlint.
