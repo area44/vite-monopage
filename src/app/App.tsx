@@ -1,9 +1,8 @@
-import { Sun, Moon, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
+import { Navbar } from "@/components/ui/navbar";
 import { TableOfContents } from "@/components/ui/toc";
-import { cn } from "@/lib/utils";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
@@ -60,34 +59,7 @@ export default function App() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
       {/* Navigation */}
-      <header
-        className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-200",
-          scrolled
-            ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
-            : "bg-transparent",
-        )}
-      >
-        <div className="container mx-auto flex h-16 items-center justify-between px-6 md:px-8">
-          <a
-            href="/"
-            className="flex items-center space-x-2 text-xl font-bold tracking-tight text-foreground"
-          >
-            Vite Monopage
-          </a>
-          <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
-          >
-            {theme === "light" ? (
-              <Moon className="h-[18px] w-[18px]" />
-            ) : (
-              <Sun className="h-[18px] w-[18px]" />
-            )}
-            <span className="sr-only">Toggle theme</span>
-          </button>
-        </div>
-      </header>
+      <Navbar theme={theme} setTheme={setTheme} scrolled={scrolled} />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24">
@@ -103,23 +75,6 @@ export default function App() {
               {frontmatter?.description ||
                 "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
             </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="#docs"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground transition-all hover:opacity-90"
-              >
-                View Documentation
-              </a>
-              <a
-                href="https://github.com/area44/vite-monopage"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-input bg-background px-8 text-base font-medium text-foreground transition-all hover:bg-accent"
-              >
-                View on GitHub
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -127,21 +82,18 @@ export default function App() {
       {/* Main Content Layout */}
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
-          {/* Spacer for centering on LG+ */}
-          <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
+          <aside className="hidden w-64 shrink-0 lg:block xl:w-72">
+            <TableOfContents />
+          </aside>
 
           <main className="max-w-4xl min-w-0 flex-1 pb-16 lg:pb-24">
-            <div className="lg:hidden">
-              <TableOfContents />
-            </div>
             <article className="prose prose-zinc dark:prose-invert max-w-none">
               <Page components={enrichedComponents} />
             </article>
           </main>
 
-          <aside className="hidden w-64 shrink-0 lg:block xl:w-72">
-            <TableOfContents />
-          </aside>
+          {/* Spacer for centering on LG+ */}
+          <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
         </div>
       </div>
 
