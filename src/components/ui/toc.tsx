@@ -49,7 +49,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
   if (headings.length === 0) return null;
 
   return (
-    <nav className={cn("toc-container", variant === "navbar" && "relative")}>
+    <nav className={cn("toc-container", variant === "navbar" ? "relative" : "h-full")}>
       {variant === "navbar" ? (
         <div className="flex items-center">
           <button
@@ -153,7 +153,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
           </div>
 
           {/* Desktop TOC */}
-          <div className="hidden text-[13px] lg:block">
+          <div className="hidden h-full text-[13px] lg:block">
             <div className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
               <div className="space-y-3">
                 <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">

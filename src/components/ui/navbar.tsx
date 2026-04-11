@@ -29,7 +29,7 @@ export const Navbar = ({
         </a>
         <div className="flex items-center space-x-4">
           {scrolled && (
-            <div className="animate-in duration-300 fade-in slide-in-from-right-4">
+            <div className="animate-in duration-300 fade-in slide-in-from-right-4 lg:hidden">
               <TableOfContents variant="navbar" />
             </div>
           )}
