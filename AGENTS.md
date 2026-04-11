@@ -16,7 +16,7 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 
 - `src/pages/index.mdx`: Primary entry point for documentation content. Edit this file to change the main page content.
 - `src/components/mdx-components.tsx`: Contains custom React components used within MDX and the logic for GFM-style alerts.
-- `src/app/App.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
+- `src/app/app.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
 - `src/styles/index.css`: Global styles and Tailwind 4 configuration using `@theme`.
 - `public/`: Static assets (logos, icons).
 
@@ -40,7 +40,7 @@ Follow these rules to maintain visual consistency. For a detailed guide on compo
 
 ## Technical Constraints & Gotchas
 
-- **MDX Imports**: DO NOT import `rawContent` from MDX files in application code (e.g., `App.tsx`) as it triggers a `MISSING_EXPORT` error during Vite builds.
+- **MDX Imports**: DO NOT import `rawContent` from MDX files in application code (e.g., `app.tsx`) as it triggers a `MISSING_EXPORT` error during Vite builds.
 - **Code Blocks**: Always use `textContent` instead of `innerText` to extract text from code blocks in `mdx-components.tsx`.
 - **Images in MDX**: Wrap `img` elements in block-level `span` tags (not `div`) to avoid hydration errors when rendered inside Markdown paragraphs.
 - **Custom Brand Icons**: Use custom SVG components for brand logos (like GitHub) as `lucide-react` v1.7.0 has limitations with some brand icons.

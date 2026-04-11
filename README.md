@@ -78,7 +78,7 @@ The visual identity (colors, fonts, radius) is defined in `src/styles/index.css`
 
 | Path              | Description                                       |
 | :---------------- | :------------------------------------------------ |
-| `src/app/`        | Core application logic and main `App.tsx` layout. |
+| `src/app/`        | Core application logic and main `app.tsx` layout. |
 | `src/pages/`      | MDX-based documentation content.                  |
 | `src/components/` | Reusable UI and MDX-specific components.          |
 | `src/styles/`     | Global CSS and Tailwind theme configuration.      |
