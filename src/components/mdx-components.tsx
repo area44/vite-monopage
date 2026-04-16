@@ -2,8 +2,8 @@ import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { Callout } from "@/components/ui/callout";
+import { CopyAsMarkdown } from "@/components/ui/copy-as-markdown";
 import { CopyButton } from "@/components/ui/copy-button";
-import { CopyMarkdown } from "@/components/ui/copy-markdown";
 import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
@@ -380,6 +380,6 @@ export const components = {
   Callout,
   Steps,
   Step,
-  CopyMarkdown,
+  CopyAsMarkdown,
   Mermaid,
 };
