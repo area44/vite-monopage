@@ -44,11 +44,11 @@ export default function App() {
     }
   }, []);
 
-  // Enrich components with raw content for CopyMarkdown
+  // Enrich components with raw content for CopyAsMarkdown
   const enrichedComponents = {
     ...components,
-    CopyMarkdown: (props: any) => (
-      <components.CopyMarkdown
+    CopyAsMarkdown: (props: any) => (
+      <components.CopyAsMarkdown
         {...props}
         content={rawContent}
         url="https://raw.githubusercontent.com/area44/vite-monopage/main/src/pages/index.mdx"

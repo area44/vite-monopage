@@ -1,7 +1,7 @@
 import { Check, FileText } from "lucide-react";
 import { useState } from "react";
 
-export const CopyMarkdown = ({ content, url }: { content?: string; url?: string }) => {
+export const CopyAsMarkdown = ({ content, url }: { content?: string; url?: string }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -42,7 +42,7 @@ export const CopyMarkdown = ({ content, url }: { content?: string; url?: string 
       ) : (
         <>
           <FileText className="h-4 w-4" />
-          <span>Copy Markdown</span>
+          <span>Copy as Markdown</span>
         </>
       )}
     </button>
