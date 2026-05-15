@@ -25,7 +25,7 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
       )}
       aria-label="Copy to clipboard"
     >
-      {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+      {copied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
     </button>
   );
 };

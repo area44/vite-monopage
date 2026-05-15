@@ -30,14 +30,14 @@ export const Sidebar = ({ className }: { className?: string }) => {
       )}
     >
       <div className="h-full py-6 pr-6 lg:py-8">
-        <div className="flex flex-col space-y-4">
-          {sections.map((section, i) => (
-            <div key={i} className="pb-4">
+        <div className="flex flex-col gap-y-4">
+          {sections.map((section) => (
+            <div key={section.title} className="pb-4">
               <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>
               <div className="grid grid-flow-row auto-rows-max text-sm">
-                {section.items.map((item, j) => (
+                {section.items.map((item) => (
                   <a
-                    key={j}
+                    key={item.href}
                     href={item.href}
                     className="group flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground hover:underline"
                   >

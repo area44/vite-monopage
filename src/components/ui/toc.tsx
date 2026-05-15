@@ -15,16 +15,20 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll("h2, h3"))
-      .map((el) => {
-        const title = (el.textContent || "").replace(/#$/, "").trim();
-        return {
-          id: el.id,
-          title,
-          level: Number.parseInt(el.tagName.replace("H", ""), 10),
-        };
-      })
-      .filter((heading) => heading.id);
+    const elements = Array.from(document.querySelectorAll("h2, h3")).reduce<Heading[]>(
+      (acc, el) => {
+        if (el.id) {
+          const title = (el.textContent || "").replace(/#$/, "").trim();
+          acc.push({
+            id: el.id,
+            title,
+            level: Number.parseInt(el.tagName.replace("H", ""), 10),
+          });
+        }
+        return acc;
+      },
+      [],
+    );
     setHeadings(elements);
 
     const observer = new IntersectionObserver(
@@ -57,10 +61,10 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
             className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/50 px-3 py-1.5 text-sm font-medium backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand"
             type="button"
           >
-            <List className="h-4 w-4 text-brand" />
+            <List className="size-4 text-brand" />
             <span className="hidden sm:inline">On This Page</span>
             <ChevronDown
-              className={cn("h-4 w-4 transition-transform duration-200", isOpen && "rotate-180")}
+              className={cn("size-4 transition-transform duration-200", isOpen && "rotate-180")}
             />
           </button>
           {isOpen && (
@@ -109,14 +113,11 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
               type="button"
             >
               <div className="flex items-center gap-2 text-sm font-medium">
-                <List className="h-3.5 w-3.5 text-brand" />
+                <List className="size-3.5 text-brand" />
                 <span>On This Page</span>
               </div>
               <ChevronDown
-                className={cn(
-                  "h-3.5 w-3.5 transition-transform duration-200",
-                  isOpen && "rotate-180",
-                )}
+                className={cn("size-3.5 transition-transform duration-200", isOpen && "rotate-180")}
               />
             </button>
             <div
