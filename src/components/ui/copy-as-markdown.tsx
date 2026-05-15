@@ -36,12 +36,12 @@ export const CopyAsMarkdown = ({ content, url }: { content?: string; url?: strin
     >
       {copied ? (
         <>
-          <Check className="h-4 w-4 text-emerald-500" />
+          <Check className="size-4 text-emerald-500" />
           <span>Copied!</span>
         </>
       ) : (
         <>
-          <FileText className="h-4 w-4" />
+          <FileText className="size-4" />
           <span>Copy as Markdown</span>
         </>
       )}

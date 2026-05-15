@@ -29,8 +29,8 @@ export const Mermaid = ({ chart }: MermaidProps) => {
       });
 
       try {
-        const { svg } = await mermaid.render(`mermaid-${id}`, chart);
-        setSvg(svg);
+        const { svg: renderedSvg } = await mermaid.render(`mermaid-${id}`, chart);
+        setSvg(renderedSvg);
       } catch (error) {
         console.error("Mermaid rendering failed:", error);
       }
@@ -53,6 +53,7 @@ export const Mermaid = ({ chart }: MermaidProps) => {
   return (
     <div
       className="mermaid my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
+      /* oxlint-disable-next-line no-danger */
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );

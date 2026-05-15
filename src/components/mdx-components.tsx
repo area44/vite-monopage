@@ -8,6 +8,56 @@ import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
+const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      <button
+        className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
+        onClick={() => setIsOpen(true)}
+        type="button"
+      >
+        <img
+          className={cn(
+            "w-full transition-transform duration-500 group-hover:scale-[1.02]",
+            className,
+          )}
+          alt={alt}
+          {...props}
+        />
+      </button>
+      {isOpen && (
+        <button
+          className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
+          onClick={() => setIsOpen(false)}
+          type="button"
+        >
+          <img
+            src={props.src}
+            alt={alt}
+            className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
+          />
+        </button>
+      )}
+    </>
+  );
+};
+
 export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
@@ -34,7 +84,7 @@ export const components = {
         className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-6 w-6 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-6 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -42,7 +92,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4" />
+        <Link className="size-4" />
       </a>
     </h2>
   ),
@@ -60,7 +110,7 @@ export const components = {
         className="absolute top-1 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -68,7 +118,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4" />
+        <Link className="size-4" />
       </a>
     </h3>
   ),
@@ -86,7 +136,7 @@ export const components = {
         className="absolute top-0.5 -left-8 hidden opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="h-5 w-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
       </a>
       {children}
       <a
@@ -94,7 +144,7 @@ export const components = {
         className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
         aria-label="Link to section"
       >
-        <Link className="h-4 w-4" />
+        <Link className="size-4" />
       </a>
     </h4>
   ),
@@ -208,55 +258,7 @@ export const components = {
       </blockquote>
     );
   },
-  img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    useEffect(() => {
-      const handleEsc = (e: KeyboardEvent) => {
-        if (e.key === "Escape") setIsOpen(false);
-      };
-      if (isOpen) {
-        window.addEventListener("keydown", handleEsc);
-        document.body.style.overflow = "hidden";
-      }
-      return () => {
-        window.removeEventListener("keydown", handleEsc);
-        document.body.style.overflow = "auto";
-      };
-    }, [isOpen]);
-
-    return (
-      <>
-        <button
-          className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
-          onClick={() => setIsOpen(true)}
-          type="button"
-        >
-          <img
-            className={cn(
-              "w-full transition-transform duration-500 group-hover:scale-[1.02]",
-              className,
-            )}
-            alt={alt}
-            {...props}
-          />
-        </button>
-        {isOpen && (
-          <button
-            className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
-            onClick={() => setIsOpen(false)}
-            type="button"
-          >
-            <img
-              src={props.src}
-              alt={alt}
-              className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
-            />
-          </button>
-        )}
-      </>
-    );
-  },
+  img: MdxImage,
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto rounded-xl border border-border">

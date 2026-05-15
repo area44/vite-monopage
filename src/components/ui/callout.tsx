@@ -13,10 +13,10 @@ export const Callout = ({
   className?: string;
 }) => {
   const icons = {
-    default: <Info className="h-5 w-5" />,
-    warning: <AlertTriangle className="h-5 w-5" />,
-    error: <AlertCircle className="h-5 w-5" />,
-    success: <CheckCircle className="h-5 w-5" />,
+    default: <Info className="size-5" />,
+    warning: <AlertTriangle className="size-5" />,
+    error: <AlertCircle className="size-5" />,
+    success: <CheckCircle className="size-5" />,
   };
 
   const styles = {
