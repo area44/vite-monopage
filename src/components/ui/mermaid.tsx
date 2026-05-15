@@ -1,5 +1,5 @@
 import mermaid from "mermaid";
-import React, { useEffect, useId, useRef } from "react";
+import React, { useEffect, useId, useState } from "react";
 
 interface MermaidProps {
   chart: string;
@@ -7,7 +7,7 @@ interface MermaidProps {
 
 export const Mermaid = ({ chart }: MermaidProps) => {
   const id = useId().replace(/:/g, "");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [svg, setSvg] = useState("");
 
   useEffect(() => {
     const renderChart = async () => {
@@ -29,10 +29,8 @@ export const Mermaid = ({ chart }: MermaidProps) => {
       });
 
       try {
-        const { svg } = await mermaid.render(`mermaid-${id}`, chart);
-        if (containerRef.current) {
-          containerRef.current.innerHTML = svg;
-        }
+        const { svg: renderedSvg } = await mermaid.render(`mermaid-${id}`, chart);
+        setSvg(renderedSvg);
       } catch (error) {
         console.error("Mermaid rendering failed:", error);
       }
@@ -54,8 +52,9 @@ export const Mermaid = ({ chart }: MermaidProps) => {
 
   return (
     <div
-      ref={containerRef}
       className="mermaid my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
+      /* oxlint-disable-next-line no-danger */
+      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
 };
