@@ -233,8 +233,8 @@ packages:
   '@chevrotain/types@11.1.2':
     resolution: {integrity: sha512-U+HFai5+zmJCkK86QsaJtoITlboZHBqrVketcO2ROv865xfCMSFpELQoz1GkX5GzME8pTa+3kbKrZHQtI0gdbw==}
 
-  '@dotenvx/dotenvx@1.67.0':
-    resolution: {integrity: sha512-KBfIx5OrAG6giqSkHCkQWynZmT47XkSTuuYIcvjHxlKoVRlYbxNrJmyIPaefnszU8MCvMwrrB+viJQzPqzgpcg==}
+  '@dotenvx/dotenvx@1.68.0':
+    resolution: {integrity: sha512-YGApsPyDmonlqPFGd5d9Gp5O4JQjmdQsoLYtXHTZb0bhlaCCjj69lWbXKYucCplUgvsorQqc5RRqA+tynjb1lA==}
     hasBin: true
 
   '@ecies/ciphers@0.2.6':
@@ -2983,11 +2983,11 @@ packages:
     resolution: {integrity: sha512-Pugqs6M0m7Lv1I7FtxN4aoyToKg1C4tu+/381vH35y8oENM/Ai7f7C4StcoK4/+BSw9ebcS8jRiVrORFKCALLw==}
     engines: {node: ^20.0.0 || >=22.0.0}
 
-  tldts-core@7.1.0:
-    resolution: {integrity: sha512-Ou+YJ467tR700sk2mZBB1/uFah6LDeH/VKO0N4xfjFOXE0hJkZgiOgXj16gEi1wQ4L6334UTKjxF6gum8ftZzQ==}
+  tldts-core@7.1.2:
+    resolution: {integrity: sha512-26EbERPLf5wkNFKW+7egxArSPN1Nqipe/PIe1nvhpNu8HqQeY2pYdOeQk4sAiADv/e03VzHkLY0PPohKv1JMAQ==}
 
-  tldts@7.1.0:
-    resolution: {integrity: sha512-Y+iRHtDrPOlNH9ZZpqpIogonv7jwSPHIt3Gpe+kRvYJlBaK+QGNXu+xooJY0QEmb62/ERo3GF3zCxRMbMtKEEA==}
+  tldts@7.1.2:
+    resolution: {integrity: sha512-RUX5sQm8bl03ycwQ6nSgJiKw9FZWhA8GBzxX6X1lsG3xKzFIW+lYLLpM30FQbDD6XjTWa/VkF15VxjnAMWYJAQ==}
     hasBin: true
 
   to-regex-range@5.0.1:
@@ -3414,7 +3414,7 @@ snapshots:
 
   '@chevrotain/types@11.1.2': {}
 
-  '@dotenvx/dotenvx@1.67.0':
+  '@dotenvx/dotenvx@1.68.0':
     dependencies:
       commander: 11.1.0
       dotenv: 17.4.2
@@ -6243,7 +6243,7 @@ snapshots:
       '@babel/parser': 7.29.3
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
-      '@dotenvx/dotenvx': 1.67.0
+      '@dotenvx/dotenvx': 1.68.0
       '@modelcontextprotocol/sdk': 1.29.0(zod@3.25.76)
       '@types/validate-npm-package-name': 4.0.2
       browserslist: 4.28.2
@@ -6411,11 +6411,11 @@ snapshots:
 
   tinypool@2.1.0: {}
 
-  tldts-core@7.1.0: {}
+  tldts-core@7.1.2: {}
 
-  tldts@7.1.0:
+  tldts@7.1.2:
     dependencies:
-      tldts-core: 7.1.0
+      tldts-core: 7.1.2
 
   to-regex-range@5.0.1:
     dependencies:
@@ -6427,7 +6427,7 @@ snapshots:
 
   tough-cookie@6.0.1:
     dependencies:
-      tldts: 7.1.0
+      tldts: 7.1.2
 
   trim-lines@3.0.1: {}
 
