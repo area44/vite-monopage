@@ -62,16 +62,16 @@ export default function App() {
       <Navbar theme={theme} setTheme={setTheme} scrolled={scrolled} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24">
-        {/* Atmospheric Background */}
-        <div className="absolute top-0 left-1/2 -z-10 h-[600px] w-full -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.15)_0%,rgba(255,255,255,0)_100%)] dark:bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.1)_0%,rgba(13,13,13,0)_100%)]" />
+      <section className="relative overflow-hidden pt-16 pb-16 md:pt-24 md:pb-24">
+        {/* Atmospheric Background - Geist refined approach */}
+        <div className="absolute top-0 left-1/2 -z-10 h-[500px] w-full -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_0%,var(--gray-alpha-200)_0%,transparent_100%)]" />
 
         <div className="container mx-auto px-6 text-center md:px-8">
           <div className="mx-auto max-w-4xl">
-            <h1 className="text-4xl leading-[1.1] font-semibold tracking-[-1.28px] text-foreground md:text-7xl">
+            <h1 className="text-5xl leading-[1.1] font-semibold tracking-[-2.88px] text-foreground md:text-7xl">
               {frontmatter?.title || "Vite Monopage"}
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-[28px] text-muted-foreground md:text-xl">
               {frontmatter?.description ||
                 "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
             </p>
@@ -82,23 +82,23 @@ export default function App() {
       {/* Main Content Layout */}
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
-          <aside className="hidden w-64 shrink-0 lg:block xl:w-72">
+          <aside className="hidden w-64 shrink-0 lg:block">
             <TableOfContents />
           </aside>
 
-          <main className="max-w-4xl min-w-0 flex-1 pb-16 lg:pb-24">
-            <article className="prose prose-zinc dark:prose-invert max-w-none">
+          <main className="max-w-3xl min-w-0 flex-1 pb-16 lg:pb-24">
+            <article className="max-w-none">
               <Page components={enrichedComponents} />
             </article>
           </main>
 
           {/* Spacer for centering on LG+ */}
-          <div className="hidden w-64 shrink-0 lg:block xl:w-72" aria-hidden="true" />
+          <div className="hidden w-64 shrink-0 lg:block" aria-hidden="true" />
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/30 py-12">
+      <footer className="bg-background-200 border-t border-border py-12">
         <div className="container mx-auto px-6 md:px-8">
           <div className="flex flex-col items-center justify-center gap-6">
             <p className="text-center text-sm text-muted-foreground">
@@ -107,7 +107,7 @@ export default function App() {
                 href="https://github.com/area44"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand"
+                className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand hover:decoration-brand"
               >
                 @area44
               </a>

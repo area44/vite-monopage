@@ -4,88 +4,136 @@
 
 @import "shadcn/tailwind.css";
 
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-sm: 401px;
+  --breakpoint-md: 601px;
+  --breakpoint-lg: 961px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
   --breakpoint-3xl: 1600px;
-  --font-sans: "Inter Variable", sans-serif;
+
+  --font-sans: "Geist Variable", "Inter Variable", sans-serif;
   --font-mono: "Geist Mono Variable", monospace;
 
-  --color-brand: #18e299;
+  --color-brand: var(--blue-700);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  --color-background: var(--background-100);
+  --color-foreground: var(--gray-1000);
+  --color-card: var(--background-100);
+  --color-card-foreground: var(--gray-1000);
+  --color-popover: var(--background-100);
+  --color-popover-foreground: var(--gray-1000);
+  --color-primary: var(--gray-1000);
+  --color-primary-foreground: var(--background-100);
+  --color-secondary: var(--background-200);
+  --color-secondary-foreground: var(--gray-1000);
+  --color-muted: var(--gray-100);
+  --color-muted-foreground: var(--gray-700);
+  --color-accent: var(--gray-100);
+  --color-accent-foreground: var(--gray-1000);
+  --color-destructive: var(--red-800);
+  --color-border: var(--gray-alpha-400);
+  --color-input: var(--gray-alpha-400);
+  --color-ring: var(--blue-700);
 
-  --color-selection: var(--selection);
-  --color-selection-foreground: var(--selection-foreground);
+  --color-selection: var(--blue-200);
+  --color-selection-foreground: inherit;
 
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-16: 64px;
+  --spacing-24: 96px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Geist Colors */
+  --gray-100: #f2f2f2;
+  --gray-200: #ebebeb;
+  --gray-300: #e6e6e6;
+  --gray-400: #eaeaea;
+  --gray-500: #c9c9c9;
+  --gray-600: #a8a8a8;
+  --gray-700: #8f8f8f;
+  --gray-800: #7d7d7d;
+  --gray-900: #4d4d4d;
+  --gray-1000: #171717;
+
+  --gray-alpha-100: #0000000d;
+  --gray-alpha-200: #00000015;
+  --gray-alpha-300: #0000001a;
+  --gray-alpha-400: #00000014;
+  --gray-alpha-500: #00000036;
+  --gray-alpha-600: #0000003d;
+  --gray-alpha-700: #00000070;
+  --gray-alpha-800: #00000082;
+  --gray-alpha-900: #000000b3;
+  --gray-alpha-1000: #000000e8;
+
+  --blue-100: #f0f7ff;
+  --blue-200: #e9f4ff;
+  --blue-300: #dfefff;
+  --blue-400: #cae7ff;
+  --blue-500: #94ccff;
+  --blue-600: #48aeff;
+  --blue-700: #006bff;
+  --blue-800: #0059ec;
+  --blue-900: #005ff2;
+  --blue-1000: #002359;
+
+  --red-100: #ffeeef;
+  --red-700: #fc0035;
+  --red-800: #ea001d;
+
+  --amber-100: #fff6de;
+  --amber-700: #ffae00;
+
+  --green-100: #ecfdec;
+  --green-700: #28a948;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0d0d0d;
-  --card: #ffffff;
-  --card-foreground: #0d0d0d;
-  --popover: #ffffff;
-  --popover-foreground: #0d0d0d;
-  --primary: #0d0d0d;
-  --primary-foreground: #ffffff;
-  --secondary: #fafafa;
-  --secondary-foreground: #0d0d0d;
-  --muted: #fafafa;
-  --muted-foreground: #666666;
-  --accent: #fafafa;
-  --accent-foreground: #0d0d0d;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(0, 0, 0, 0.05);
-  --input: rgba(0, 0, 0, 0.08);
-  --ring: #18e299;
-  --selection: rgba(24, 226, 153, 0.2);
-  --selection-foreground: inherit;
+  --background-100: #ffffff;
+  --background-200: #fafafa;
 }
 
 .dark {
-  --background: #0d0d0d;
-  --foreground: #ededed;
-  --card: #141414;
-  --card-foreground: #ededed;
-  --popover: #141414;
-  --popover-foreground: #ededed;
-  --primary: #ededed;
-  --primary-foreground: #0d0d0d;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ededed;
-  --muted: #1a1a1a;
-  --muted-foreground: #a0a0a0;
-  --accent: #1a1a1a;
-  --accent-foreground: #ededed;
-  --destructive: oklch(0.396 0.141 25.723);
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #18e299;
-  --selection: rgba(24, 226, 153, 0.3);
-  --selection-foreground: inherit;
+  --background-100: #000000;
+  --background-200: #111111;
+
+  --gray-100: #111111;
+  --gray-200: #333333;
+  --gray-300: #444444;
+  --gray-400: #666666;
+  --gray-500: #888888;
+  --gray-600: #999999;
+  --gray-700: #aaaaaa;
+  --gray-800: #cccccc;
+  --gray-900: #eaeaea;
+  --gray-1000: #ffffff;
+
+  --gray-alpha-100: rgba(255, 255, 255, 0.1);
+  --gray-alpha-200: rgba(255, 255, 255, 0.2);
+  --gray-alpha-300: rgba(255, 255, 255, 0.3);
+  --gray-alpha-400: rgba(255, 255, 255, 0.4);
+
+  --blue-700: #0070f3;
+
+  --red-800: #ff0000;
 }
 
 @layer base {
@@ -109,6 +157,7 @@
   }
 
   :focus-visible {
+    /* Geist Focus: box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #006bff */
     @apply ring-2 ring-brand ring-offset-2 ring-offset-background outline-none;
   }
 
@@ -128,7 +177,7 @@
 
 @layer utilities {
   .container {
-    max-width: 1440px !important;
+    max-width: 1200px !important;
   }
 }
 

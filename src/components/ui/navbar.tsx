@@ -17,13 +17,13 @@ export const Navbar = ({
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-200",
-        scrolled ? "border-b border-border/50 bg-background/80 backdrop-blur-xl" : "bg-transparent",
+        scrolled ? "border-b border-border bg-background/80 backdrop-blur-xl" : "bg-transparent",
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-6 md:px-8">
+      <div className="container mx-auto flex h-14 items-center justify-between px-6 md:px-8">
         <a
           href="/"
-          className="flex items-center gap-x-2 text-xl font-bold tracking-tight text-foreground"
+          className="flex items-center gap-x-2 text-base font-bold tracking-tight text-foreground"
         >
           Vite Monopage
         </a>
@@ -35,9 +35,9 @@ export const Navbar = ({
           )}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="inline-flex size-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
+            className="inline-flex size-8 items-center justify-center rounded-sm border border-border bg-background transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
           >
-            {theme === "light" ? <Moon className="size-[18px]" /> : <Sun className="size-[18px]" />}
+            {theme === "light" ? <Moon className="size-4" /> : <Sun className="size-4" />}
             <span className="sr-only">Toggle theme</span>
           </button>
         </div>

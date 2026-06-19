@@ -1,6 +1,8 @@
 import { Check, FileText } from "lucide-react";
 import { useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 export const CopyAsMarkdown = ({ content, url }: { content?: string; url?: string }) => {
   const [copied, setCopied] = useState(false);
 
@@ -32,11 +34,13 @@ export const CopyAsMarkdown = ({ content, url }: { content?: string; url?: strin
   return (
     <button
       onClick={copy}
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-muted hover:text-foreground active:scale-95"
+      className={cn(
+        "inline-flex items-center gap-2 rounded-sm border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-accent hover:text-foreground active:scale-95",
+      )}
     >
       {copied ? (
         <>
-          <Check className="size-4 text-emerald-500" />
+          <Check className="size-4 text-brand" />
           <span>Copied!</span>
         </>
       ) : (

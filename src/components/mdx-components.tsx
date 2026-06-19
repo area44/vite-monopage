@@ -1,5 +1,5 @@
 import { Link } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Callout } from "@/components/ui/callout";
 import { CopyAsMarkdown } from "@/components/ui/copy-as-markdown";
@@ -8,61 +8,17 @@ import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
-const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
-    };
-    if (isOpen) {
-      window.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden";
-    }
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
-  return (
-    <>
-      <button
-        className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
-        onClick={() => setIsOpen(true)}
-        type="button"
-      >
-        <img
-          className={cn(
-            "w-full transition-transform duration-500 group-hover:scale-[1.02]",
-            className,
-          )}
-          alt={alt}
-          {...props}
-        />
-      </button>
-      {isOpen && (
-        <button
-          className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
-          onClick={() => setIsOpen(false)}
-          type="button"
-        >
-          <img
-            src={props.src}
-            alt={alt}
-            className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
-          />
-        </button>
-      )}
-    </>
-  );
-};
+const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  <span className="my-8 block overflow-hidden rounded-lg border border-border shadow-sm">
+    <img className={cn("h-auto w-full", className)} alt={alt} {...props} />
+  </span>
+);
 
 export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-3xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
+        "mt-2 scroll-m-20 text-4xl font-semibold tracking-[-2.88px] text-foreground md:text-[72px] md:leading-[72px]",
         className,
       )}
       {...props}
@@ -74,7 +30,7 @@ export const components = {
     <h2
       id={id}
       className={cn(
-        "group relative mt-12 scroll-m-20 border-b border-border pb-2 text-2xl font-semibold tracking-tight text-foreground transition-colors first:mt-0 md:text-[40px] md:leading-[1.1] md:tracking-[-0.8px]",
+        "group relative mt-16 scroll-m-20 border-b border-border pb-2 text-3xl font-semibold tracking-[-0.8px] text-foreground transition-colors first:mt-0 md:text-[40px] md:leading-[1.1]",
         className,
       )}
       {...props}
@@ -100,7 +56,7 @@ export const components = {
     <h3
       id={id}
       className={cn(
-        "group relative mt-8 scroll-m-20 text-xl font-semibold text-foreground md:text-[20px] md:leading-[1.3] md:tracking-[-0.2px]",
+        "group relative mt-10 scroll-m-20 text-xl font-semibold tracking-[-0.2px] text-foreground md:text-[20px] md:leading-[1.3]",
         className,
       )}
       {...props}
@@ -126,7 +82,7 @@ export const components = {
     <h4
       id={id}
       className={cn(
-        "group relative mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-foreground md:text-[20px] md:leading-[1.3] md:tracking-[-0.2px]",
+        "group relative mt-8 scroll-m-20 text-lg font-semibold tracking-[-0.2px] text-foreground md:text-[18px] md:leading-[1.3]",
         className,
       )}
       {...props}
@@ -150,7 +106,10 @@ export const components = {
   ),
   p: ({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 text-muted-foreground [&:not(:first-child)]:mt-6", className)}
+      className={cn(
+        "text-base leading-[24px] text-muted-foreground [&:not(:first-child)]:mt-6",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -173,7 +132,7 @@ export const components = {
     </ol>
   ),
   li: ({ className, children, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2 leading-7", className)} {...props}>
+    <li className={cn("mt-2 text-base leading-[24px]", className)} {...props}>
       {children}
     </li>
   ),
@@ -248,10 +207,7 @@ export const components = {
 
     return (
       <blockquote
-        className={cn(
-          "mt-6 border-l-2 border-foreground/30 pl-6 text-muted-foreground italic",
-          className,
-        )}
+        className={cn("mt-6 border-l-2 border-border pl-6 text-muted-foreground italic", className)}
         {...props}
       >
         {children}
@@ -261,21 +217,24 @@ export const components = {
   img: MdxImage,
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-xl border border-border">
+    <div className="my-6 w-full overflow-y-auto rounded-md border border-border">
       <table className={cn("w-full border-collapse text-sm", className)} {...props}>
         {children}
       </table>
     </div>
   ),
   tr: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr className={cn("m-0 border-t border-border p-0 even:bg-muted/30", className)} {...props}>
+    <tr
+      className={cn("even:bg-background-200 m-0 border-t border-border p-0", className)}
+      {...props}
+    >
       {children}
     </tr>
   ),
   th: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
+        "bg-background-200 border-r border-border px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -344,7 +303,7 @@ export const components = {
       <div className="group relative my-6">
         <pre
           className={cn(
-            "overflow-x-auto rounded-xl border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed shadow-[rgba(0,0,0,0.03)_0px_2px_4px]",
+            "bg-background-200 overflow-x-auto rounded-md border border-border p-4 font-mono text-sm leading-relaxed",
             className,
           )}
           {...props}
@@ -360,7 +319,7 @@ export const components = {
   code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded-sm bg-muted/80 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground",
+        "relative rounded bg-gray-100 px-[0.3rem] py-[0.1rem] font-mono text-[0.9em] font-medium text-foreground dark:bg-gray-200",
         className,
       )}
       {...props}
