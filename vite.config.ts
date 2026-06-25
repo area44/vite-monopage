@@ -1,10 +1,10 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import GithubSlugger from "github-slugger";
+import { defineHastPlugin } from "satteri";
 import { createHighlighter } from "shiki";
 import { defineConfig } from "vite";
 import satteri from "vite-plugin-satteri";
-import { defineHastPlugin } from "satteri";
 
 const base = process.env.BASE || "/";
 
@@ -53,7 +53,7 @@ const satteriShiki = defineHastPlugin({
     async visit(node, ctx) {
       // Find code element
       const codeNode: any = node.children.find(
-        (c: any) => c.type === "element" && c.tagName === "code"
+        (c: any) => c.type === "element" && c.tagName === "code",
       );
       if (!codeNode) return;
 
@@ -77,18 +77,43 @@ const satteriShiki = defineHastPlugin({
       const code = getRawText(codeNode.children);
 
       const mermaidKeywords = [
-        "graph ", "graph\n", "flowchart ", "flowchart\n", "sequenceDiagram",
-        "gantt", "classDiagram", "stateDiagram", "erDiagram", "journey",
-        "pie", "quadrantChart", "mindmap", "timeline", "zenuml", "architecture"
+        "graph ",
+        "graph\n",
+        "flowchart ",
+        "flowchart\n",
+        "sequenceDiagram",
+        "gantt",
+        "classDiagram",
+        "stateDiagram",
+        "erDiagram",
+        "journey",
+        "pie",
+        "quadrantChart",
+        "mindmap",
+        "timeline",
+        "zenuml",
+        "architecture",
       ];
-      if (lang === "mermaid" || mermaidKeywords.some(kw => code.trim().startsWith(kw))) {
+      if (lang === "mermaid" || mermaidKeywords.some((kw) => code.trim().startsWith(kw))) {
         return;
       }
 
       if (!highlighterPromise) {
         highlighterPromise = createHighlighter({
           themes: ["vitesse-dark"],
-          langs: ["typescript", "javascript", "bash", "json", "tsx", "jsx", "css", "html", "yaml", "mdx", "markdown"],
+          langs: [
+            "typescript",
+            "javascript",
+            "bash",
+            "json",
+            "tsx",
+            "jsx",
+            "css",
+            "html",
+            "yaml",
+            "mdx",
+            "markdown",
+          ],
         });
       }
       const highlighter = await highlighterPromise;
