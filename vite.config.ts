@@ -1,12 +1,10 @@
-import mdx from "@mdx-js/rollup";
-import rehypeShiki from "@shikijs/rehype";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import rehypeSlug from "rehype-slug";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
+import satteri from "vite-plugin-satteri";
+
+import { satteriShiki } from "./src/plugins/satteri-shiki";
+import { satteriSlug } from "./src/plugins/satteri-slug";
 
 const base = process.env.BASE || "/";
 
@@ -16,21 +14,12 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    mdx({
-      remarkPlugins: [
-        remarkFrontmatter,
-        [remarkMdxFrontmatter, { name: "frontmatter" }],
-        remarkGfm,
-      ],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeShiki,
-          {
-            theme: "vitesse-dark",
-          },
-        ],
-      ],
+    satteri({
+      features: {
+        gfm: true,
+        frontmatter: true,
+      },
+      hastPlugins: [satteriSlug, satteriShiki],
     }),
   ],
   resolve: {
