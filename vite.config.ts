@@ -31,12 +31,10 @@ const satteriSlug = defineHastPlugin({
 
       const id = documentSlugger.slug(text);
 
-      // Since satteri nodes are read-only, we must use ctx.setProperty
-      // It seems returning a new node works better here.
       return {
         ...node,
         properties: {
-          ...((node.properties as any) || {}),
+          ...(node.properties as any),
           id,
         },
       };
@@ -50,7 +48,7 @@ const satteriShiki = defineHastPlugin({
   name: "satteri-shiki",
   element: {
     filter: ["pre"],
-    async visit(node, ctx) {
+    async visit(node, _ctx) {
       // Find code element
       const codeNode: any = node.children.find(
         (c: any) => c.type === "element" && c.tagName === "code",
