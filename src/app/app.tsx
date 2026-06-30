@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import { Navbar } from "@/components/ui/navbar";
-import { Sidebar } from "@/components/ui/sidebar";
 import { TableOfContents } from "@/components/ui/toc";
 import Page, { frontmatter } from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
@@ -83,9 +82,6 @@ export default function App() {
       {/* Main Content Layout */}
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
-          {/* Left Sidebar */}
-          <Sidebar className="hidden w-64 shrink-0 lg:block xl:w-72" />
-
           {/* Center Main Content */}
           <main className="max-w-5xl min-w-0 flex-1 pb-16 lg:pb-24">
             <article className="prose prose-zinc dark:prose-invert max-w-none">
