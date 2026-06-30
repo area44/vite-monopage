@@ -155,7 +155,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
 
           {/* Desktop TOC */}
           <div className="hidden h-full text-[13px] lg:block">
-            <div className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
+            <div className="sticky top-20 h-fit max-h-[calc(100vh-5rem)] overflow-y-auto pr-4">
               <div className="space-y-3">
                 <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">
                   On This Page
