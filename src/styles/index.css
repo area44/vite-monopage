@@ -40,6 +40,8 @@
 
   --radius-xl: 16px;
   --radius-2xl: 24px;
+
+  --color-code-surface: var(--code-surface);
 }
 
 :root {
@@ -63,6 +65,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.2);
   --selection-foreground: inherit;
+  --code-surface: #121212;
 }
 
 .dark {
@@ -86,6 +89,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
+  --code-surface: #0d0d0d;
 }
 
 @layer base {
@@ -144,4 +148,10 @@ pre {
 pre code {
   background-color: transparent !important;
   padding: 0 !important;
+}
+
+/* Fix for Shiki code lines to ensure they dont overlap with the absolute positioned copy button */
+/* This is the correct fix because scrollable containers clip padding-right on the container itself */
+pre [data-line] {
+  padding-right: 3rem;
 }

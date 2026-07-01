@@ -18,40 +18,75 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
     if (isOpen) {
       window.addEventListener("keydown", handleEsc);
       document.body.style.overflow = "hidden";
-    }
-    return () => {
+    } else {
       window.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = "auto";
-    };
+    }
+    return () => window.removeEventListener("keydown", handleEsc);
   }, [isOpen]);
 
   return (
     <>
-      <button
-        className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
-        onClick={() => setIsOpen(true)}
-        type="button"
-      >
-        <img
-          className={cn(
-            "w-full transition-transform duration-500 group-hover:scale-[1.02]",
-            className,
-          )}
-          alt={alt}
-          {...props}
-        />
-      </button>
-      {isOpen && (
+      <span className="my-8 block w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
         <button
-          className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
-          onClick={() => setIsOpen(false)}
           type="button"
+          className="w-full"
+          onClick={() => setIsOpen(true)}
+          aria-label={alt ? `Zoom image: ${alt}` : "Zoom image"}
         >
           <img
-            src={props.src}
+            className={cn(
+              "h-auto w-full cursor-zoom-in transition-all hover:scale-[1.01]",
+              className,
+            )}
             alt={alt}
-            className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
+            {...props}
           />
+        </button>
+        {alt && (
+          <span className="block border-t border-border bg-muted/50 px-4 py-3 text-center text-sm text-muted-foreground">
+            {alt}
+          </span>
+        )}
+      </span>
+
+      {isOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 z-[100] flex animate-in items-center justify-center bg-background/95 backdrop-blur-md duration-300 zoom-in-95 fade-in"
+          onClick={() => setIsOpen(false)}
+          aria-label="Close image preview"
+        >
+          <img
+            src={(props as any).src}
+            alt={alt}
+            className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+          />
+          <button
+            type="button"
+            className="absolute top-8 right-8 flex size-10 items-center justify-center rounded-full bg-muted/80 text-foreground transition-colors hover:bg-muted"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
+            aria-label="Close preview"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="size-5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </button>
       )}
     </>
@@ -62,7 +97,7 @@ export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-3xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
+        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-foreground",
         className,
       )}
       {...props}
@@ -150,7 +185,7 @@ export const components = {
   ),
   p: ({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 text-muted-foreground [&:not(:first-child)]:mt-6", className)}
+      className={cn("leading-7 text-muted-foreground [\u0026:not(:first-child)]:mt-6", className)}
       {...props}
     >
       {children}
@@ -158,7 +193,7 @@ export const components = {
   ),
   ul: ({ className, children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className={cn("my-6 ml-6 list-disc text-muted-foreground [&>li]:mt-2", className)}
+      className={cn("my-6 ml-6 list-disc text-muted-foreground [\u0026>li]:mt-2", className)}
       {...props}
     >
       {children}
@@ -166,7 +201,7 @@ export const components = {
   ),
   ol: ({ className, children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("my-6 ml-6 list-decimal text-muted-foreground [&>li]:mt-2", className)}
+      className={cn("my-6 ml-6 list-decimal text-muted-foreground [\u0026>li]:mt-2", className)}
       {...props}
     >
       {children}
@@ -275,7 +310,7 @@ export const components = {
   th: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [\u0026[align=center]]:text-center [\u0026[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -286,7 +321,7 @@ export const components = {
   td: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [\u0026[align=center]]:text-center [\u0026[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -341,17 +376,14 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6">
+      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-md transition-all hover:border-white/20">
         <pre
-          className={cn(
-            "overflow-x-auto rounded-xl border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed shadow-[rgba(0,0,0,0.03)_0px_2px_4px]",
-            className,
-          )}
+          className={cn("overflow-x-auto p-4 font-mono text-sm leading-relaxed", className)}
           {...props}
         >
           {children}
         </pre>
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-3 right-3 flex items-center gap-2">
           <CopyButton text={rawText} />
         </div>
       </div>
