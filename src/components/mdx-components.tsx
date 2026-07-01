@@ -376,7 +376,7 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-md transition-all hover:border-white/20">
+      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/5 bg-code-surface shadow-lg transition-all hover:border-white/10">
         <pre
           className={cn("overflow-x-auto p-4 font-mono text-sm leading-relaxed", className)}
           {...props}

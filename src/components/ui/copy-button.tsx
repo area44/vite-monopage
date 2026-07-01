@@ -20,12 +20,13 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
     <button
       onClick={copy}
       className={cn(
-        "inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 shadow-sm backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-white/10 hover:text-white focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 md:opacity-0",
+        "inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/50 backdrop-blur-md transition-all group-hover:opacity-100 hover:bg-white/10 hover:text-white active:scale-95 disabled:pointer-events-none disabled:opacity-50 md:opacity-0",
+        copied && "border-brand/30 bg-brand/10 text-brand md:opacity-100",
         className,
       )}
       aria-label="Copy to clipboard"
     >
-      {copied ? <Check className="size-3.5 text-brand" /> : <Copy className="size-3.5" />}
+      {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
     </button>
   );
 };
