@@ -341,6 +341,9 @@ export const components = {
 
     const rawText = getRawText(children);
 
+    // Extract language from data-lang or className
+    const lang = (props as any)["data-lang"] || className?.replace("language-", "") || "";
+
     // Detect mermaid
     const hasMermaidClass =
       className?.includes("language-mermaid") ||
@@ -377,15 +380,27 @@ export const components = {
 
     return (
       <div className="group relative my-6 overflow-hidden rounded-xl border border-white/5 bg-code-surface shadow-lg transition-all hover:border-white/10">
+        <div className="flex h-10 items-center justify-between border-b border-white/5 bg-white/[0.02] px-4">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              <div className="size-2.5 rounded-full bg-red-500/20" />
+              <div className="size-2.5 rounded-full bg-amber-500/20" />
+              <div className="size-2.5 rounded-full bg-emerald-500/20" />
+            </div>
+            {lang && (
+              <span className="font-mono text-[10px] font-semibold tracking-wider text-white/20 uppercase">
+                {lang}
+              </span>
+            )}
+          </div>
+          <CopyButton text={rawText} />
+        </div>
         <pre
           className={cn("overflow-x-auto p-4 font-mono text-sm leading-relaxed", className)}
           {...props}
         >
           {children}
         </pre>
-        <div className="absolute top-3 right-3 flex items-center gap-2">
-          <CopyButton text={rawText} />
-        </div>
       </div>
     );
   },

@@ -149,8 +149,3 @@ pre code {
   background-color: transparent !important;
   padding: 0 !important;
 }
-
-/* Fix for Shiki code lines to ensure they dont overlap with the absolute positioned copy button */
-pre [data-line] {
-  padding-right: 3.5rem;
-}
