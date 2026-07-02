@@ -379,24 +379,17 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/5 bg-code-surface shadow-lg transition-all hover:border-white/10">
-        <div className="flex h-10 items-center justify-between border-b border-white/5 bg-white/[0.02] px-4">
-          <div className="flex items-center gap-3">
-            <div className="flex gap-1.5">
-              <div className="size-2.5 rounded-full bg-red-500/20" />
-              <div className="size-2.5 rounded-full bg-amber-500/20" />
-              <div className="size-2.5 rounded-full bg-emerald-500/20" />
-            </div>
+      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/20">
+        <div className="flex h-10 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
+          <div className="flex items-center">
             {lang && (
-              <span className="font-mono text-[10px] font-semibold tracking-wider text-white/20 uppercase">
-                {lang}
-              </span>
+              <span className="font-sans text-[12px] font-medium text-white/40">{lang}</span>
             )}
           </div>
           <CopyButton text={rawText} />
         </div>
         <pre
-          className={cn("overflow-x-auto p-4 font-mono text-sm leading-relaxed", className)}
+          className={cn("overflow-x-auto p-4 font-mono text-[13px] leading-relaxed", className)}
           {...props}
         >
           {children}

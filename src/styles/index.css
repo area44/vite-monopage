@@ -65,7 +65,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.2);
   --selection-foreground: inherit;
-  --code-surface: #0a0a0a;
+  --code-surface: #0d0d0d;
 }
 
 .dark {
@@ -89,7 +89,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
-  --code-surface: #000000;
+  --code-surface: #050505;
 }
 
 @layer base {
