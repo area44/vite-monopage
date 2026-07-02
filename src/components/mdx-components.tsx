@@ -394,7 +394,10 @@ export const components = {
           <CopyButton text={rawText} />
         </div>
         <pre
-          className={cn("overflow-x-auto p-6 font-mono text-[13.5px] leading-[1.65]", className)}
+          className={cn(
+            "overflow-x-auto px-4 py-5 font-mono text-[13.5px] leading-[1.65]",
+            className,
+          )}
           {...props}
         >
           {children}
