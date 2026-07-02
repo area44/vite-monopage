@@ -12,47 +12,85 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden";
-    }
+
+    window.addEventListener("keydown", handleEsc);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     return () => {
       window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = originalOverflow || "auto";
     };
   }, [isOpen]);
 
   return (
     <>
-      <button
-        className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
-        onClick={() => setIsOpen(true)}
-        type="button"
-      >
-        <img
-          className={cn(
-            "w-full transition-transform duration-500 group-hover:scale-[1.02]",
-            className,
-          )}
-          alt={alt}
-          {...props}
-        />
-      </button>
-      {isOpen && (
+      <span className="my-8 block w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
         <button
-          className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
-          onClick={() => setIsOpen(false)}
           type="button"
+          className="w-full"
+          onClick={() => setIsOpen(true)}
+          aria-label={alt ? `Zoom image: ${alt}` : "Zoom image"}
         >
           <img
-            src={props.src}
+            className={cn(
+              "h-auto w-full cursor-zoom-in transition-all hover:scale-[1.01]",
+              className,
+            )}
             alt={alt}
-            className="max-h-[90vh] max-w-[90vw] animate-in rounded-xl object-contain shadow-2xl duration-300 zoom-in-95"
+            {...props}
           />
         </button>
+        {alt && (
+          <span className="block border-t border-border bg-muted/50 px-4 py-3 text-center text-sm text-muted-foreground">
+            {alt}
+          </span>
+        )}
+      </span>
+
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex animate-in items-center justify-center duration-300 zoom-in-95 fade-in">
+          <button
+            type="button"
+            className="absolute inset-0 h-full w-full bg-background/95 backdrop-blur-md"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close image preview"
+          />
+          <div className="relative z-[101] flex items-center justify-center p-4">
+            <img
+              src={props.src}
+              alt={alt}
+              className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+            />
+            <button
+              type="button"
+              className="absolute -top-4 -right-4 flex size-10 items-center justify-center rounded-full bg-muted/80 text-foreground transition-colors hover:bg-muted md:top-0 md:right-0"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close preview"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-5"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
       )}
     </>
   );
@@ -62,7 +100,7 @@ export const components = {
   h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "mt-2 scroll-m-20 text-3xl leading-[1.15] font-semibold tracking-[-1.28px] text-foreground md:text-5xl",
+        "mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-foreground",
         className,
       )}
       {...props}
@@ -306,6 +344,9 @@ export const components = {
 
     const rawText = getRawText(children);
 
+    // Extract language from data-lang or className
+    const lang = (props as any)["data-lang"] || className?.replace("language-", "") || "";
+
     // Detect mermaid
     const hasMermaidClass =
       className?.includes("language-mermaid") ||
@@ -341,19 +382,26 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6">
+      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
+        <div className="flex h-11 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
+          <div className="flex items-center">
+            {lang && (
+              <span className="font-sans text-[12px] font-medium text-white/30 capitalize">
+                {lang}
+              </span>
+            )}
+          </div>
+          <CopyButton text={rawText} />
+        </div>
         <pre
           className={cn(
-            "overflow-x-auto rounded-xl border border-border bg-muted/40 p-4 font-mono text-sm leading-relaxed shadow-[rgba(0,0,0,0.03)_0px_2px_4px]",
+            "overflow-x-auto px-4 py-5 font-mono text-[13.5px] leading-[1.65]",
             className,
           )}
           {...props}
         >
           {children}
         </pre>
-        <div className="absolute top-4 right-4">
-          <CopyButton text={rawText} />
-        </div>
       </div>
     );
   },

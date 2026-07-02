@@ -81,7 +81,10 @@ export const satteriShiki = defineHastPlugin({
       });
 
       if (hast.type === "root" && hast.children.length > 0) {
-        return hast.children[0];
+        const pre = hast.children[0];
+        pre.properties = pre.properties || {};
+        pre.properties["data-lang"] = lang || "text";
+        return pre;
       }
     },
   },
