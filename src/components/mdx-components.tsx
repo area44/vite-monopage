@@ -12,17 +12,20 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden";
-    } else {
+
+    window.addEventListener("keydown", handleEsc);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
       window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "auto";
-    }
-    return () => window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = originalOverflow || "auto";
+    };
   }, [isOpen]);
 
   return (
@@ -51,43 +54,43 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
       </span>
 
       {isOpen && (
-        <button
-          type="button"
-          className="fixed inset-0 z-[100] flex animate-in items-center justify-center bg-background/95 backdrop-blur-md duration-300 zoom-in-95 fade-in"
-          onClick={() => setIsOpen(false)}
-          aria-label="Close image preview"
-        >
-          <img
-            src={(props as any).src}
-            alt={alt}
-            className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
-          />
+        <div className="fixed inset-0 z-[100] flex animate-in items-center justify-center duration-300 zoom-in-95 fade-in">
           <button
             type="button"
-            className="absolute top-8 right-8 flex size-10 items-center justify-center rounded-full bg-muted/80 text-foreground transition-colors hover:bg-muted"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(false);
-            }}
-            aria-label="Close preview"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-5"
+            className="absolute inset-0 h-full w-full bg-background/95 backdrop-blur-md"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close image preview"
+          />
+          <div className="relative z-[101] flex items-center justify-center p-4">
+            <img
+              src={props.src}
+              alt={alt}
+              className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+            />
+            <button
+              type="button"
+              className="absolute -top-4 -right-4 flex size-10 items-center justify-center rounded-full bg-muted/80 text-foreground transition-colors hover:bg-muted md:top-0 md:right-0"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close preview"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-5"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
       )}
     </>
   );
@@ -185,7 +188,7 @@ export const components = {
   ),
   p: ({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 text-muted-foreground [\u0026:not(:first-child)]:mt-6", className)}
+      className={cn("leading-7 text-muted-foreground [&:not(:first-child)]:mt-6", className)}
       {...props}
     >
       {children}
@@ -193,7 +196,7 @@ export const components = {
   ),
   ul: ({ className, children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className={cn("my-6 ml-6 list-disc text-muted-foreground [\u0026>li]:mt-2", className)}
+      className={cn("my-6 ml-6 list-disc text-muted-foreground [&>li]:mt-2", className)}
       {...props}
     >
       {children}
@@ -201,7 +204,7 @@ export const components = {
   ),
   ol: ({ className, children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("my-6 ml-6 list-decimal text-muted-foreground [\u0026>li]:mt-2", className)}
+      className={cn("my-6 ml-6 list-decimal text-muted-foreground [&>li]:mt-2", className)}
       {...props}
     >
       {children}
@@ -310,7 +313,7 @@ export const components = {
   th: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [\u0026[align=center]]:text-center [\u0026[align=right]]:text-right",
+        "border-r border-border bg-muted/50 px-4 py-2 text-left font-bold last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -321,7 +324,7 @@ export const components = {
   td: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [\u0026[align=center]]:text-center [\u0026[align=right]]:text-right",
+        "border-r border-border px-4 py-2 text-left text-muted-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -379,17 +382,19 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/20">
-        <div className="flex h-10 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
+      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
+        <div className="flex h-11 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
           <div className="flex items-center">
             {lang && (
-              <span className="font-sans text-[12px] font-medium text-white/40">{lang}</span>
+              <span className="font-sans text-[12px] font-medium text-white/30 capitalize">
+                {lang}
+              </span>
             )}
           </div>
           <CopyButton text={rawText} />
         </div>
         <pre
-          className={cn("overflow-x-auto p-4 font-mono text-[13px] leading-relaxed", className)}
+          className={cn("overflow-x-auto p-6 font-mono text-[13.5px] leading-[1.65]", className)}
           {...props}
         >
           {children}

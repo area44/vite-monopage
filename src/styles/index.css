@@ -89,7 +89,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
-  --code-surface: #050505;
+  --code-surface: #0a0a0a;
 }
 
 @layer base {

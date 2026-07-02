@@ -20,7 +20,7 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
     <button
       onClick={copy}
       className={cn(
-        "flex h-7 items-center gap-1.5 rounded-md px-2 text-[11px] font-medium text-white/40 transition-all hover:bg-white/5 hover:text-white active:scale-95 disabled:pointer-events-none disabled:opacity-50",
+        "flex h-7 items-center gap-1.5 rounded-md px-2 text-[12px] font-medium text-white/30 transition-all hover:bg-white/5 hover:text-white active:scale-95 disabled:pointer-events-none disabled:opacity-50",
         copied && "text-brand",
         className,
       )}
@@ -29,12 +29,12 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
       {copied ? (
         <>
           <Check className="size-3.5" />
-          <span>Copied</span>
+          <span className="font-sans">Copied</span>
         </>
       ) : (
         <>
           <Copy className="size-3.5" />
-          <span>Copy</span>
+          <span className="font-sans text-white/40">Copy</span>
         </>
       )}
     </button>
