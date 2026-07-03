@@ -23,7 +23,7 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
         "inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
-      aria-label="Copy to clipboard"
+      aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
     >
       {copied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
     </button>
