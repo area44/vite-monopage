@@ -19,6 +19,7 @@ export default function App() {
   });
 
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -33,6 +34,10 @@ export default function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolledProgress = height > 0 ? (winScroll / height) * 100 : 0;
+      setScrollProgress(scrolledProgress);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -59,7 +64,12 @@ export default function App() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
       {/* Navigation */}
-      <Navbar theme={theme} setTheme={setTheme} scrolled={scrolled} />
+      <Navbar
+        theme={theme}
+        setTheme={setTheme}
+        scrolled={scrolled}
+        scrollProgress={scrollProgress}
+      />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24">

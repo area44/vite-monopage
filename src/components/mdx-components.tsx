@@ -28,6 +28,7 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
   return (
     <>
       <button
+        aria-label="Zoom image"
         className="group relative my-8 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
         onClick={() => setIsOpen(true)}
         type="button"
@@ -43,6 +44,7 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
       </button>
       {isOpen && (
         <button
+          aria-label="Close zoom"
           className="fixed inset-0 z-50 flex animate-in cursor-zoom-out items-center justify-center bg-background/80 backdrop-blur-sm duration-300 fade-in"
           onClick={() => setIsOpen(false)}
           type="button"
