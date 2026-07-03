@@ -8,10 +8,12 @@ export const Navbar = ({
   theme,
   setTheme,
   scrolled,
+  scrollProgress,
 }: {
   theme: string;
   setTheme: (theme: string) => void;
   scrolled: boolean;
+  scrollProgress: number;
 }) => {
   return (
     <header
@@ -42,6 +44,16 @@ export const Navbar = ({
           </button>
         </div>
       </div>
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-label="Reading progress"
+      />
     </header>
   );
 };

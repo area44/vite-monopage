@@ -1,5 +1,5 @@
 import { ChevronDown, List } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
+  const mobileMenuId = useId();
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll("h2, h3")).reduce<Heading[]>(
@@ -60,6 +61,8 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/50 px-3 py-1.5 text-sm font-medium backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand"
             type="button"
+            aria-expanded={isOpen}
+            aria-controls={mobileMenuId}
           >
             <List className="size-4 text-brand" />
             <span className="hidden sm:inline">On This Page</span>
@@ -76,7 +79,10 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
                 onKeyDown={(e) => e.key === "Escape" && setIsOpen(false)}
                 aria-label="Close table of contents"
               />
-              <div className="absolute top-full right-0 z-50 mt-2 w-64 animate-in fade-in slide-in-from-top-2">
+              <div
+                id={mobileMenuId}
+                className="absolute top-full right-0 z-50 mt-2 w-64 animate-in fade-in slide-in-from-top-2"
+              >
                 <ul className="max-h-[70vh] space-y-1 overflow-y-auto rounded-xl border border-border bg-background p-3 shadow-xl">
                   {headings.map((heading) => (
                     <li
@@ -111,6 +117,8 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
               onClick={() => setIsOpen(!isOpen)}
               className="flex w-full items-center justify-between rounded-xl border border-border bg-muted/30 p-3 text-left transition-colors hover:bg-muted/50"
               type="button"
+              aria-expanded={isOpen}
+              aria-controls={mobileMenuId}
             >
               <div className="flex items-center gap-2 text-sm font-medium">
                 <List className="size-3.5 text-brand" />
@@ -121,6 +129,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
               />
             </button>
             <div
+              id={mobileMenuId}
               className={cn(
                 "grid transition-all duration-200 ease-in-out",
                 isOpen ? "mt-2 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",

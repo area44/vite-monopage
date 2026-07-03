@@ -24,7 +24,7 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
         copied && "text-brand",
         className,
       )}
-      aria-label="Copy to clipboard"
+      aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
     >
       {copied ? (
         <>
