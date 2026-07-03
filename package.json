@@ -38,5 +38,6 @@
     "typescript": "^6.0.3",
     "vite": "^8.1.0",
     "vite-plugin-satteri": "^0.2.13"
-  }
+  },
+  "packageManager": "pnpm@10.30.3"
 }
