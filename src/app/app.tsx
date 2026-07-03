@@ -63,6 +63,12 @@ export default function App() {
 
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
+      <a
+        href="#main-content"
+        className="sr-only fixed top-4 left-4 z-[100] rounded-full bg-brand px-4 py-2 text-sm font-semibold text-background shadow-lg transition-all focus:not-sr-only focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:outline-none"
+      >
+        Skip to content
+      </a>
       {/* Navigation */}
       <Navbar
         theme={theme}
@@ -95,7 +101,7 @@ export default function App() {
           {/* Left Spacer - keeps main content centered */}
           <div className="hidden w-64 shrink-0 xl:block" />
           {/* Center Main Content */}
-          <main className="max-w-5xl min-w-0 flex-1 pb-16 lg:pb-24">
+          <main id="main-content" className="max-w-5xl min-w-0 flex-1 pb-16 lg:pb-24">
             <article className="prose prose-zinc dark:prose-invert max-w-none">
               <Page components={enrichedComponents} />
             </article>
