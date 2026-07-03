@@ -40,6 +40,8 @@
 
   --radius-xl: 16px;
   --radius-2xl: 24px;
+
+  --color-code-surface: var(--code-surface);
 }
 
 :root {
@@ -63,6 +65,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.2);
   --selection-foreground: inherit;
+  --code-surface: #0d0d0d;
 }
 
 .dark {
@@ -86,6 +89,7 @@
   --ring: #18e299;
   --selection: rgba(24, 226, 153, 0.3);
   --selection-foreground: inherit;
+  --code-surface: #0a0a0a;
 }
 
 @layer base {
