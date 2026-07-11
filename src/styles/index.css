@@ -14,7 +14,6 @@
 
 @import "shadcn/tailwind.css";
 
-@import "@fontsource-variable/inter";
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
 
@@ -22,7 +21,7 @@
 
 @theme inline {
   --breakpoint-3xl: 1600px;
-  --font-sans: "Inter Variable", sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
   --font-mono: "Geist Mono Variable", monospace;
 
   --color-brand: #18e299;

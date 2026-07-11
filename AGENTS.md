@@ -30,7 +30,7 @@ Follow these rules to maintain visual consistency. For a detailed guide on compo
 - **Background**: `#ffffff` (Light) / `#0d0d0d` (Dark)
 - **Text**: `#0d0d0d` (Light) / `#ededed` (Dark)
 - **Borders**: `rgba(0,0,0,0.05)` (Light) / `rgba(255,255,255,0.08)` (Dark)
-- **Fonts**: **Inter Variable** for body/UI, **Geist Mono** for code/labels.
+- **Fonts**: **Geist Variable** for body/UI, **Geist Mono** for code/labels.
 
 ### UI Rules
 
