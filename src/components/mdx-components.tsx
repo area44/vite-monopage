@@ -382,7 +382,7 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
+      <div className="group not-typeset relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
         <div className="flex h-11 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
           <div className="flex items-center">
             {lang && (
