@@ -17,7 +17,7 @@ A high-performance, beautiful documentation starter powered by the latest web te
 - **Blazing Fast Performance**: Powered by **Vite 8** for near-instant hot module replacement and lightning-fast builds.
 - **Modern Styling**: Built with **Tailwind CSS 4**, utilizing the new CSS-first configuration and OKLCH colors.
 - **Native MDX Support**: Write documentation with the power of React components directly in your Markdown.
-- **Beautiful Typography**: Featuring **Inter Variable** for body text and **Geist Mono** for technical labels and code.
+- **Beautiful Typography**: Featuring **Geist Variable** for body text and **Geist Mono** for technical labels and code.
 - **Dark Mode**: Intelligent theme toggle with system preference detection and local storage persistence.
 - **Rich Documentation Components**:
   - `Steps` & `Step`: For building beautiful ordered guides.
