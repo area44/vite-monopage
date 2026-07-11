@@ -52,7 +52,7 @@ export const Mermaid = ({ chart }: MermaidProps) => {
 
   return (
     <div
-      className="mermaid my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
+      className="mermaid not-typeset my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
       /* oxlint-disable-next-line no-danger */
       dangerouslySetInnerHTML={{ __html: svg }}
     />

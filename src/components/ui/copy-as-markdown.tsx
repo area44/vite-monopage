@@ -32,7 +32,7 @@ export const CopyAsMarkdown = ({ content, url }: { content?: string; url?: strin
   return (
     <button
       onClick={copy}
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-muted hover:text-foreground active:scale-95"
+      className="not-typeset inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-all hover:bg-muted hover:text-foreground active:scale-95"
     >
       {copied ? (
         <>

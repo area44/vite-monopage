@@ -9,7 +9,9 @@ export const Steps = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={cn("mb-12 ml-4 border-l pl-8 [counter-reset:step]", className)}>{children}</div>
+  <div className={cn("not-typeset mb-12 ml-4 border-l pl-8 [counter-reset:step]", className)}>
+    {children}
+  </div>
 );
 
 export const Step = ({
@@ -21,7 +23,7 @@ export const Step = ({
   title?: string;
   className?: string;
 }) => (
-  <div className={cn("relative mb-12 [counter-increment:step] last:mb-0", className)}>
+  <div className={cn("not-typeset relative mb-12 [counter-increment:step] last:mb-0", className)}>
     <div className="absolute -left-[50px] flex size-9 items-center justify-center rounded-full bg-muted text-base font-semibold text-foreground shadow-sm before:content-[counter(step)]" />
     {title && (
       <h3 className="mt-0 text-xl font-semibold text-foreground md:text-[20px] md:leading-[1.3] md:tracking-[-0.2px]">

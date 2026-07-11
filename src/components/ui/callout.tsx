@@ -29,7 +29,7 @@ export const Callout = ({
   return (
     <div
       className={cn(
-        "my-6 flex items-start space-x-3 rounded-xl border p-4 shadow-sm",
+        "not-typeset my-6 flex items-start space-x-3 rounded-xl border p-4 shadow-sm",
         styles[type],
         className,
       )}

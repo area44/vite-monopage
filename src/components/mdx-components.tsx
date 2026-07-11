@@ -30,7 +30,7 @@ const MdxImage = ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImag
 
   return (
     <>
-      <span className="my-8 block w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
+      <span className="not-typeset my-8 block w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
         <button
           type="button"
           className="w-full"
@@ -299,7 +299,7 @@ export const components = {
   img: MdxImage,
   hr: ({ ...props }) => <hr className="my-12 border-border" {...props} />,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-xl border border-border">
+    <div className="not-typeset my-6 w-full overflow-y-auto rounded-xl border border-border">
       <table className={cn("w-full border-collapse text-sm", className)} {...props}>
         {children}
       </table>
@@ -382,7 +382,7 @@ export const components = {
     }
 
     return (
-      <div className="group relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
+      <div className="group not-typeset relative my-6 overflow-hidden rounded-xl border border-white/10 bg-code-surface shadow-2xl transition-all hover:border-white/15">
         <div className="flex h-11 items-center justify-between border-b border-white/[0.05] bg-white/[0.02] px-4">
           <div className="flex items-center">
             {lang && (
