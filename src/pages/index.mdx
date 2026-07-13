@@ -1,122 +1,205 @@
 ---
 title: "Vite Monopage"
-description: "The high-performance documentation starter for Vite and MDX."
+description: "A comprehensive kitchen-sink documentation page showcasing strict typeset typography standards."
 ---
 
 <div id="docs" className="scroll-m-20" />
 
-Welcome to the ultimate starter for modern web documentation. This site is powered by **Vite 8**, **MDX**, and **Tailwind CSS 4**.
+We render markdown and get back plain unstyled HTML: headings, paragraphs, lists, and tables. To style them perfectly, we use **shadcn/typeset**.
+
+This page serves as a kitchen-sink preview demonstrating every supported block, inline element, and component layout.
 
 <div className="my-8">
   <CopyAsMarkdown />
 </div>
 
-## Quick Start
+## Headings & Hierarchy
 
-Get your documentation up and running in seconds. Clone the template and start writing in MDX.
+The following sections showcase headings from level 1 down to level 6, complete with standard spacing, subtle tracking, and hover-anchor link elements.
+
+# Heading 1
+
+This is a standard paragraph following an H1 heading. It provides a default reading width and flow.
+
+## Heading 2
+
+This is a standard paragraph following an H2 heading. Section headings structure the core layout of our documents.
+
+### Heading 3
+
+This is a standard paragraph following an H3 heading. Heading 3 features an interactive anchor link icon on hover.
+
+#### Heading 4
+
+This is a standard paragraph following an H4 heading. Heading 4 also supports responsive hover-anchor link elements.
+
+##### Heading 5
+
+This is a standard paragraph following an H5 heading, demonstrating further nested technical descriptions.
+
+###### Heading 6
+
+This is a standard paragraph following an H6 heading, indicating the deepest level of technical hierarchy.
+
+## Inline Elements
+
+Inside standard paragraph flows, elements are beautifully styled by default. Here is a demonstration of various inline markdown structures:
+
+- **Strong / Bold**: Use double asterisks to represent **important concepts** or crucial actions.
+- _Emphasis / Italics_: Use single asterisks or underscores to add _rhetorical emphasis_ within continuous text.
+- `Inline Code`: Wrap commands or variable names like `npm install` or `const user` in backticks for semantic monospace formatting.
+- **_Combined formatting_**: We can seamlessly combine **bold and italic** styles or use `inline-code` nested within links.
+- **Hyperlinks**: Hyperlinks default to semantic text transitions, matching the brand color on focus or hover.
+
+## Callouts & Alerts
+
+We support a versatile alert layout that perfectly mirrors the shadcn visual system, using subtle background opacities and matching border accents.
+
+<Callout type="default">
+  This is a **default callout**. It is perfect for providing informative text, secondary notes, or
+  general guidance.
+</Callout>
+
+<Callout type="success">
+  This is a **success callout**. Use it to signal completed steps, positive milestones, or correct
+  configurations.
+</Callout>
+
+<Callout type="warning">
+  This is a **warning callout**. Use it to alert readers to potentially risky procedures,
+  soft-deprecated options, or side effects.
+</Callout>
+
+<Callout type="error">
+  This is an **error callout**. Use this to point out critical bugs, unsupported setups, or actions
+  that will cause failures.
+</Callout>
+
+We also support native GitHub Flavored Markdown (GFM) blockquote alerts:
+
+> [!NOTE]
+> This is a default GFM tip alert, styled natively to match the shadcn document specifications.
+
+> [!WARNING]
+> This is a warning GFM alert. Use this to signal critical warnings or things to avoid.
+
+## Code Blocks & Syntax Highlighting
+
+Simulated code blocks utilize a modern top bar showing the filename or language label, consistent with professional developer document systems.
+
+<div className="my-6 overflow-hidden rounded-xl border border-border bg-muted/20">
+  <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground font-mono">
+    <span>layout.tsx</span>
+    <span>tsx</span>
+  </div>
+```tsx
+import { ThemeProvider } from '@/components/theme-provider'
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className="antialiased">
+      <body className="min-h-screen bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system">
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+</div>
+
+<div className="my-6 overflow-hidden rounded-xl border border-border bg-muted/20">
+  <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground font-mono">
+    <span>main.rs</span>
+    <span>rust</span>
+  </div>
+```rust
+fn main() {
+    println!("Hello, shadcn typeset!");
+}
+```
+</div>
+
+<div className="my-6 overflow-hidden rounded-xl border border-border bg-muted/20">
+  <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground font-mono">
+    <span>styles.css</span>
+    <span>css</span>
+  </div>
+```css
+.typeset-docs {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-geist);
+  --typeset-font-mono: var(--font-geist-mono);
+  --typeset-size: 15px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
+}
+```
+</div>
+
+## Tables & Lists
+
+Tables and lists are highly responsive, displaying technical tabular data or hierarchical items cleanly.
+
+### Responsive Tabular Data
+
+| Parameter   | Type     | Default     | Description                                           |
+| :---------- | :------- | :---------- | :---------------------------------------------------- |
+| `size`      | `string` | `"15px"`    | The default body font size for the typeset container. |
+| `leading`   | `number` | `1.75`      | The global line-height scale for document layout.     |
+| `flow`      | `string` | `"1.25em"`  | Vertical spacing rhythm between block elements.       |
+| `font-mono` | `string` | `undefined` | Custom monospace font family for inline code blocks.  |
+
+### Hierarchical Nested Lists
+
+1. **Prerequisites & Setup**
+   - Ensure Node.js v22+ is installed on your local development machine.
+   - Install the project package manager globally:
+     1. Run `npm install -g pnpm`
+     2. Verify the installation via `pnpm --version`
+2. **Local Environment Deployment**
+   - Clone the source repository to your workspace.
+   - Run initial package installation:
+     ```bash
+     pnpm install
+     ```
+   - Launch the modern development server:
+     - Use `pnpm dev` for local hot-reloads.
+     - View the application live at `http://localhost:5173`.
+3. **Production Distribution**
+   - Run the compiler build task:
+     ```bash
+     pnpm build
+     ```
+
+## Interactive Steps Flow
+
+Our custom `Steps` component allows authors to structure sequentially ordered steps with neat visual indicators.
 
 <Steps>
-  <Step title="Clone Template">
-    Clone the repository to your local machine.
+  <Step title="Create typeset.css">
+    Copy the style specifications into a new file next to your main global CSS stylesheet.
 
-    ```bash
-    git clone https://github.com/area44/vite-monopage.git
+    ```css
+    @import "tailwindcss";
+    @import "./typeset.css";
     ```
 
   </Step>
-  <Step title="Install Dependencies">
-    Install the required packages using pnpm.
 
-    ```bash
-    pnpm install
-    ```
+<Step title="Configure Theme Fonts">
+  Load your chosen variable fonts within your framework's root configuration or layout files.
+</Step>
 
-  </Step>
-  <Step title="Start Developing">
-    Launch the development server.
+  <Step title="Wrap Your Target Content">
+    Apply the typeset preset classes to your main documentation content wrapper element:
 
-    ```bash
-    pnpm dev
+    ```html
+    <div class="typeset typeset-docs">
+      <!-- Your rendered MDX/Markdown content -->
+    </div>
     ```
 
   </Step>
 </Steps>
-
-<Callout type="default">
-  This is a custom `Callout` component. It's perfect for highlighting important information that
-  doesn't fit in the standard flow.
-</Callout>
-
-## Design Philosophy
-
-Vite Monopage is built on the principles of **clarity**, **speed**, and **readability**. Inspired by Mintlify and Shadcn UI, it provides a clean, single-page experience that puts your content first.
-
-### Key Features
-
-- **Blazing Fast**: Powered by Vite 8 and Rolldown for near-instant builds.
-- **Modern Styling**: Tailwind CSS 4 with OKLCH colors and Geist Variable font.
-- **Native MDX**: Write documentation using React components directly in Markdown.
-- **Syntax Highlighting**: Beautiful code blocks powered by Shiki.
-- **Diagrams**: Built-in support for **Mermaid.js** diagrams.
-
-### Image Preview
-
-Images are automatically enhanced with a click-to-zoom preview feature.
-
-![Vite Monopage Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop)
-
-## Interactive Components
-
-### Diagrams (Mermaid)
-
-Vite Monopage supports Mermaid diagrams natively in code blocks. Just use the `mermaid` language tag.
-
-```mermaid
-graph TD
-    A[Start] --> B{Is it working?}
-    B -- Yes --> C[Great!]
-    B -- No --> D[Check logs]
-    D --> B
-```
-
-### Code Blocks
-
-We use **Shiki** for high-quality syntax highlighting. It supports hundreds of languages and themes.
-
-```typescript
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-const getUser = async (id: string): Promise<User> => {
-  const response = await fetch(`/api/users/${id}`);
-  return response.json();
-};
-```
-
-### GFM Alerts
-
-We support GitHub Flavored Markdown alerts natively.
-
-> [!TIP]
-> This is a tip alert. Perfect for providing helpful advice or shortcuts.
-
-> [!WARNING]
-> This is a warning alert. Use this to signal potential issues to your users.
-
-## Project Structure
-
-| Directory        | Purpose                           |
-| :--------------- | :-------------------------------- |
-| `src/app`        | Main application logic and layout |
-| `src/components` | UI and MDX components             |
-| `src/pages`      | Documentation content in MDX      |
-| `src/styles`     | Global CSS and design tokens      |
-
----
-
-<Callout type="success">
-  **Ready to build?** Edit `src/pages/index.mdx` and start building your own documentation today.
-</Callout>

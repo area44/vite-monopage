@@ -70,6 +70,7 @@ export const satteriShiki = defineHastPlugin({
             "yaml",
             "mdx",
             "markdown",
+            "rust",
           ],
         });
       }
