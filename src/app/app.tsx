@@ -1,9 +1,8 @@
+import { Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
-import { Navbar } from "@/components/ui/navbar";
-import { TableOfContents } from "@/components/ui/toc";
-import Page, { frontmatter } from "@/pages/index.mdx";
+import Page from "@/pages/index.mdx";
 // @ts-ignore - raw import for copy functionality
 import rawContent from "@/pages/index.mdx?raw";
 
@@ -18,9 +17,6 @@ export default function App() {
     return "light";
   });
 
-  const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -30,24 +26,6 @@ export default function App() {
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolledProgress = height > 0 ? (winScroll / height) * 100 : 0;
-      setScrollProgress(scrolledProgress);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (frontmatter?.title) {
-      document.title = `${frontmatter.title} – Vite Monopage`;
-    }
-  }, []);
 
   // Enrich components with raw content for CopyAsMarkdown
   const enrichedComponents = {
@@ -62,77 +40,24 @@ export default function App() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
-      <a
-        href="#main-content"
-        className="sr-only fixed top-4 left-4 z-[100] rounded-full bg-brand px-4 py-2 text-sm font-semibold text-background shadow-lg transition-all focus:not-sr-only focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:outline-none"
-      >
-        Skip to content
-      </a>
-      {/* Navigation */}
-      <Navbar
-        theme={theme}
-        setTheme={setTheme}
-        scrolled={scrolled}
-        scrollProgress={scrollProgress}
-      />
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24">
-        {/* Atmospheric Background */}
-        <div className="absolute top-0 left-1/2 -z-10 h-[600px] w-full -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.15)_0%,rgba(255,255,255,0)_100%)] dark:bg-[radial-gradient(50%_50%_at_50%_0%,rgba(24,226,153,0.1)_0%,rgba(13,13,13,0)_100%)]" />
-
-        <div className="container mx-auto px-6 text-center md:px-8">
-          <div className="mx-auto max-w-4xl">
-            <h1 className="text-4xl leading-[1.1] font-semibold tracking-[-1.28px] text-foreground md:text-7xl">
-              {frontmatter?.title || "Vite Monopage"}
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              {frontmatter?.description ||
-                "An ultra-minimalist, high-performance documentation starter for Vite and MDX."}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content Layout */}
-      <div className="container mx-auto px-6 md:px-8">
-        <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-10 xl:gap-16">
-          {/* Left Spacer - keeps main content centered */}
-          <div className="hidden w-64 shrink-0 xl:block" />
-          {/* Center Main Content */}
-          <main id="main-content" className="max-w-5xl min-w-0 flex-1 pb-16 lg:pb-24">
-            <div className="typeset typeset-docs max-w-[42em]">
-              <Page components={enrichedComponents} />
-            </div>
-          </main>
-
-          {/* Right TOC */}
-          <aside className="hidden w-64 shrink-0 xl:block">
-            <TableOfContents />
-          </aside>
-        </div>
+    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
+      {/* Floating Theme Toggle */}
+      <div className="absolute top-4 right-4 z-50 md:top-8 md:right-8">
+        <button
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className="flex size-9 items-center justify-center rounded-lg border border-border bg-background shadow-xs hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden"
+          aria-label="Toggle theme"
+        >
+          {theme === "light" ? <Moon className="size-4" /> : <Sun className="size-4 text-brand" />}
+        </button>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-muted/30 py-12">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="flex flex-col items-center justify-center gap-6">
-            <p className="text-center text-sm text-muted-foreground">
-              Built by{" "}
-              <a
-                href="https://github.com/area44"
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-brand"
-              >
-                @area44
-              </a>
-              . Open source under the MIT License.
-            </p>
-          </div>
+      {/* Main Base Layout matching ui.shadcn.com/preview/typeset/docs */}
+      <main className="mx-auto px-4 py-12 md:px-8 md:py-24">
+        <div className="typeset typeset-docs mx-auto max-w-[37em]">
+          <Page components={enrichedComponents} />
         </div>
-      </footer>
+      </main>
     </div>
   );
 }

@@ -20,7 +20,6 @@
 }
 
 @theme inline {
-  --breakpoint-3xl: 1600px;
   --font-sans: "Geist Variable", sans-serif;
   --font-mono: "Geist Mono Variable", monospace;
 
@@ -49,7 +48,6 @@
   --color-selection-foreground: var(--selection-foreground);
 
   --radius-xl: 16px;
-  --radius-2xl: 24px;
 
   --color-code-surface: var(--code-surface);
 }
@@ -127,37 +125,4 @@
   :focus-visible {
     @apply ring-2 ring-brand ring-offset-2 ring-offset-background outline-none;
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-semibold tracking-tight text-balance text-foreground;
-  }
-
-  a {
-    @apply transition-colors duration-200;
-  }
-}
-
-@layer utilities {
-  .container {
-    max-width: 1600px !important;
-  }
-}
-
-/* Shiki Overrides */
-pre {
-  background-color: transparent !important;
-}
-
-.dark pre {
-  background-color: transparent !important;
-}
-
-pre code {
-  background-color: transparent !important;
-  padding: 0 !important;
 }
