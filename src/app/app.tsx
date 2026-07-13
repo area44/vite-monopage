@@ -102,7 +102,7 @@ export default function App() {
           <div className="hidden w-64 shrink-0 xl:block" />
           {/* Center Main Content */}
           <main id="main-content" className="max-w-5xl min-w-0 flex-1 pb-16 lg:pb-24">
-            <div className="typeset typeset-docs max-w-[37em]">
+            <div className="typeset typeset-docs max-w-[42em]">
               <Page components={enrichedComponents} />
             </div>
           </main>
