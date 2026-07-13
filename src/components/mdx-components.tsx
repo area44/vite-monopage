@@ -224,15 +224,15 @@ export const components = {
     }
 
     return (
-      <blockquote className={cn("text-muted-foreground italic", className)} {...props}>
+      <blockquote className={className} {...props}>
         {children}
       </blockquote>
     );
   },
   img: MdxImage,
   table: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="typeset-scroll rounded-xl border border-border">
-      <table className={cn(className)} {...props}>
+    <div className="typeset-scroll">
+      <table className={className} {...props}>
         {children}
       </table>
     </div>
