@@ -16,7 +16,7 @@
   --typeset-font-mono: var(--font-geist-mono);
   --typeset-size: 15px;
   --typeset-leading: 1.75;
-  --typeset-flow: 1.5em;
+  --typeset-flow: 1.25em;
 }
 
 @theme inline {
