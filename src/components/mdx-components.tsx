@@ -1,5 +1,4 @@
 import katex from "katex";
-import { Link } from "lucide-react";
 import React from "react";
 
 import type { CalloutType } from "@/components/ui/callout";
@@ -161,98 +160,58 @@ export const components = {
     );
   },
   h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 id={id} className={cn("group relative", className)} {...props}>
-      <a
-        href={`#${id}`}
-        className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
-        aria-label="Link to section"
-      >
-        <Link className="size-5 text-muted-foreground/50" />
-      </a>
-      {children}
-      <a
-        href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
-        aria-label="Link to section"
-      >
-        <Link className="size-4" />
-      </a>
+    <h2 id={id} className={className} {...props}>
+      {id ? (
+        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </h2>
   ),
   h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 id={id} className={cn("group relative", className)} {...props}>
-      <a
-        href={`#${id}`}
-        className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
-        aria-label="Link to section"
-      >
-        <Link className="size-5 text-muted-foreground/50" />
-      </a>
-      {children}
-      <a
-        href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
-        aria-label="Link to section"
-      >
-        <Link className="size-4" />
-      </a>
+    <h3 id={id} className={className} {...props}>
+      {id ? (
+        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </h3>
   ),
   h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 id={id} className={cn("group relative", className)} {...props}>
-      <a
-        href={`#${id}`}
-        className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
-        aria-label="Link to section"
-      >
-        <Link className="size-5 text-muted-foreground/50" />
-      </a>
-      {children}
-      <a
-        href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
-        aria-label="Link to section"
-      >
-        <Link className="size-4" />
-      </a>
+    <h4 id={id} className={className} {...props}>
+      {id ? (
+        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </h4>
   ),
   h5: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5 id={id} className={cn("group relative", className)} {...props}>
-      <a
-        href={`#${id}`}
-        className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
-        aria-label="Link to section"
-      >
-        <Link className="size-5 text-muted-foreground/50" />
-      </a>
-      {children}
-      <a
-        href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
-        aria-label="Link to section"
-      >
-        <Link className="size-4" />
-      </a>
+    <h5 id={id} className={className} {...props}>
+      {id ? (
+        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </h5>
   ),
   h6: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6 id={id} className={cn("group relative", className)} {...props}>
-      <a
-        href={`#${id}`}
-        className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
-        aria-label="Link to section"
-      >
-        <Link className="size-5 text-muted-foreground/50" />
-      </a>
-      {children}
-      <a
-        href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
-        aria-label="Link to section"
-      >
-        <Link className="size-4" />
-      </a>
+    <h6 id={id} className={className} {...props}>
+      {id ? (
+        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </h6>
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
