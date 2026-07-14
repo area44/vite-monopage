@@ -2,8 +2,9 @@ import katex from "katex";
 import { Link } from "lucide-react";
 import React from "react";
 
-import { Callout } from "@/components/ui/callout";
 import type { CalloutType } from "@/components/ui/callout";
+
+import { Callout } from "@/components/ui/callout";
 import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
