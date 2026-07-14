@@ -19,6 +19,8 @@ jobs:
 
       - name: Run build
         uses: area44/workflows/vite@c52bb9f7b430a02c706983d46d06cc8d1b5dc7fb # v5.0.1
+        env:
+          BASE: /${{ github.event.repository.name }}/
 
   deploy:
     needs: build
