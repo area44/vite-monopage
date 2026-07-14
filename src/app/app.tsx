@@ -38,7 +38,7 @@ export default function App() {
       </div>
 
       <main className="mx-auto px-4 py-12 md:px-8 md:py-24">
-        <div className="typeset typeset-docs mx-auto max-w-[42em]">
+        <div className="typeset typeset-docs mx-auto max-w-[37em]">
           <Page components={components} />
         </div>
       </main>
