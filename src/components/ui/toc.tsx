@@ -59,12 +59,12 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
         <div className="flex items-center">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/50 px-3 py-1.5 text-sm font-medium backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand"
+            className="focus-visible:ring-brand flex items-center gap-2 rounded-lg border border-border/50 bg-background/50 px-3 py-1.5 text-sm font-medium backdrop-blur-sm transition-all hover:bg-accent"
             type="button"
             aria-expanded={isOpen}
             aria-controls={mobileMenuId}
           >
-            <List className="size-4 text-brand" />
+            <List className="text-brand size-4" />
             <span className="hidden sm:inline">On This Page</span>
             <ChevronDown
               className={cn("size-4 transition-transform duration-200", isOpen && "rotate-180")}
@@ -96,7 +96,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
                         className={cn(
                           "block rounded-md px-2 py-1.5 text-[13px] transition-colors",
                           activeId === heading.id
-                            ? "bg-brand/10 font-medium text-brand"
+                            ? "bg-brand/10 text-brand font-medium"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground",
                         )}
                       >
@@ -121,7 +121,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
               aria-controls={mobileMenuId}
             >
               <div className="flex items-center gap-2 text-sm font-medium">
-                <List className="size-3.5 text-brand" />
+                <List className="text-brand size-3.5" />
                 <span>On This Page</span>
               </div>
               <ChevronDown
@@ -149,7 +149,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
                         className={cn(
                           "inline-block py-1 text-[13px] transition-colors",
                           activeId === heading.id
-                            ? "font-medium text-brand"
+                            ? "text-brand font-medium"
                             : "text-muted-foreground hover:text-foreground",
                         )}
                       >
@@ -181,7 +181,7 @@ export const TableOfContents = ({ variant = "default" }: { variant?: "default" |
                         className={cn(
                           "relative -left-px block border-l-2 py-1.5 pl-4 transition-colors",
                           activeId === heading.id
-                            ? "border-brand font-medium text-brand"
+                            ? "border-brand text-brand font-medium"
                             : "border-transparent text-muted-foreground hover:border-border/80 hover:text-foreground",
                         )}
                       >

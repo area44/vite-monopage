@@ -37,7 +37,7 @@ export const Navbar = ({
           )}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="inline-flex size-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:ring-brand focus-visible:outline-none"
+            className="focus-visible:ring-brand inline-flex size-9 items-center justify-center rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm transition-all hover:bg-accent focus-visible:outline-none"
           >
             {theme === "light" ? <Moon className="size-[18px]" /> : <Sun className="size-[18px]" />}
             <span className="sr-only">Toggle theme</span>
@@ -46,7 +46,7 @@ export const Navbar = ({
       </div>
       {/* Scroll Progress Bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-150 ease-out"
+        className="bg-brand absolute bottom-0 left-0 h-[2px] transition-all duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
         role="progressbar"
         aria-valuemin={0}
