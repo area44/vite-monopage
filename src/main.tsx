@@ -1,13 +1,22 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 
 import "@/styles/index.css";
 import App from "@/app/app.tsx";
+import { ThemeProvider } from "@/components/theme-provider.tsx";
 
 const container = document.getElementById("root")!;
 
-createRoot(document.getElementById("root")!).render(
+const app = (
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <App />
+    </ThemeProvider>
+  </StrictMode>
 );
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
