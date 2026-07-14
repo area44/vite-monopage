@@ -1,49 +1,18 @@
 # Vite Monopage
 
-A high-performance, beautiful documentation starter powered by the latest web technologies.
-
-<p>
-  <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite" alt="Vite" />
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/MDX-3-F9AC00?logo=mdx" alt="MDX" />
-  <img src="https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript" alt="TypeScript" />
-</p>
-
----
+A high-performance, beautiful documentation starter powered by Vite, Tailwind CSS and MDX.
 
 ## Getting Started
 
-### Prerequisites
+To get started, make sure you have [Node.js](https://nodejs.org/en) and [pnpm](https://pnpm.io) installed on your system. Then, follow these steps:
 
-- **Node.js**: 24 or higher
-- **pnpm**: 11 or higher
-
-### Installation
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/area44/vite-monopage.git
-   cd vite-monopage
-   ```
-
-2. **Install dependencies**:
-
-   ```bash
-   pnpm install
-   ```
-
-3. **Start development server**:
-
-   ```bash
-   pnpm dev
-   ```
-
-4. **Build for production**:
-   ```bash
-   pnpm build
-   ```
+```bash
+git clone https://github.com/area44/vite-monopage.git
+cd vite-monopage
+pnpm install
+pnpm dev
+pnpm build
+```
 
 ## Project Structure
 
