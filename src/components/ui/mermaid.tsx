@@ -1,5 +1,5 @@
 import mermaid from "mermaid";
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 
 interface MermaidProps {
   chart: string;
@@ -8,6 +8,7 @@ interface MermaidProps {
 export const Mermaid = ({ chart }: MermaidProps) => {
   const id = useId().replace(/:/g, "");
   const [svg, setSvg] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const renderChart = async () => {
@@ -50,11 +51,16 @@ export const Mermaid = ({ chart }: MermaidProps) => {
     return () => observer.disconnect();
   }, [chart, id]);
 
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.innerHTML = svg;
+    }
+  }, [svg]);
+
   return (
     <div
+      ref={containerRef}
       className="mermaid not-typeset my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
-      /* oxlint-disable-next-line no-danger */
-      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
 };

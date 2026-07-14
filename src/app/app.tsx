@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 
 import { components } from "@/components/mdx-components";
 import Page from "@/pages/index.mdx";
-// @ts-ignore - raw import for copy functionality
-import rawContent from "@/pages/index.mdx?raw";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -33,7 +31,6 @@ export default function App() {
     CopyAsMarkdown: (props: any) => (
       <components.CopyAsMarkdown
         {...props}
-        content={rawContent}
         url="https://raw.githubusercontent.com/area44/vite-monopage/main/src/pages/index.mdx"
       />
     ),
