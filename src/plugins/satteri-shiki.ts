@@ -51,7 +51,16 @@ export const satteriShiki = defineHastPlugin({
         "zenuml",
         "architecture",
       ];
-      if (lang === "mermaid" || mermaidKeywords.some((kw) => code.trim().startsWith(kw))) {
+      const isMath =
+        lang === "math" ||
+        (Array.isArray(className) && className.some((c) => c.includes("math-"))) ||
+        (typeof className === "string" && className.includes("math-"));
+
+      if (
+        lang === "mermaid" ||
+        isMath ||
+        mermaidKeywords.some((kw) => code.trim().startsWith(kw))
+      ) {
         return;
       }
 

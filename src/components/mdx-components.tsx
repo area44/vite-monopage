@@ -1,3 +1,4 @@
+import katex from "katex";
 import { Link } from "lucide-react";
 import React from "react";
 
@@ -7,6 +8,45 @@ import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
 export const components = {
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
+    if (React.isValidElement(children)) {
+      const childProps = children.props as any;
+      if (childProps?.className?.includes("math-display")) {
+        return (
+          <div className="my-6 overflow-x-auto overflow-y-hidden py-4 text-center">{children}</div>
+        );
+      }
+    }
+    return <pre {...props}>{children}</pre>;
+  },
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const isInlineMath = className?.includes("math-inline");
+    const isDisplayMath = className?.includes("math-display");
+
+    if (isInlineMath || isDisplayMath) {
+      const content = typeof children === "string" ? children : "";
+      try {
+        const html = katex.renderToString(content, {
+          displayMode: !!isDisplayMath,
+          throwOnError: false,
+        });
+        return (
+          <span
+            className={isDisplayMath ? "block" : "inline-block"}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        );
+      } catch (err) {
+        console.error("KaTeX rendering error:", err);
+      }
+    }
+
+    return (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    );
+  },
   h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2 id={id} className={cn("group relative", className)} {...props}>
       <a
