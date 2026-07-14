@@ -23,7 +23,7 @@ export const Callout = ({
     default: "border-border bg-muted/50 text-foreground",
     warning: "border-amber-500/20 bg-amber-500/5 text-amber-700 dark:text-amber-300",
     error: "border-destructive/20 bg-destructive/5 text-destructive",
-    success: "border-brand/20 bg-brand/5 text-emerald-700 dark:text-emerald-300",
+    success: "border-emerald-500/20 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300",
   };
 
   return (

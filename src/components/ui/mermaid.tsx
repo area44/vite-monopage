@@ -19,7 +19,6 @@ export const Mermaid = ({ chart }: MermaidProps) => {
         theme: isDark ? "dark" : "neutral",
         themeVariables: {
           fontFamily: "var(--font-mono)",
-          primaryColor: "#18E299",
           primaryTextColor: isDark ? "#ededed" : "#0d0d0d",
           primaryBorderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
           lineColor: isDark ? "#555" : "#ccc",
