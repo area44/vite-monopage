@@ -18,6 +18,7 @@ export default defineConfig({
       features: {
         gfm: true,
         frontmatter: true,
+        math: true,
       },
       hastPlugins: [satteriSlug, satteriShiki],
     }),

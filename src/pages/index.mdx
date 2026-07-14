@@ -77,14 +77,6 @@ We support a versatile alert layout that perfectly mirrors the shadcn visual sys
   that will cause failures.
 </Callout>
 
-We also support native GitHub Flavored Markdown (GFM) blockquote alerts:
-
-> [!NOTE]
-> This is a default GFM tip alert, styled natively to match the shadcn document specifications.
-
-> [!WARNING]
-> This is a warning GFM alert. Use this to signal critical warnings or things to avoid.
-
 ## Code Blocks & Syntax Highlighting
 
 Simulated code blocks utilize a modern top bar showing the filename or language label, consistent with professional developer document systems.
@@ -205,3 +197,50 @@ Our custom `Steps` component allows authors to structure sequentially ordered st
 
   </Step>
 </Steps>
+
+## Math Rendering
+
+Both inline and display block LaTeX math formulas are supported and rendered beautifully using KaTeX.
+
+- **Inline Math**: You can write equations inline like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ within continuous prose.
+- **Display Math**: For complex equations, use display block rendering. Here is Maxwell's equations as an example:
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+$$
+
+$$
+\nabla \cdot \mathbf{B} = 0
+$$
+
+$$
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}
+$$
+
+$$
+\nabla \times \mathbf{B} = \mu_0\left(\mathbf{J} + \varepsilon_0\frac{\partial \mathbf{E}}{\partial t}\right)
+$$
+
+## GitHub Flavored Markdown (GFM)
+
+This section showcases GitHub Flavored Markdown (GFM) features including strikethrough, task lists, footnotes, and custom blockquote alerts.
+
+- **Strikethrough**: This is some ~~deleted or outdated text~~ that is struck through.
+- **Task Lists**:
+  - [x] Complete Vite Monopage setup
+  - [x] Add math rendering support
+  - [ ] Deploy to production environment
+- **Footnotes**:
+  Here is a sentence with a footnotes reference[^1]. And another one with a second footnote[^2].
+
+We also support native GitHub Flavored Markdown (GFM) blockquote alerts:
+
+> [!NOTE]
+> This is a default GFM tip alert, styled natively to match the shadcn document specifications.
+
+> [!WARNING]
+> This is a warning GFM alert. Use this to signal critical warnings or things to avoid.
+
+[^1]: This is the first footnote.
+
+[^2]: This is the second footnote, describing additional technical details.
