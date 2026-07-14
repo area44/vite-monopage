@@ -138,3 +138,20 @@
   --typeset-leading: 1.75;
   --typeset-flow: 1.25em;
 }
+
+/* Custom Blockquote styles for elegant presentation */
+.typeset-docs blockquote {
+  font-style: italic;
+  color: var(--color-muted-foreground);
+}
+
+/* Shiki light and dark mode integration */
+.typeset-docs pre.shiki {
+  background-color: var(--color-muted) !important;
+}
+
+.dark .typeset-docs pre.shiki,
+.dark .typeset-docs pre.shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
