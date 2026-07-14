@@ -21,7 +21,7 @@ export const CopyButton = ({ text, className }: { text: string; className?: stri
       onClick={copy}
       className={cn(
         "flex h-7 items-center gap-1.5 rounded-md px-2 text-[12px] font-medium text-white/30 transition-all hover:bg-white/5 hover:text-white active:scale-95 disabled:pointer-events-none disabled:opacity-50",
-        copied && "text-brand",
+        copied && "text-emerald-500",
         className,
       )}
       aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
