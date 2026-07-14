@@ -159,59 +159,34 @@ export const components = {
       </code>
     );
   },
-  h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+  h1: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h1 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
+    </h1>
+  ),
+  h2: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
     </h2>
   ),
-  h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+  h3: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
     </h3>
   ),
-  h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+  h4: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
     </h4>
   ),
-  h5: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+  h5: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h5 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
     </h5>
   ),
-  h6: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+  h6: ({ children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h6 id={id} {...props}>
+      {id ? <a href={`#${id}`}>{children}</a> : children}
     </h6>
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
