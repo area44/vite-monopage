@@ -25,17 +25,6 @@ export default function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Enrich components with raw content for CopyAsMarkdown
-  const enrichedComponents = {
-    ...components,
-    CopyAsMarkdown: (props: any) => (
-      <components.CopyAsMarkdown
-        {...props}
-        url="https://raw.githubusercontent.com/area44/vite-monopage/main/src/pages/index.mdx"
-      />
-    ),
-  };
-
   return (
     <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Floating Theme Toggle */}
@@ -52,7 +41,7 @@ export default function App() {
       {/* Main Base Layout matching ui.shadcn.com/preview/typeset/docs */}
       <main className="mx-auto px-4 py-12 md:px-8 md:py-24">
         <div className="typeset typeset-docs mx-auto max-w-[37em]">
-          <Page components={enrichedComponents} />
+          <Page components={components} />
         </div>
       </main>
     </div>
