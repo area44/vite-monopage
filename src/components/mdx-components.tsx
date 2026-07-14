@@ -15,12 +15,12 @@ export const components = {
         className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50" />
       </a>
       {children}
       <a
         href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
         aria-label="Link to section"
       >
         <Link className="size-4" />
@@ -34,12 +34,12 @@ export const components = {
         className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50" />
       </a>
       {children}
       <a
         href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
         aria-label="Link to section"
       >
         <Link className="size-4" />
@@ -53,12 +53,12 @@ export const components = {
         className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50" />
       </a>
       {children}
       <a
         href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
         aria-label="Link to section"
       >
         <Link className="size-4" />
@@ -72,12 +72,12 @@ export const components = {
         className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50" />
       </a>
       {children}
       <a
         href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
         aria-label="Link to section"
       >
         <Link className="size-4" />
@@ -91,12 +91,12 @@ export const components = {
         className="absolute top-1/2 -left-8 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 md:block"
         aria-label="Link to section"
       >
-        <Link className="size-5 text-muted-foreground/50 hover:text-brand" />
+        <Link className="size-5 text-muted-foreground/50" />
       </a>
       {children}
       <a
         href={`#${id}`}
-        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors hover:text-brand md:hidden"
+        className="ml-2 inline-flex align-middle text-muted-foreground/30 transition-colors md:hidden"
         aria-label="Link to section"
       >
         <Link className="size-4" />
