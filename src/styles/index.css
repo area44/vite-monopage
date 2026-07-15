@@ -139,19 +139,7 @@
   --typeset-flow: 1.25em;
 }
 
-/* Custom Blockquote styles for elegant presentation */
-.typeset-docs blockquote {
-  font-style: italic;
-  color: var(--color-muted-foreground);
-}
-
-/* Shiki light and dark mode integration */
+/* Shiki code blocks styled like ui.shadcn.com (dark zinc-950 background with vitesse-dark highlighting in both light and dark mode) */
 .typeset-docs pre.shiki {
-  background-color: var(--color-muted) !important;
-}
-
-.dark .typeset-docs pre.shiki,
-.dark .typeset-docs pre.shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
+  background-color: #09090b !important;
 }
