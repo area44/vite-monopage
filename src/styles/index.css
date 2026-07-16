@@ -143,7 +143,7 @@
   counter-increment: step;
 
   &:before {
-    @apply mr-2 inline-flex size-6 items-center justify-center rounded-full border-background bg-muted text-center -indent-px font-mono text-sm font-medium md:absolute md:mt-[-4px] md:ml-[-50px] md:size-9 md:border-4;
+    @apply absolute mt-[-4px] ml-[-50px] flex size-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-sm font-medium;
     content: counter(step);
   }
 }
