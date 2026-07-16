@@ -138,3 +138,30 @@
   --typeset-leading: 1.75;
   --typeset-flow: 1.25em;
 }
+
+@utility step {
+  counter-increment: step;
+
+  &:before {
+    @apply mr-2 inline-flex size-6 items-center justify-center rounded-full border-background bg-muted text-center -indent-px font-mono text-sm font-medium md:absolute md:mt-[-4px] md:ml-[-50px] md:size-9 md:border-4;
+    content: counter(step);
+  }
+}
+
+.steps {
+  &:first-child {
+    @apply !mt-0;
+  }
+
+  &:first-child > h3:first-child {
+    @apply !mt-0;
+  }
+
+  > h3 {
+    @apply !mt-8;
+  }
+
+  > h3 + p {
+    @apply !mt-2;
+  }
+}
