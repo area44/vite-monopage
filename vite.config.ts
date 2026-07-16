@@ -6,7 +6,12 @@ import satteri from "vite-plugin-satteri";
 import { satteriShiki } from "./src/plugins/satteri-shiki";
 import { satteriSlug } from "./src/plugins/satteri-slug";
 
-const base = process.env.BASE || "/";
+const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
+const repositoryName = process.env.GITHUB_REPOSITORY
+  ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+  : "/";
+
+const base = process.env.BASE || (isGitHubActions ? repositoryName : "/");
 
 // https://vite.dev/config/
 export default defineConfig({
