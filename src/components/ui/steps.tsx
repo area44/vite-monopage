@@ -2,14 +2,11 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-export const Steps = ({
-  className,
-  ...props
-}: React.ComponentProps<"div">) => (
+export const Steps = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn(
-      "steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8 [&>h3]:step",
-      className
+      "steps [&>h3]:step mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8",
+      className,
     )}
     {...props}
   />
@@ -27,7 +24,7 @@ export const Step = ({
         <h3
           className={cn(
             "step mt-0 text-xl font-semibold text-foreground md:text-[20px] md:leading-[1.3] md:tracking-[-0.2px]",
-            className
+            className,
           )}
           {...props}
         >
