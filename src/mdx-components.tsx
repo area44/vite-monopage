@@ -10,54 +10,7 @@ import { extractAlertMarker, AlertBlock } from "./components/mdx-alerts";
 import { getHeadingId, HeadingAnchor } from "./components/mdx-headings";
 
 export const components = {
-  blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
-    const alertData = extractAlertMarker(children);
-    if (alertData) {
-      const { type, cleanedChildren } = alertData;
-      return <AlertBlock type={type}>{cleanedChildren}</AlertBlock>;
-    }
-    return <blockquote {...props}>{children}</blockquote>;
-  },
-  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-    if (React.isValidElement(children)) {
-      const childProps = children.props as any;
-      if (childProps?.className?.includes("math-display")) {
-        return (
-          <div className="my-6 overflow-x-auto overflow-y-hidden py-4 text-center">{children}</div>
-        );
-      }
-    }
-    return <pre {...props}>{children}</pre>;
-  },
-  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
-    const isInlineMath = className?.includes("math-inline");
-    const isDisplayMath = className?.includes("math-display");
-
-    if (isInlineMath || isDisplayMath) {
-      const content = typeof children === "string" ? children : "";
-      try {
-        const html = katex.renderToString(content, {
-          displayMode: !!isDisplayMath,
-          throwOnError: false,
-        });
-        return (
-          <span
-            className={isDisplayMath ? "block" : "inline-block"}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        );
-      } catch (err) {
-        console.error("KaTeX rendering error:", err);
-      }
-    }
-
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
-  h1: ({
+    h1: ({
     className,
     children,
     id,
@@ -109,6 +62,53 @@ export const components = {
       <h6 id={headingId} className={className} {...props}>
         <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
       </h6>
+    );
+  },
+  blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
+    const alertData = extractAlertMarker(children);
+    if (alertData) {
+      const { type, cleanedChildren } = alertData;
+      return <AlertBlock type={type}>{cleanedChildren}</AlertBlock>;
+    }
+    return <blockquote {...props}>{children}</blockquote>;
+  },
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
+    if (React.isValidElement(children)) {
+      const childProps = children.props as any;
+      if (childProps?.className?.includes("math-display")) {
+        return (
+          <div className="my-6 overflow-x-auto overflow-y-hidden py-4 text-center">{children}</div>
+        );
+      }
+    }
+    return <pre {...props}>{children}</pre>;
+  },
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const isInlineMath = className?.includes("math-inline");
+    const isDisplayMath = className?.includes("math-display");
+
+    if (isInlineMath || isDisplayMath) {
+      const content = typeof children === "string" ? children : "";
+      try {
+        const html = katex.renderToString(content, {
+          displayMode: !!isDisplayMath,
+          throwOnError: false,
+        });
+        return (
+          <span
+            className={isDisplayMath ? "block" : "inline-block"}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        );
+      } catch (err) {
+        console.error("KaTeX rendering error:", err);
+      }
+    }
+
+    return (
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
