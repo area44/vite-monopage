@@ -47,7 +47,7 @@ export default function App() {
           <div className="mb-10 space-y-2 border-b border-border pb-6">
             <h1 className="scroll-m-20">{frontmatter.title}</h1>
             {frontmatter.description && (
-              <p className="text-lg text-muted-foreground">{frontmatter.description}</p>
+              <p className="text-muted-foreground">{frontmatter.description}</p>
             )}
           </div>
           <Page components={components} />
