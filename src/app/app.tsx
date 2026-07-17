@@ -2,7 +2,7 @@ import { Sun, Moon } from "lucide-react";
 
 import { components } from "@/components/mdx-components";
 import { useTheme } from "@/components/theme-provider";
-import Page from "@/pages/index.mdx";
+import Page, { frontmatter } from "@/pages/index.mdx";
 
 export default function App() {
   const { theme, setTheme } = useTheme();
@@ -44,6 +44,12 @@ export default function App() {
 
       <main id="main-content" className="mx-auto px-4 py-12 md:px-8 md:py-24">
         <div className="typeset typeset-docs mx-auto max-w-[37em]">
+          <div className="space-y-2">
+            <h1 className="scroll-m-20">{frontmatter.title}</h1>
+            {frontmatter.description && (
+              <p className="text-muted-foreground">{frontmatter.description}</p>
+            )}
+          </div>
           <Page components={components} />
         </div>
       </main>

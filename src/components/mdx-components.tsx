@@ -111,6 +111,46 @@ const AlertBlock = ({ children, type }: { children: React.ReactNode; type: Callo
   );
 };
 
+function getNodeText(node: React.ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map((child) => getNodeText(child)).join("");
+  }
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return getNodeText(node.props.children);
+  }
+  return "";
+}
+
+function getHeadingId(children: React.ReactNode) {
+  const id = getNodeText(children)
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/'/g, "")
+    .replace(/\?/g, "")
+    .toLowerCase();
+  return id || undefined;
+}
+
+function HeadingAnchor({ id, children }: { id?: string; children: React.ReactNode }) {
+  if (!id) {
+    return children;
+  }
+  return (
+    <a className="group no-underline" href={`#${id}`}>
+      <span className="underline-offset-4 group-hover:underline">{children}</span>
+      <span
+        aria-hidden="true"
+        className="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100"
+      >
+        #
+      </span>
+    </a>
+  );
+}
+
 export const components = {
   blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
     const alertData = extractAlertMarker(children);
@@ -159,61 +199,60 @@ export const components = {
       </code>
     );
   },
-  h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
-    </h2>
-  ),
-  h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
-    </h3>
-  ),
-  h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
-    </h4>
-  ),
-  h5: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
-    </h5>
-  ),
-  h6: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6 id={id} className={className} {...props}>
-      {id ? (
-        <a href={`#${id}`} className="text-inherit no-underline hover:no-underline">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
-    </h6>
-  ),
+  h1: ({
+    className,
+    children,
+    id,
+    disableAnchor = true,
+    ...props
+  }: React.HTMLAttributes<HTMLHeadingElement> & { disableAnchor?: boolean }) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h1 id={headingId} className={className} {...props}>
+        {disableAnchor ? children : <HeadingAnchor id={headingId}>{children}</HeadingAnchor>}
+      </h1>
+    );
+  },
+  h2: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h2 id={headingId} className={className} {...props}>
+        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+      </h2>
+    );
+  },
+  h3: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h3 id={headingId} className={className} {...props}>
+        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+      </h3>
+    );
+  },
+  h4: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h4 id={headingId} className={className} {...props}>
+        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+      </h4>
+    );
+  },
+  h5: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h5 id={headingId} className={className} {...props}>
+        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+      </h5>
+    );
+  },
+  h6: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const headingId = id ?? getHeadingId(children);
+    return (
+      <h6 id={headingId} className={className} {...props}>
+        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+      </h6>
+    );
+  },
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="typeset-scroll">
       <table className={cn("w-full", className)} {...props} />
