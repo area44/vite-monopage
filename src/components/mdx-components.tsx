@@ -199,11 +199,17 @@ export const components = {
       </code>
     );
   },
-  h1: ({ className, children, id, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+  h1: ({
+    className,
+    children,
+    id,
+    disableAnchor = true,
+    ...props
+  }: React.HTMLAttributes<HTMLHeadingElement> & { disableAnchor?: boolean }) => {
     const headingId = id ?? getHeadingId(children);
     return (
       <h1 id={headingId} className={className} {...props}>
-        <HeadingAnchor id={headingId}>{children}</HeadingAnchor>
+        {disableAnchor ? children : <HeadingAnchor id={headingId}>{children}</HeadingAnchor>}
       </h1>
     );
   },
