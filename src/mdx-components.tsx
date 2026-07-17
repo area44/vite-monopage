@@ -10,7 +10,7 @@ import { extractAlertMarker, AlertBlock } from "./components/mdx-alerts";
 import { getHeadingId, HeadingAnchor } from "./components/mdx-headings";
 
 export const components = {
-    h1: ({
+  h1: ({
     className,
     children,
     id,
