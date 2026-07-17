@@ -16,13 +16,16 @@ pnpm build
 
 ## Project Structure
 
-| Path              | Description                                    |
-| :---------------- | :--------------------------------------------- |
-| `src/app.tsx`     | Main application shell, including page layout. |
-| `src/pages/`      | MDX-based documentation content.               |
-| `src/components/` | Reusable UI components.                        |
-| `src/styles/`     | Global CSS and Tailwind theme configuration.   |
-| `public/`         | Static assets like logos and icons.            |
+| Path                              | Description                                                 |
+| :-------------------------------- | :---------------------------------------------------------- |
+| `src/app.tsx`                     | Main application shell, including page layout.              |
+| `src/mdx-components.tsx`          | Main MDX components mapping configuration.                  |
+| `src/components/mdx-alerts.tsx`   | Helper component and extraction logic for GFM-style alerts. |
+| `src/components/mdx-headings.tsx` | Helper logic for headings, ID generation, and anchor links. |
+| `src/components/ui/`              | Reusable UI components.                                     |
+| `src/pages/`                      | MDX-based documentation content.                            |
+| `src/styles/`                     | Global CSS and Tailwind theme configuration.                |
+| `public/`                         | Static assets like logos and icons.                         |
 
 ## Customization
 
