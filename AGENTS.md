@@ -12,18 +12,29 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 
 ## Project Structure
 
-- `src/main.tsx`: Application entry point implementing dual rendering support (hydration / mounting).
-- `src/app.tsx`: Main application shell, including layout, accessibility skip-links, and theme toggling.
-- `src/mdx-components.tsx`: Custom components dictionary for rendering MDX tags via Tailwind, Katex, and Mermaid.
-- `src/components/mdx-alerts.tsx`: Utility and blockquote processor to handle GFM-style alerts (Note, Tip, Warning, etc.).
-- `src/components/mdx-headings.tsx`: Heading customization logic for recursive text extraction and hoverable anchor tags.
-- `src/components/theme-provider.tsx`: Theme state management React provider supporting light, dark, and system themes.
-- `src/components/ui/`: Core styling and design elements (Callout, Steps/Step, Mermaid).
-- `src/plugins/`: Compiler plugins (Shiki highlighter, slug generation) run during Satteri HAST processing.
-- `src/pages/index.mdx`: Main page content written in MDX.
-- `src/lib/utils.ts`: Small utility file providing the class-merging function (`cn`).
-- `src/styles/`: global CSS (index.css) and Typography rules (typeset.css).
-- `public/`: Static files and brand assets.
+```text
+vite-monopage/
+├── public/                     # Static files and brand assets
+└── src/                        # Source directory
+    ├── components/             # React components
+    │   ├── ui/                 # Core UI design components (Callout, Steps, Mermaid)
+    │   ├── mdx-alerts.tsx      # GFM-style alerts and blockquote rendering processor
+    │   ├── mdx-headings.tsx    # Heading anchor customization and ID slug generation
+    │   └── theme-provider.tsx  # Theme state provider context (light/dark/system)
+    ├── lib/                    # Core utility logic
+    │   └── utils.ts            # Generic style merging utility function (cn)
+    ├── pages/                  # MDX pages
+    │   └── index.mdx           # Main page content in MDX
+    ├── plugins/                # Satteri HAST processing compiler plugins
+    │   ├── satteri-shiki.ts    # High-contrast Vitesse-dark syntax highlighter
+    │   └── satteri-slug.ts     # Element ID slugging logic
+    ├── styles/                 # Global stylesheet and typography rules
+    │   ├── index.css           # Tailwind v4 styles and overrides
+    │   └── typeset.css         # Typeset layout specification
+    ├── app.tsx                 # Main layout, accessibility skip-links, theme controls
+    ├── main.tsx                # Application entry point with hydration/mounting setup
+    └── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+```
 
 ## Development Workflows
 

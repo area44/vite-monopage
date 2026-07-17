@@ -16,20 +16,29 @@ pnpm build
 
 ## Project Structure
 
-| Path                                | Description                                                 |
-| :---------------------------------- | :---------------------------------------------------------- |
-| `src/main.tsx`                      | App entry point implementing hydration/mounting setup.      |
-| `src/app.tsx`                       | Main application shell, including layout and theme toggle.  |
-| `src/mdx-components.tsx`            | Main MDX components mapping configuration.                  |
-| `src/components/mdx-alerts.tsx`     | Helper component and extraction logic for GFM-style alerts. |
-| `src/components/mdx-headings.tsx`   | Helper logic for headings, ID generation, and anchor links. |
-| `src/components/theme-provider.tsx` | Persisted light/dark/system theme context and provider.     |
-| `src/components/ui/`                | Reusable UI components (Callout, Steps, Mermaid).           |
-| `src/plugins/`                      | Satteri compiler plugins for highlighters and slugging.     |
-| `src/pages/`                        | MDX-based documentation content.                            |
-| `src/lib/utils.ts`                  | Generic utility files, containing class-merging helper.     |
-| `src/styles/`                       | Global CSS and Tailwind theme configuration.                |
-| `public/`                           | Static assets like logos and icons.                         |
+```text
+vite-monopage/
+├── public/                     # Static files and brand assets
+└── src/                        # Source directory
+    ├── components/             # React components
+    │   ├── ui/                 # Core UI design components (Callout, Steps, Mermaid)
+    │   ├── mdx-alerts.tsx      # GFM-style alerts and blockquote rendering processor
+    │   ├── mdx-headings.tsx    # Heading anchor customization and ID slug generation
+    │   └── theme-provider.tsx  # Theme state provider context (light/dark/system)
+    ├── lib/                    # Core utility logic
+    │   └── utils.ts            # Generic style merging utility function (cn)
+    ├── pages/                  # MDX pages
+    │   └── index.mdx           # Main page content in MDX
+    ├── plugins/                # Satteri HAST processing compiler plugins
+    │   ├── satteri-shiki.ts    # High-contrast Vitesse-dark syntax highlighter
+    │   └── satteri-slug.ts     # Element ID slugging logic
+    ├── styles/                 # Global stylesheet and typography rules
+    │   ├── index.css           # Tailwind v4 styles and overrides
+    │   └── typeset.css         # Typeset layout specification
+    ├── app.tsx                 # Main layout, accessibility skip-links, theme controls
+    ├── main.tsx                # Application entry point with hydration/mounting setup
+    └── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+```
 
 ## Customization
 
