@@ -1,7 +1,7 @@
 import { Sun, Moon } from "lucide-react";
 
-import { components } from "@/components/mdx-components";
 import { useTheme } from "@/components/theme-provider";
+import { components } from "@/mdx-components";
 import Page, { frontmatter } from "@/pages/index.mdx";
 
 export default function App() {

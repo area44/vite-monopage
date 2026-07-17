@@ -12,11 +12,30 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 
 ## Project Structure
 
-- `src/pages/index.mdx`: Primary entry point for documentation content. Edit this file to change the main page content.
-- `src/components/mdx-components.tsx`: Contains custom React components used within MDX and the logic for GFM-style alerts.
-- `src/app/app.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
-- `src/styles/index.css`: Global styles and Tailwind 4 configuration.
-- `public/`: Static assets.
+```text
+vite-monopage/
+├── .github/                    # GitHub actions CI/CD workflows
+├── public/                     # Static assets and media files
+├── src/                        # Main application source code
+│   ├── components/             # Custom React components
+│   │   └── ui/                 # Reusable layout/UI blocks
+│   ├── lib/                    # Standard utilities
+│   ├── pages/                  # MDX document files
+│   ├── plugins/                # Markdown processing plugins
+│   ├── styles/                 # Application stylesheets
+│   ├── app.tsx                 # Core page
+│   ├── main.tsx                # Client-side mounting entry point
+│   ├── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+│   ├── mdx.d.ts                # TypeScript definition module for *.mdx files
+│   └── vite-env.d.ts           # Vite client type references
+├── AGENTS.md                   # Onboarding guide for AI developer agents
+├── README.md                   # Main project introduction
+├── index.html                  # Core HTML file containing root mount element
+├── package.json                # Dependencies, scripts, and package information
+├── pnpm-workspace.yaml         # Workspace settings
+├── tsconfig.json               # Project-wide TypeScript compiler settings
+└── vite.config.ts              # Vite configurations
+```
 
 ## Development Workflows
 

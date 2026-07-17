@@ -16,13 +16,30 @@ pnpm build
 
 ## Project Structure
 
-| Path              | Description                                       |
-| :---------------- | :------------------------------------------------ |
-| `src/app/`        | Core application logic and main `app.tsx` layout. |
-| `src/pages/`      | MDX-based documentation content.                  |
-| `src/components/` | Reusable UI and MDX-specific components.          |
-| `src/styles/`     | Global CSS and Tailwind theme configuration.      |
-| `public/`         | Static assets like logos and icons.               |
+```text
+vite-monopage/
+├── .github/                    # GitHub actions CI/CD workflows
+├── public/                     # Static assets and media files
+├── src/                        # Main application source code
+│   ├── components/             # Custom React components
+│   │   └── ui/                 # Reusable layout/UI blocks
+│   ├── lib/                    # Standard utilities
+│   ├── pages/                  # MDX document files
+│   ├── plugins/                # Markdown processing plugins
+│   ├── styles/                 # Application stylesheets
+│   ├── app.tsx                 # Core page
+│   ├── main.tsx                # Client-side mounting entry point
+│   ├── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+│   ├── mdx.d.ts                # TypeScript definition module for *.mdx files
+│   └── vite-env.d.ts           # Vite client type references
+├── AGENTS.md                   # Onboarding guide for AI developer agents
+├── README.md                   # Main project introduction
+├── index.html                  # Core HTML file containing root mount element
+├── package.json                # Dependencies, scripts, and package information
+├── pnpm-workspace.yaml         # Workspace settings
+├── tsconfig.json               # Project-wide TypeScript compiler settings
+└── vite.config.ts              # Vite configurations
+```
 
 ## Customization
 
@@ -32,7 +49,7 @@ Your main documentation content lives in `src/pages/index.mdx`. Simply edit this
 
 ### Adding Components
 
-You can create new React components in `src/components/ui` and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
+You can create new React components in `src/components/ui` and register them in `src/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
 
 ## License
 
