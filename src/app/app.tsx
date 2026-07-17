@@ -45,11 +45,9 @@ export default function App() {
       <main id="main-content" className="mx-auto px-4 py-12 md:px-8 md:py-24">
         <div className="typeset typeset-docs mx-auto max-w-[37em]">
           <div className="mb-10 space-y-2 border-b border-border pb-6">
-            <h1 className="scroll-m-20 text-3xl font-bold tracking-tight sm:text-4xl">
-              {frontmatter.title}
-            </h1>
+            <h1 className="scroll-m-20">{frontmatter.title}</h1>
             {frontmatter.description && (
-              <p className="text-lg font-normal text-muted-foreground">{frontmatter.description}</p>
+              <p className="text-lg text-muted-foreground">{frontmatter.description}</p>
             )}
           </div>
           <Page components={components} />
