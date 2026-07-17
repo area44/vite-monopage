@@ -18,26 +18,46 @@ pnpm build
 
 ```text
 vite-monopage/
-├── public/                     # Static files and brand assets
-└── src/                        # Source directory
-    ├── components/             # React components
-    │   ├── ui/                 # Core UI design components (Callout, Steps, Mermaid)
-    │   ├── mdx-alerts.tsx      # GFM-style alerts and blockquote rendering processor
-    │   ├── mdx-headings.tsx    # Heading anchor customization and ID slug generation
-    │   └── theme-provider.tsx  # Theme state provider context (light/dark/system)
-    ├── lib/                    # Core utility logic
-    │   └── utils.ts            # Generic style merging utility function (cn)
-    ├── pages/                  # MDX pages
-    │   └── index.mdx           # Main page content in MDX
-    ├── plugins/                # Satteri HAST processing compiler plugins
-    │   ├── satteri-shiki.ts    # High-contrast Vitesse-dark syntax highlighter
-    │   └── satteri-slug.ts     # Element ID slugging logic
-    ├── styles/                 # Global stylesheet and typography rules
-    │   ├── index.css           # Tailwind v4 styles and overrides
-    │   └── typeset.css         # Typeset layout specification
-    ├── app.tsx                 # Main layout, accessibility skip-links, theme controls
-    ├── main.tsx                # Application entry point with hydration/mounting setup
-    └── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+├── .github/                    # GitHub actions CI/CD workflows
+│   └── workflows/              # Workflow definitions
+├── public/                     # Static assets and media files
+├── src/                        # Main application source code
+│   ├── components/             # Custom React components
+│   │   ├── ui/                 # Reusable layout/UI blocks
+│   │   │   ├── callout.tsx     # Unified, color-tinted callout boxes
+│   │   │   ├── mermaid.tsx     # Safe-rendered inline Mermaid diagram compiler
+│   │   │   └── steps.tsx       # Counter-incremented vertical lists
+│   │   ├── mdx-alerts.tsx      # GFM blockquote parsing and marker detector
+│   │   ├── mdx-headings.tsx    # Scroll-linked anchor headers and ID extraction
+│   │   └── theme-provider.tsx  # Persisted light/dark/system theme controller
+│   ├── lib/                    # Standard utilities
+│   │   └── utils.ts            # Tailwind Classname compiler wrapper (cn)
+│   ├── pages/                  # MDX document files
+│   │   └── index.mdx           # Main page frontmatter and contents
+│   ├── plugins/                # Satteri HTML processing plugins
+│   │   ├── satteri-shiki.ts    # High-contrast Shiki vitesse-dark highlighter
+│   │   └── satteri-slug.ts     # Markdown header anchor slug generator
+│   ├── styles/                 # Application stylesheets
+│   │   ├── index.css           # Tailwind CSS 4 setup and utility classes
+│   │   └── typeset.css         # Typography-focused layout specification
+│   ├── app.tsx                 # Core page wrapper, layout, and theme toggler
+│   ├── main.tsx                # Client-side mounting and hydration entry point
+│   ├── mdx-components.tsx      # Custom React elements dictionary for MDX tags
+│   ├── mdx.d.ts                # TypeScript definition module for *.mdx files
+│   └── vite-env.d.ts           # Vite client type references
+├── .gitignore                  # Git untracked pattern constraints
+├── .oxfmtrc.json               # oxfmt formatter configuration
+├── .oxlintrc.json              # oxlint linter rules
+├── AGENTS.md                   # Onboarding guide for AI developer agents
+├── LICENSE                     # MIT license details
+├── README.md                   # Main project introduction and setup guide
+├── index.html                  # Core HTML file containing root mount element
+├── package.json                # Dependencies, scripts, and package information
+├── pnpm-lock.yaml              # Immutable pnpm locked package tree
+├── pnpm-workspace.yaml         # Workspace monorepo settings
+├── tsconfig.json               # Project-wide TypeScript compiler settings
+├── vercel.json                 # Vercel static deployment specifications
+└── vite.config.ts              # Vite configurations and satteri configurations
 ```
 
 ## Customization
