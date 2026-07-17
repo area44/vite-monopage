@@ -16,16 +16,20 @@ pnpm build
 
 ## Project Structure
 
-| Path                              | Description                                                 |
-| :-------------------------------- | :---------------------------------------------------------- |
-| `src/app.tsx`                     | Main application shell, including page layout.              |
-| `src/mdx-components.tsx`          | Main MDX components mapping configuration.                  |
-| `src/components/mdx-alerts.tsx`   | Helper component and extraction logic for GFM-style alerts. |
-| `src/components/mdx-headings.tsx` | Helper logic for headings, ID generation, and anchor links. |
-| `src/components/ui/`              | Reusable UI components.                                     |
-| `src/pages/`                      | MDX-based documentation content.                            |
-| `src/styles/`                     | Global CSS and Tailwind theme configuration.                |
-| `public/`                         | Static assets like logos and icons.                         |
+| Path                                | Description                                                 |
+| :---------------------------------- | :---------------------------------------------------------- |
+| `src/main.tsx`                      | App entry point implementing hydration/mounting setup.      |
+| `src/app.tsx`                       | Main application shell, including layout and theme toggle.  |
+| `src/mdx-components.tsx`            | Main MDX components mapping configuration.                  |
+| `src/components/mdx-alerts.tsx`     | Helper component and extraction logic for GFM-style alerts. |
+| `src/components/mdx-headings.tsx`   | Helper logic for headings, ID generation, and anchor links. |
+| `src/components/theme-provider.tsx` | Persisted light/dark/system theme context and provider.     |
+| `src/components/ui/`                | Reusable UI components (Callout, Steps, Mermaid).           |
+| `src/plugins/`                      | Satteri compiler plugins for highlighters and slugging.     |
+| `src/pages/`                        | MDX-based documentation content.                            |
+| `src/lib/utils.ts`                  | Generic utility files, containing class-merging helper.     |
+| `src/styles/`                       | Global CSS and Tailwind theme configuration.                |
+| `public/`                           | Static assets like logos and icons.                         |
 
 ## Customization
 

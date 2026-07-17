@@ -12,13 +12,18 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 
 ## Project Structure
 
-- `src/pages/index.mdx`: Primary entry point for documentation content. Edit this file to change the main page content.
-- `src/mdx-components.tsx`: Main MDX components dictionary mapping elements (h1-h6, table, pre, code, blockquote) to custom UI.
-- `src/components/mdx-alerts.tsx`: Utility and logic to extract GFM-style alert markers and render theme-tinted Callouts.
-- `src/components/mdx-headings.tsx`: Custom headings logic including slug generation and link indicators for anchor tags.
-- `src/app.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
-- `src/styles/index.css`: Global styles and Tailwind 4 configuration.
-- `public/`: Static assets.
+- `src/main.tsx`: Application entry point implementing dual rendering support (hydration / mounting).
+- `src/app.tsx`: Main application shell, including layout, accessibility skip-links, and theme toggling.
+- `src/mdx-components.tsx`: Custom components dictionary for rendering MDX tags via Tailwind, Katex, and Mermaid.
+- `src/components/mdx-alerts.tsx`: Utility and blockquote processor to handle GFM-style alerts (Note, Tip, Warning, etc.).
+- `src/components/mdx-headings.tsx`: Heading customization logic for recursive text extraction and hoverable anchor tags.
+- `src/components/theme-provider.tsx`: Theme state management React provider supporting light, dark, and system themes.
+- `src/components/ui/`: Core styling and design elements (Callout, Steps/Step, Mermaid).
+- `src/plugins/`: Compiler plugins (Shiki highlighter, slug generation) run during Satteri HAST processing.
+- `src/pages/index.mdx`: Main page content written in MDX.
+- `src/lib/utils.ts`: Small utility file providing the class-merging function (`cn`).
+- `src/styles/`: global CSS (index.css) and Typography rules (typeset.css).
+- `public/`: Static files and brand assets.
 
 ## Development Workflows
 
