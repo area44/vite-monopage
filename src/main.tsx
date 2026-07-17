@@ -3,8 +3,8 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import "katex/dist/katex.min.css";
 
 import "@/styles/index.css";
-import App from "@/app/app.tsx";
-import { ThemeProvider } from "@/components";
+import App from "@/app";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const container = document.getElementById("root")!;
 

@@ -16,13 +16,13 @@ pnpm build
 
 ## Project Structure
 
-| Path              | Description                                       |
-| :---------------- | :------------------------------------------------ |
-| `src/app/`        | Core application logic and main `app.tsx` layout. |
-| `src/pages/`      | MDX-based documentation content.                  |
-| `src/components/` | Reusable UI and MDX-specific components.          |
-| `src/styles/`     | Global CSS and Tailwind theme configuration.      |
-| `public/`         | Static assets like logos and icons.               |
+| Path              | Description                                    |
+| :---------------- | :--------------------------------------------- |
+| `src/app.tsx`     | Main application shell, including page layout. |
+| `src/pages/`      | MDX-based documentation content.               |
+| `src/components/` | Reusable UI components.                        |
+| `src/styles/`     | Global CSS and Tailwind theme configuration.   |
+| `public/`         | Static assets like logos and icons.            |
 
 ## Customization
 
@@ -32,7 +32,7 @@ Your main documentation content lives in `src/pages/index.mdx`. Simply edit this
 
 ### Adding Components
 
-You can create new React components in `src/components/ui` and register them in `src/components/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
+You can create new React components in `src/components/ui` and register them in `src/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
 
 ## License
 

@@ -13,8 +13,8 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 ## Project Structure
 
 - `src/pages/index.mdx`: Primary entry point for documentation content. Edit this file to change the main page content.
-- `src/components/mdx-components.tsx`: Contains custom React components used within MDX and the logic for GFM-style alerts.
-- `src/app/app.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
+- `src/mdx-components.tsx`: Contains custom React components used within MDX and the logic for GFM-style alerts.
+- `src/app.tsx`: Main application shell, including layout, navigation, and theme toggle logic.
 - `src/styles/index.css`: Global styles and Tailwind 4 configuration.
 - `public/`: Static assets.
 

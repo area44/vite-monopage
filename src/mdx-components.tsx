@@ -1,11 +1,13 @@
 import katex from "katex";
 import React from "react";
 
-import { Callout, Mermaid, Step, Steps } from "@/components/ui";
+import { Callout } from "@/components/ui/callout";
+import { Mermaid } from "@/components/ui/mermaid";
+import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
 
-import { extractAlertMarker, AlertBlock } from "./mdx-alerts";
-import { getHeadingId, HeadingAnchor } from "./mdx-headings";
+import { extractAlertMarker, AlertBlock } from "./components/mdx-alerts";
+import { getHeadingId, HeadingAnchor } from "./components/mdx-headings";
 
 export const components = {
   blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => {
