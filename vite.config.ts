@@ -3,8 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import satteri from "vite-plugin-satteri";
 
-import { satteriShiki } from "./src/plugins/satteri-shiki";
-import { satteriSlug } from "./src/plugins/satteri-slug";
+import { satteriShiki, satteriSlug } from "./src/plugins";
 
 const base = process.env.BASE || "/";
 

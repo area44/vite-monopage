@@ -4,7 +4,7 @@ import "katex/dist/katex.min.css";
 
 import "@/styles/index.css";
 import App from "@/app/app.tsx";
-import { ThemeProvider } from "@/components/theme-provider.tsx";
+import { ThemeProvider } from "@/components";
 
 const container = document.getElementById("root")!;
 
