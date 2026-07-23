@@ -8,7 +8,7 @@ Welcome to the **Vite Monopage** repository. This guide is intended for AI agent
 - **Build Tool**: [Vite 8](https://vitejs.dev/)
 - **Content**: [MDX 3](https://mdxjs.com/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Linting/Formatting**: [oxlint](https://oxlint.dev/) and [oxfmt](https://github.com/oxc-project/oxc)
+- **Linting/Formatting**: [oxlint](https://oxc.rs/docs/guide/usage/linter.html) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html)
 
 ## Project Structure
 
