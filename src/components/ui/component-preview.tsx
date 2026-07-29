@@ -107,8 +107,13 @@ export function ComponentPreview({
       {/* Code Section */}
       {!hideCode && renderedCodeElement && (
         <div data-slot="code" className="relative flex flex-col overflow-hidden bg-[#09090b]">
-          {/* Action buttons (Copy) */}
-          <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+          {/* Action buttons (Copy) - visible by default when expanded, hidden when collapsed */}
+          <div
+            className={cn(
+              "absolute top-3 right-3 z-20 flex items-center gap-1.5 transition-opacity duration-200",
+              isExpanded ? "opacity-100" : "pointer-events-none opacity-0",
+            )}
+          >
             <button
               type="button"
               onClick={() => handleCopy(rawCodeText)}
