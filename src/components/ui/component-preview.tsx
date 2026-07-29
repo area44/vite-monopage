@@ -67,7 +67,15 @@ export function ComponentPreview({
   let rawCodeText = "";
   let renderedCodeElement: React.ReactNode = null;
 
-  if (codeElement) {
+  if (codeElement && React.isValidElement(codeElement)) {
+    rawCodeText = extractText(codeElement).trim();
+    renderedCodeElement = React.cloneElement(
+      codeElement as React.ReactElement,
+      {
+        "data-in-preview": "true",
+      } as any,
+    );
+  } else if (codeElement) {
     rawCodeText = extractText(codeElement).trim();
     renderedCodeElement = codeElement;
   }
