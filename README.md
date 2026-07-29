@@ -1,5 +1,7 @@
 # Vite Monopage
 
+[![GitHub Pages](https://github.com/area44/vite-monopage/actions/workflows/pages.yml/badge.svg)](https://area44.github.io/vite-monopage/)
+
 A high-performance, beautiful documentation starter powered by Vite, Tailwind CSS and MDX.
 
 ## Getting Started
