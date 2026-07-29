@@ -90,7 +90,7 @@ export function ComponentPreview({
       )}
       {...props}
     >
-      {/* Preview Section - simple background like shadcn-ui, no dot pattern */}
+      {/* Preview Section */}
       <div
         data-slot="preview"
         className={cn(
