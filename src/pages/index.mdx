@@ -118,6 +118,26 @@ Callouts help draw attention to important information.
 
 <Callout type="error">Errors indicate problems that require attention.</Callout>
 
+## Component Preview
+
+A robust, interactive wrapper to display rendered components alongside their respective syntax-highlighted source code.
+
+It supports rendering any custom MDX elements or live React components directly inside `<ComponentPreview>`, paired with a standard code block, to render custom ad-hoc previews with a simple, high-fidelity preview canvas and expandable code toggle.
+
+<ComponentPreview caption="A custom warning callout shown inside the component preview">
+
+<Callout type="warning">
+  This warning callout is rendered dynamically inside the preview canvas!
+</Callout>
+
+```mdx
+<Callout type="warning">
+  This warning callout is rendered dynamically inside the preview canvas!
+</Callout>
+```
+
+</ComponentPreview>
+
 ## Steps
 
 The custom `Steps` component provides a structured way to document workflows.

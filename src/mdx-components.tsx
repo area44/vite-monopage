@@ -2,6 +2,7 @@ import katex from "katex";
 import React from "react";
 
 import { Callout } from "@/components/ui/callout";
+import { ComponentPreview } from "@/components/ui/component-preview";
 import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
 import { cn } from "@/lib/utils";
@@ -117,6 +118,7 @@ export const components = {
     </div>
   ),
   Callout,
+  ComponentPreview,
   Steps,
   Step,
   Mermaid,
