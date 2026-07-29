@@ -1,23 +1,7 @@
 import { Check, Copy } from "lucide-react";
 import React, { useState } from "react";
 
-import ButtonDemo from "@/components/demos/button-demo";
-import buttonDemoCode from "@/components/demos/button-demo.tsx?raw";
-import CardDemo from "@/components/demos/card-demo";
-import cardDemoCode from "@/components/demos/card-demo.tsx?raw";
 import { cn } from "@/lib/utils";
-
-// Component registry mapping names to component rendering and their raw codes
-const registry: Record<string, { component: React.ComponentType; code: string }> = {
-  "button-demo": {
-    component: ButtonDemo,
-    code: buttonDemoCode,
-  },
-  "card-demo": {
-    component: CardDemo,
-    code: cardDemoCode,
-  },
-};
 
 // Helper function to extract plain text from React children recursively
 function extractText(node: React.ReactNode): string {
@@ -37,31 +21,7 @@ function extractText(node: React.ReactNode): string {
   return "";
 }
 
-// Simple regex syntax highlighter for TSX code strings to render in high-contrast Vitesse-dark style
-function highlightTsx(code: string): string {
-  // Escape HTML entities to avoid breaking rendering or security issues
-  let html = code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-  // Regex rules to wrap tokens in styled span tags
-  // 1. Strings
-  html = html.replace(/(["'`])(.*?)\1/g, '<span class="text-[#cae2b1]">$1$2$1</span>');
-
-  // 2. Keywords
-  const keywords =
-    /\b(import|from|export|default|const|let|var|function|return|class|extends|if|else|for|while|new|this|typeof|as|type|interface)\b/g;
-  html = html.replace(keywords, '<span class="text-[#e28985] font-semibold">$1</span>');
-
-  // 3. Comments (single line)
-  html = html.replace(/(\/\/.*)/g, '<span class="text-[#757575]">$1</span>');
-
-  // 4. JSX elements / tags (e.g. &lt;button or &lt;/button&gt;)
-  html = html.replace(/(&lt;\/?[a-zA-Z0-9_]+|&gt;)/g, '<span class="text-[#a0c2e2]">$1</span>');
-
-  return html;
-}
-
 export function ComponentPreview({
-  name,
   className,
   previewClassName,
   align = "center",
@@ -70,7 +30,6 @@ export function ComponentPreview({
   children,
   ...props
 }: React.ComponentProps<"div"> & {
-  name?: string;
   align?: "center" | "start" | "end";
   hideCode?: boolean;
   previewClassName?: string;
@@ -104,39 +63,20 @@ export function ComponentPreview({
 
   const previewElements = childrenArray.filter((child) => child !== codeElement);
 
-  // Determine what to render in preview
-  let previewContent: React.ReactNode = null;
+  const previewContent = previewElements.length > 0 ? previewElements : null;
   let rawCodeText = "";
   let renderedCodeElement: React.ReactNode = null;
 
-  if (name && registry[name]) {
-    const registryEntry = registry[name];
-    const Component = registryEntry.component;
-    previewContent = <Component />;
-    rawCodeText = registryEntry.code;
-
-    // Highlight the raw code
-    const highlightedHtml = highlightTsx(rawCodeText);
-    renderedCodeElement = (
-      <pre className="m-0! overflow-x-auto rounded-none border-0! bg-[#09090b] p-4! font-mono text-xs text-[#e5e5e5] selection:bg-zinc-800 md:text-sm">
-        <code dangerouslySetInnerHTML={{ __html: highlightedHtml }} />
-      </pre>
-    );
-  } else {
-    // Direct Children Mode
-    previewContent = previewElements.length > 0 ? previewElements : null;
-    if (codeElement) {
-      rawCodeText = extractText(codeElement).trim();
-      renderedCodeElement = codeElement;
-    }
+  if (codeElement) {
+    rawCodeText = extractText(codeElement).trim();
+    renderedCodeElement = codeElement;
   }
 
   // If there's no preview content or code, render a warning/placeholder
   if (!previewContent && !renderedCodeElement) {
     return (
       <div className="not-typeset my-6 rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive">
-        Component Preview: Please provide a valid <code>name</code> or render elements inside the
-        component.
+        Component Preview: Please provide children inside the component preview.
       </div>
     );
   }
@@ -150,7 +90,7 @@ export function ComponentPreview({
       )}
       {...props}
     >
-      {/* Preview Section */}
+      {/* Preview Section - simple background like shadcn-ui, no dot pattern */}
       <div
         data-slot="preview"
         className={cn(
@@ -160,10 +100,6 @@ export function ComponentPreview({
           align === "end" && "items-end",
           previewClassName,
         )}
-        style={{
-          backgroundImage: "radial-gradient(circle, var(--color-border) 1px, transparent 1px)",
-          backgroundSize: "16px 16px",
-        }}
       >
         <div className="relative z-10">{previewContent}</div>
       </div>
