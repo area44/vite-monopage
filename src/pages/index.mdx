@@ -118,6 +118,36 @@ Callouts help draw attention to important information.
 
 <Callout type="error">Errors indicate problems that require attention.</Callout>
 
+## Component Preview
+
+A robust, interactive wrapper to display rendered components alongside their respective syntax-highlighted source code, mirroring the style of the shadcn-ui v4 design system.
+
+### Registry Mode
+
+You can render components dynamically by passing a valid registered component `name`. The source code is loaded automatically with custom, high-contrast, zero-dependency syntax highlighting.
+
+<ComponentPreview name="button-demo" caption="An interactive Button component demo" />
+
+<ComponentPreview name="card-demo" caption="A beautifully styled card component demo" />
+
+### Direct Children Mode
+
+Alternatively, you can embed any custom MDX elements or live React components directly inside `<ComponentPreview>`, paired with a standard code block, to render custom ad-hoc previews on the fly.
+
+<ComponentPreview caption="A custom warning callout shown inside the component preview">
+
+<Callout type="warning">
+  This warning callout is rendered dynamically inside the preview canvas!
+</Callout>
+
+```mdx
+<Callout type="warning">
+  This warning callout is rendered dynamically inside the preview canvas!
+</Callout>
+```
+
+</ComponentPreview>
+
 ## Steps
 
 The custom `Steps` component provides a structured way to document workflows.
