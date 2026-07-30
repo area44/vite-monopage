@@ -71,7 +71,7 @@ export function CodeBlock({
     return (
       <pre
         className={cn(
-          "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto !bg-transparent px-4 py-4 font-mono text-sm leading-relaxed focus:outline-hidden",
+          "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto !bg-transparent px-0 py-4 font-mono text-sm leading-relaxed focus:outline-hidden",
           className,
         )}
         style={{ ...style, backgroundColor: "transparent" }}
@@ -117,7 +117,7 @@ export function CodeBlock({
 
       <pre
         className={cn(
-          "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto px-4 py-4 font-mono text-sm leading-relaxed focus:outline-hidden",
+          "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto px-0 py-4 font-mono text-sm leading-relaxed focus:outline-hidden",
           className,
         )}
         style={cleanedStyle}

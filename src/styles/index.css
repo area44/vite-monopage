@@ -166,22 +166,28 @@
   }
 }
 
-/* Custom code block line numbers with OKLCH colors */
+/* Adopt shadcn-ui style code blocks */
+pre code .line {
+  display: inline-block;
+  min-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 [data-show-line-numbers] code {
   counter-reset: line;
 }
 
 [data-show-line-numbers] code .line {
-  display: inline-block;
-  width: 100%;
+  padding-left: 0.75rem;
 }
 
 [data-show-line-numbers] code .line::before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
-  width: 1.25rem;
-  margin-right: 1.25rem;
+  width: 1rem;
+  margin-right: 1rem;
   text-align: right;
   color: oklch(0.556 0 0);
   user-select: none;
