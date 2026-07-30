@@ -1,5 +1,6 @@
 import katex from "katex";
-import React from "react";
+import { Check, Copy } from "lucide-react";
+import React, { useState } from "react";
 
 import { Callout } from "@/components/ui/callout";
 import { ComponentPreview } from "@/components/ui/component-preview";
@@ -9,6 +10,116 @@ import { cn } from "@/lib/utils";
 
 import { extractAlertMarker, AlertBlock } from "./components/mdx-alerts";
 import { getHeadingId, HeadingAnchor } from "./components/mdx-headings";
+
+// Helper function to extract plain text from React children recursively
+function extractText(node: React.ReactNode): string {
+  if (!node) return "";
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map(extractText).join("");
+  }
+  if (React.isValidElement(node)) {
+    const props = node.props as any;
+    if (props && "children" in props) {
+      return extractText(props.children);
+    }
+  }
+  return "";
+}
+
+interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
+  "data-title"?: string;
+  "data-show-line-number"?: string;
+  "data-lang"?: string;
+  "data-in-preview"?: string;
+}
+
+function CodeBlock({
+  children,
+  className,
+  "data-title": title,
+  "data-show-line-number": showLineNumber,
+  "data-lang": _lang,
+  "data-in-preview": inPreview,
+  ...props
+}: CodeBlockProps) {
+  const [copied, setCopied] = useState(false);
+
+  // If we are rendering inside a ComponentPreview, bypass the custom wrappers, borders, and copy buttons
+  if (inPreview === "true") {
+    return (
+      <pre className={cn("overflow-x-auto p-4 text-[13px] leading-relaxed", className)} {...props}>
+        {children}
+      </pre>
+    );
+  }
+
+  const handleCopy = () => {
+    const rawText = extractText(children);
+    navigator.clipboard
+      .writeText(rawText)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy code: ", err);
+      });
+  };
+
+  return (
+    <div className="not-typeset group relative my-6 overflow-hidden rounded-2xl border border-border bg-muted/40 dark:bg-muted/10">
+      {/* Title bar */}
+      {title && (
+        <div className="flex items-center justify-between border-b border-border bg-muted/10 px-4 py-2.5">
+          <span className="font-sans text-xs font-medium text-muted-foreground select-none">
+            {title}
+          </span>
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="flex size-7 items-center justify-center rounded-md border border-transparent text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground"
+            title="Copy code"
+          >
+            {copied ? (
+              <Check className="size-3.5 text-emerald-500" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
+          </button>
+        </div>
+      )}
+
+      {/* Code viewport wrapper */}
+      <div className="relative">
+        <pre
+          className={cn(
+            "overflow-x-auto p-4 text-[13px] leading-relaxed",
+            showLineNumber === "true" && "show-line-numbers",
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </pre>
+
+        {/* Floating copy button if there is NO title bar */}
+        {!title && (
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100 hover:bg-muted hover:text-foreground focus-visible:opacity-100"
+            title="Copy code"
+          >
+            {copied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export const components = {
   h1: ({
@@ -73,7 +184,7 @@ export const components = {
     }
     return <blockquote {...props}>{children}</blockquote>;
   },
-  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement> & CodeBlockProps) => {
     if (React.isValidElement(children)) {
       const childProps = children.props as any;
       if (childProps?.className?.includes("math-display")) {
@@ -82,7 +193,7 @@ export const components = {
         );
       }
     }
-    return <pre {...props}>{children}</pre>;
+    return <CodeBlock {...props}>{children}</CodeBlock>;
   },
   code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
     const isInlineMath = className?.includes("math-inline");

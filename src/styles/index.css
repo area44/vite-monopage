@@ -189,3 +189,25 @@
   border-radius: 0 !important;
   margin: 0 !important;
 }
+
+/* Line Numbers styling */
+.show-line-numbers code {
+  counter-reset: line;
+  display: grid;
+}
+
+.show-line-numbers .line {
+  display: block;
+}
+
+.show-line-numbers .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.25rem;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: var(--muted-foreground);
+  opacity: 0.45;
+  user-select: none;
+}

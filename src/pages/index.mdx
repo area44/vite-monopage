@@ -57,9 +57,27 @@ Images automatically scale responsively and blend seamlessly with surrounding co
 
 ## Code Blocks
 
-Code blocks include syntax highlighting and optional language labels.
+Code blocks include syntax highlighting, support for custom filenames/titles, line numbering, and easy copy-to-clipboard functionality.
+
+### Standard Code Block
 
 ```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+### Code Block with Title
+
+```rust title="src/main.rs"
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+### Code Block with Title and Line Numbers
+
+```rust title="src/main.rs" showLineNumber
 fn main() {
     println!("Hello, world!");
 }
