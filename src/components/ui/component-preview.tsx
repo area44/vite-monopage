@@ -108,7 +108,7 @@ export function ComponentPreview({
       {!hideCode && renderedCodeElement && (
         <div
           data-slot="code"
-          className="relative flex flex-col overflow-hidden border-t border-border bg-white dark:bg-[#09090b]"
+          className="relative flex flex-col overflow-hidden border-t border-border bg-[oklch(1_0_0)] dark:bg-[oklch(0.09_0_0)]"
         >
           {/* Action buttons (Copy) - visible by default when expanded, hidden when collapsed */}
           <div
@@ -120,7 +120,7 @@ export function ComponentPreview({
             <button
               type="button"
               onClick={() => handleCopy(rawCodeText)}
-              className="flex size-7 items-center justify-center rounded-md border border-zinc-200 bg-white text-zinc-500 transition-all hover:bg-zinc-50 hover:text-zinc-900 focus-visible:ring-1 focus-visible:ring-zinc-300 focus-visible:outline-hidden dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-200 dark:focus-visible:ring-zinc-700"
+              className="flex size-7 items-center justify-center rounded-md border border-[oklch(0.922_0_0)] bg-[oklch(1_0_0)] text-[oklch(0.556_0_0)] transition-all hover:bg-[oklch(0.97_0_0)] hover:text-[oklch(0.205_0_0)] focus-visible:ring-1 focus-visible:ring-[oklch(0.708_0_0)] focus-visible:outline-hidden dark:border-[oklch(0.269_0_0)] dark:bg-[oklch(0.09_0_0)] dark:text-[oklch(0.708_0_0)] dark:hover:bg-[oklch(0.205_0_0)] dark:hover:text-[oklch(0.922_0_0)] dark:focus-visible:ring-[oklch(0.556_0_0)]"
               title="Copy code"
             >
               {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
@@ -137,11 +137,11 @@ export function ComponentPreview({
 
             {/* Gradient and View Code trigger when collapsed */}
             {!isExpanded && (
-              <div className="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center bg-gradient-to-t from-white to-transparent pb-4 dark:from-[#09090b]">
+              <div className="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center bg-gradient-to-t from-[oklch(1_0_0)] to-transparent pb-4 dark:from-[oklch(0.09_0_0)]">
                 <button
                   type="button"
                   onClick={() => setIsExpanded(true)}
-                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-lg border border-[oklch(0.922_0_0)] bg-[oklch(1_0_0)] px-3 text-xs font-medium text-[oklch(0.205_0_0)] shadow-sm transition-colors hover:bg-[oklch(0.97_0_0)] dark:border-[oklch(0.269_0_0)] dark:bg-[oklch(0.09_0_0)] dark:text-[oklch(0.922_0_0)] dark:hover:bg-[oklch(0.205_0_0)]"
                 >
                   View Code
                 </button>
