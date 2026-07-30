@@ -50,7 +50,10 @@ function CodeBlock({
   // If we are rendering inside a ComponentPreview, bypass the custom wrappers, borders, and copy buttons
   if (inPreview === "true") {
     return (
-      <pre className={cn("overflow-x-auto p-4 text-[13px] leading-relaxed", className)} {...props}>
+      <pre
+        className={cn("overflow-x-auto px-0 py-4 text-[13px] leading-relaxed", className)}
+        {...props}
+      >
         {children}
       </pre>
     );
@@ -96,7 +99,7 @@ function CodeBlock({
       <div className="relative">
         <pre
           className={cn(
-            "overflow-x-auto p-4 text-[13px] leading-relaxed",
+            "overflow-x-auto px-0 py-4 text-[13px] leading-relaxed",
             showLineNumber === "true" && "show-line-numbers",
             className,
           )}
