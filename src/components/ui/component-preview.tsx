@@ -106,7 +106,10 @@ export function ComponentPreview({
 
       {/* Code Section */}
       {!hideCode && renderedCodeElement && (
-        <div data-slot="code" className="relative flex flex-col overflow-hidden bg-[#09090b]">
+        <div
+          data-slot="code"
+          className="relative flex flex-col overflow-hidden border-t border-border bg-white dark:bg-[#09090b]"
+        >
           {/* Action buttons (Copy) - visible by default when expanded, hidden when collapsed */}
           <div
             className={cn(
@@ -117,7 +120,7 @@ export function ComponentPreview({
             <button
               type="button"
               onClick={() => handleCopy(rawCodeText)}
-              className="flex size-7 items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+              className="flex size-7 items-center justify-center rounded-md border border-zinc-200 bg-white text-zinc-500 transition-all hover:bg-zinc-50 hover:text-zinc-900 focus-visible:ring-1 focus-visible:ring-zinc-300 focus-visible:outline-hidden dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-200 dark:focus-visible:ring-zinc-700"
               title="Copy code"
             >
               {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
@@ -134,11 +137,11 @@ export function ComponentPreview({
 
             {/* Gradient and View Code trigger when collapsed */}
             {!isExpanded && (
-              <div className="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center bg-gradient-to-t from-[#09090b] to-transparent pb-4">
+              <div className="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center bg-gradient-to-t from-white to-transparent pb-4 dark:from-[#09090b]">
                 <button
                   type="button"
                   onClick={() => setIsExpanded(true)}
-                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 px-3 text-xs font-medium text-zinc-200 shadow-sm transition-colors hover:bg-zinc-900"
+                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
                 >
                   View Code
                 </button>

@@ -165,3 +165,27 @@
     @apply !mt-2;
   }
 }
+
+/* Code Blocks styling and dark/light transitions */
+.shiki {
+  border: 1px solid var(--border);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.dark .shiki {
+  background-color: var(--shiki-dark-bg) !important;
+  color: var(--shiki-dark) !important;
+}
+
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+/* Override code block styles inside ComponentPreview */
+[data-slot="code"] .shiki {
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}

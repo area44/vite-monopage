@@ -66,7 +66,7 @@ export const satteriShiki = defineHastPlugin({
 
       if (!highlighterPromise) {
         highlighterPromise = createHighlighter({
-          themes: ["vitesse-dark"],
+          themes: ["vitesse-light", "vitesse-dark"],
           langs: [
             "typescript",
             "javascript",
@@ -87,7 +87,10 @@ export const satteriShiki = defineHastPlugin({
 
       const hast: any = await highlighter.codeToHast(code, {
         lang: lang || "text",
-        theme: "vitesse-dark",
+        themes: {
+          light: "vitesse-light",
+          dark: "vitesse-dark",
+        },
       });
 
       if (hast.type === "root" && hast.children.length > 0) {
