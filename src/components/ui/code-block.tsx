@@ -32,7 +32,7 @@ export function CodeBlock({
   children,
   className,
   style,
-  "data-lang": lang,
+  "data-lang": _lang,
   "data-title": title,
   "data-show-line-numbers": showLineNumbers,
   "data-in-preview": inPreview,
@@ -85,7 +85,7 @@ export function CodeBlock({
 
   return (
     <div
-      className="not-typeset group relative my-4 overflow-hidden rounded-xl border border-[oklch(0.922_0_0)] bg-[oklch(0.09_0_0)] text-zinc-50 shadow-xs dark:border-[oklch(0.269_0_0)]"
+      className="not-typeset group relative my-4 overflow-hidden rounded-[16px] border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-50 shadow-xs"
       data-show-line-numbers={showLineNumbers}
     >
       {/* Title bar / Header if title is present */}
@@ -95,7 +95,7 @@ export function CodeBlock({
           <button
             type="button"
             onClick={handleCopy}
-            className="flex size-7 cursor-pointer items-center justify-center rounded-md border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+            className="flex size-7 cursor-pointer items-center justify-center rounded-full border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
             title="Copy code"
           >
             {copied ? <Check className="size-3.5 text-zinc-200" /> : <Copy className="size-3.5" />}
@@ -107,7 +107,7 @@ export function CodeBlock({
           <button
             type="button"
             onClick={handleCopy}
-            className="flex size-7 cursor-pointer items-center justify-center rounded-md border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+            className="flex size-7 cursor-pointer items-center justify-center rounded-full border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
             title="Copy code"
           >
             {copied ? <Check className="size-3.5 text-zinc-200" /> : <Copy className="size-3.5" />}

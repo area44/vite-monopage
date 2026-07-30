@@ -83,7 +83,7 @@ export function ComponentPreview({
   // If there's no preview content or code, render a warning/placeholder
   if (!previewContent && !renderedCodeElement) {
     return (
-      <div className="not-typeset my-6 rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive">
+      <div className="not-typeset my-6 rounded-[16px] border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive">
         Component Preview: Please provide children inside the component preview.
       </div>
     );
@@ -93,7 +93,7 @@ export function ComponentPreview({
     <div
       data-slot="component-preview"
       className={cn(
-        "not-typeset group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border border-border shadow-xs",
+        "not-typeset group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-[16px] border border-border shadow-xs",
         className,
       )}
       {...props}
@@ -125,7 +125,7 @@ export function ComponentPreview({
             <button
               type="button"
               onClick={() => handleCopy(rawCodeText)}
-              className="flex size-7 items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+              className="flex size-7 items-center justify-center rounded-full border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
               title="Copy code"
             >
               {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
@@ -146,7 +146,7 @@ export function ComponentPreview({
                 <button
                   type="button"
                   onClick={() => setIsExpanded(true)}
-                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 px-3 text-xs font-medium text-zinc-200 shadow-sm transition-colors hover:bg-zinc-900"
+                  className="relative z-10 inline-flex h-8 cursor-pointer items-center justify-center rounded-full border border-zinc-800 bg-zinc-950 px-3 text-xs font-medium text-zinc-200 shadow-sm transition-colors hover:bg-zinc-900"
                 >
                   View Code
                 </button>

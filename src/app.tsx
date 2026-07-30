@@ -27,7 +27,7 @@ export default function App() {
     <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:border focus:border-border focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:outline-hidden"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-full focus:border focus:border-border focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:outline-hidden"
       >
         Skip to content
       </a>
@@ -35,7 +35,7 @@ export default function App() {
       <div className="absolute top-4 right-4 z-50 md:top-8 md:right-8">
         <button
           onClick={toggleTheme}
-          className="flex size-9 items-center justify-center rounded-lg border border-border bg-background shadow-xs hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden"
+          className="flex size-9 items-center justify-center rounded-full border border-border bg-background shadow-xs hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden"
           aria-label="Toggle theme"
         >
           {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
