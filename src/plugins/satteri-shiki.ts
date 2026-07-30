@@ -85,6 +85,31 @@ export const satteriShiki = defineHastPlugin({
       }
       const highlighter = await highlighterPromise;
 
+      let title: string | undefined;
+      let showLineNumbers = false;
+
+      const meta = codeNode.data?.meta;
+      if (meta && typeof meta === "string") {
+        // Extract title e.g. title="src/main.rs" or title='src/main.rs' or title=src/main.rs
+        const titleMatch =
+          meta.match(/title="([^"]+)"/) ||
+          meta.match(/title='([^']+)'/) ||
+          meta.match(/title=([^\s]+)/);
+        if (titleMatch) {
+          title = titleMatch[1];
+        }
+
+        // Check for showLineNumbers or showLineNumber
+        if (
+          /\bshowLineNumbers\b/.test(meta) ||
+          /\bshowLineNumber\b/.test(meta) ||
+          /\{showLineNumbers\}/.test(meta) ||
+          /\{showLineNumber\}/.test(meta)
+        ) {
+          showLineNumbers = true;
+        }
+      }
+
       const hast: any = await highlighter.codeToHast(code, {
         lang: lang || "text",
         theme: "vitesse-dark",
@@ -94,6 +119,12 @@ export const satteriShiki = defineHastPlugin({
         const pre = hast.children[0];
         pre.properties = pre.properties || {};
         pre.properties["data-lang"] = lang || "text";
+        if (title) {
+          pre.properties["data-title"] = title;
+        }
+        if (showLineNumbers) {
+          pre.properties["data-show-line-numbers"] = "true";
+        }
         return pre;
       }
     },

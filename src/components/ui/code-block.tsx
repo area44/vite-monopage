@@ -23,10 +23,21 @@ function extractText(node: React.ReactNode): string {
 
 interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
   "data-lang"?: string;
+  "data-title"?: string;
+  "data-show-line-numbers"?: string;
   "data-in-preview"?: string | boolean;
 }
 
-export function CodeBlock({ children, className, style, ...props }: PreProps) {
+export function CodeBlock({
+  children,
+  className,
+  style,
+  "data-lang": lang,
+  "data-title": title,
+  "data-show-line-numbers": showLineNumbers,
+  "data-in-preview": inPreview,
+  ...props
+}: PreProps) {
   const [copied, setCopied] = useState(false);
 
   // Check if it's math display
@@ -49,15 +60,13 @@ export function CodeBlock({ children, className, style, ...props }: PreProps) {
     });
   };
 
-  const lang = props["data-lang"] || "";
-
-  // Override Shiki's default background inline styles to perfectly support our zinc-950 theme color
+  // Override Shiki's default background inline styles to perfectly support our zinc-950 oklch background
   const cleanedStyle = {
     ...style,
-    backgroundColor: "#09090b",
+    backgroundColor: "transparent", // let the wrapper container determine the bg color
   };
 
-  if (props["data-in-preview"] === "true" || props["data-in-preview"] === true) {
+  if (inPreview === "true" || inPreview === true) {
     // Render without custom layout container to avoid nested borders/margins inside the component preview
     return (
       <pre
@@ -66,6 +75,7 @@ export function CodeBlock({ children, className, style, ...props }: PreProps) {
           className,
         )}
         style={{ ...style, backgroundColor: "transparent" }}
+        data-show-line-numbers={showLineNumbers}
         {...props}
       >
         {children}
@@ -74,23 +84,36 @@ export function CodeBlock({ children, className, style, ...props }: PreProps) {
   }
 
   return (
-    <div className="not-typeset group relative my-6 overflow-hidden rounded-xl border border-zinc-200/50 bg-[#09090b] text-zinc-50 shadow-xs dark:border-zinc-800/50">
-      {/* Floating actions container */}
-      <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100">
-        {lang && (
-          <span className="rounded-md border border-zinc-800/50 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 uppercase">
-            {lang}
-          </span>
-        )}
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="flex size-7 cursor-pointer items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
-          title="Copy code"
-        >
-          {copied ? <Check className="size-3.5 text-zinc-200" /> : <Copy className="size-3.5" />}
-        </button>
-      </div>
+    <div
+      className="not-typeset group relative my-4 overflow-hidden rounded-xl border border-[oklch(0.922_0_0)] bg-[oklch(0.09_0_0)] text-zinc-50 shadow-xs dark:border-[oklch(0.269_0_0)]"
+      data-show-line-numbers={showLineNumbers}
+    >
+      {/* Title bar / Header if title is present */}
+      {title ? (
+        <div className="flex h-10 items-center justify-between border-b border-[oklch(0.269_0_0)] bg-[oklch(0.12_0_0)] px-4">
+          <span className="truncate font-mono text-xs font-medium text-zinc-400">{title}</span>
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="flex size-7 cursor-pointer items-center justify-center rounded-md border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+            title="Copy code"
+          >
+            {copied ? <Check className="size-3.5 text-zinc-200" /> : <Copy className="size-3.5" />}
+          </button>
+        </div>
+      ) : (
+        /* Floating Copy button if no title is present */
+        <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100">
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="flex size-7 cursor-pointer items-center justify-center rounded-md border border-[oklch(0.269_0_0)] bg-[oklch(0.09_0_0)] text-zinc-400 transition-all hover:bg-[oklch(0.145_0_0)] hover:text-zinc-200 focus-visible:ring-1 focus-visible:ring-zinc-700 focus-visible:outline-hidden"
+            title="Copy code"
+          >
+            {copied ? <Check className="size-3.5 text-zinc-200" /> : <Copy className="size-3.5" />}
+          </button>
+        </div>
+      )}
 
       <pre
         className={cn(
@@ -98,6 +121,7 @@ export function CodeBlock({ children, className, style, ...props }: PreProps) {
           className,
         )}
         style={cleanedStyle}
+        data-show-line-numbers={showLineNumbers}
         {...props}
       >
         {children}
