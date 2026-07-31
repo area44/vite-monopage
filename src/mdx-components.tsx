@@ -30,6 +30,8 @@ function extractText(node: React.ReactNode): string {
 }
 
 interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
+  class?: string;
+  className?: string;
   "data-title"?: string;
   "data-show-line-number"?: string;
   "data-lang"?: string;
@@ -38,6 +40,7 @@ interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
 
 function CodeBlock({
   children,
+  class: rawClass,
   className,
   "data-title": title,
   "data-show-line-number": showLineNumber,
@@ -46,12 +49,13 @@ function CodeBlock({
   ...props
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const mergedClassName = cn(rawClass, className);
 
   // If we are rendering inside a ComponentPreview, bypass the custom wrappers, borders, and copy buttons
   if (inPreview === "true") {
     return (
       <pre
-        className={cn("overflow-x-auto px-0 py-4 text-[13px] leading-relaxed", className)}
+        className={cn("overflow-x-auto px-0 py-4 text-[13px] leading-relaxed", mergedClassName)}
         {...props}
       >
         {children}
@@ -98,10 +102,12 @@ function CodeBlock({
       {/* Code viewport wrapper */}
       <div className="relative">
         <pre
+          data-title={title}
+          data-show-line-number={showLineNumber}
           className={cn(
             "overflow-x-auto px-0 py-4 text-[13px] leading-relaxed",
             showLineNumber === "true" && "show-line-numbers",
-            className,
+            mergedClassName,
           )}
           {...props}
         >
