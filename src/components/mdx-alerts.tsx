@@ -1,8 +1,8 @@
 import React from "react";
 
-import type { CalloutType } from "@/components/ui/callout";
+import type { CalloutType } from "@/components/callout";
 
-import { Callout } from "@/components/ui/callout";
+import { Callout } from "@/components/callout";
 
 export function extractAlertMarker(
   children: React.ReactNode,

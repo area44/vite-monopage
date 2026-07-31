@@ -23,8 +23,7 @@ vite-monopage/
 ├── .github/                    # GitHub actions CI/CD workflows
 ├── public/                     # Static assets and media files
 ├── src/                        # Main application source code
-│   ├── components/             # Custom React components
-│   │   └── ui/                 # Reusable layout/UI blocks
+│   ├── components/             # Custom React components and reusable UI blocks
 │   ├── lib/                    # Standard utilities
 │   ├── pages/                  # MDX document files
 │   ├── plugins/                # Markdown processing plugins
@@ -51,7 +50,7 @@ Your main documentation content lives in `src/pages/index.mdx`. Simply edit this
 
 ### Adding Components
 
-You can create new React components in `src/components/ui` and register them in `src/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
+You can create new React components in `src/components` and register them in `src/mdx-components.tsx`. Once registered, they are available to use directly in your MDX files.
 
 ## License
 
