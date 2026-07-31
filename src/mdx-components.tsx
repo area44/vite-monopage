@@ -1,11 +1,11 @@
 import katex from "katex";
 import React from "react";
 
-import { Callout } from "@/components/ui/callout";
-import { CodeBlock, type CodeBlockProps } from "@/components/ui/code-block";
-import { ComponentPreview } from "@/components/ui/component-preview";
-import { Mermaid } from "@/components/ui/mermaid";
-import { Step, Steps } from "@/components/ui/steps";
+import { Callout } from "@/components/callout";
+import { CodeBlock, type CodeBlockProps } from "@/components/code-block";
+import { ComponentPreview } from "@/components/component-preview";
+import { Mermaid } from "@/components/mermaid";
+import { Step, Steps } from "@/components/steps";
 import { cn } from "@/lib/utils";
 
 import { extractAlertMarker, AlertBlock } from "./components/mdx-alerts";

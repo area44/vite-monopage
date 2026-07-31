@@ -9,39 +9,41 @@ Use it as a reference while building any long-form content.
 
 Headings create a clear document hierarchy and automatically include anchor links for easy navigation.
 
-# Heading 1
+<ComponentPreview caption="Different heading levels from h1 to h6">
 
-This is a paragraph following a level-one heading.
+# Heading 1
 
 ## Heading 2
 
-This is a paragraph following a level-two heading.
-
 ### Heading 3
-
-This is a paragraph following a level-three heading.
 
 #### Heading 4
 
-This is a paragraph following a level-four heading.
-
 ##### Heading 5
-
-This is a paragraph following a level-five heading.
 
 ###### Heading 6
 
-This is a paragraph following a level-six heading.
+```mdx
+# Heading 1
 
-## Paragraphs
+## Heading 2
 
-Paragraphs are optimized for readability with comfortable spacing, balanced line lengths, and responsive typography.
+### Heading 3
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec sollicitudin molestie malesuada.
+#### Heading 4
 
-## Inline Elements
+##### Heading 5
+
+###### Heading 6
+```
+
+</ComponentPreview>
+
+## Paragraphs & Inline Elements
 
 Markdown inline formatting is styled consistently throughout your content.
+
+<ComponentPreview caption="Common inline elements for rich text styling">
 
 - **Bold** highlights important information.
 - _Italic_ adds emphasis to text.
@@ -49,11 +51,29 @@ Markdown inline formatting is styled consistently throughout your content.
 - **Combined _formatting_** works naturally.
 - [Hyperlinks](https://en.wikipedia.org/wiki/Hyperlink) inherit the theme and include accessible hover and focus states.
 
+```mdx
+- **Bold** highlights important information.
+- _Italic_ adds emphasis to text.
+- `Inline code` is ideal for commands, filenames, and variables.
+- **Combined _formatting_** works naturally.
+- [Hyperlinks](https://en.wikipedia.org/wiki/Hyperlink) inherit the theme and include accessible hover and focus states.
+```
+
+</ComponentPreview>
+
 ## Images
 
 Images automatically scale responsively and blend seamlessly with surrounding content.
 
+<ComponentPreview caption="A responsive image showcase with smooth styling">
+
 ![Images](https://images.unsplash.com/photo-1629968417841-d87296c4205b?q=80&w=1200&h=675&fit=crop)
+
+```mdx
+![Images](https://images.unsplash.com/photo-1629968417841-d87296c4205b?q=80&w=1200&h=675&fit=crop)
+```
+
+</ComponentPreview>
 
 ## Code Blocks
 
@@ -61,13 +81,27 @@ Code blocks include syntax highlighting, support for custom filenames/titles, li
 
 ### Standard Code Block
 
+<ComponentPreview caption="A standard Rust code block">
+
 ```rust
 fn main() {
     println!("Hello, world!");
 }
 ```
 
+````mdx
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+````
+
+</ComponentPreview>
+
 ### Code Block with Title
+
+<ComponentPreview caption="Code block showcasing a custom title metadata">
 
 ```rust title="src/main.rs"
 fn main() {
@@ -75,7 +109,19 @@ fn main() {
 }
 ```
 
+````mdx
+```rust title="src/main.rs"
+fn main() {
+    println!("Hello, world!");
+}
+```
+````
+
+</ComponentPreview>
+
 ### Code Block with Title and Line Numbers
+
+<ComponentPreview caption="Code block showcasing both custom title and line numbering metadata">
 
 ```rust title="src/main.rs" showLineNumber
 fn main() {
@@ -83,9 +129,21 @@ fn main() {
 }
 ```
 
+````mdx
+```rust title="src/main.rs" showLineNumber
+fn main() {
+    println!("Hello, world!");
+}
+```
+````
+
+</ComponentPreview>
+
 ## Tables
 
 Tables present structured information in a clean, responsive layout.
+
+<ComponentPreview caption="Clean, responsive and theme-aware tables">
 
 | Property   | Type     | Default     | Description                        |
 | :--------- | :------- | :---------- | :--------------------------------- |
@@ -94,9 +152,22 @@ Tables present structured information in a clean, responsive layout.
 | `flow`     | `string` | `"1.25em"`  | Vertical spacing between elements. |
 | `fontMono` | `string` | `undefined` | Custom monospace font family.      |
 
+```mdx
+| Property   | Type     | Default     | Description                        |
+| :--------- | :------- | :---------- | :--------------------------------- |
+| `size`     | `string` | `"15px"`    | Base font size.                    |
+| `leading`  | `number` | `1.75`      | Global line height.                |
+| `flow`     | `string` | `"1.25em"`  | Vertical spacing between elements. |
+| `fontMono` | `string` | `undefined` | Custom monospace font family.      |
+```
+
+</ComponentPreview>
+
 ## Lists
 
 Ordered and unordered lists support nesting and code blocks.
+
+<ComponentPreview caption="Ordered and nested lists with inline formatting">
 
 1. **Prerequisites & Setup**
    - Ensure [Node.js](https://nodejs.org/en) is installed on your local development machine.
@@ -118,15 +189,49 @@ Ordered and unordered lists support nesting and code blocks.
      pnpm build
      ```
 
+````mdx
+1. **Prerequisites & Setup**
+   - Ensure [Node.js](https://nodejs.org/en) is installed on your local development machine.
+   - Install the project package manager globally:
+     1. Run `npm install -g pnpm`
+     2. Verify the installation via `pnpm --version`
+2. **Local Environment Deployment**
+   - Clone the source repository to your workspace.
+   - Run initial package installation:
+     ```bash
+     pnpm install
+     ```
+   - Launch the modern development server:
+     - Use `pnpm dev` for local hot-reloads.
+     - View the application live at `http://localhost:5173`.
+3. **Production Distribution**
+   - Run the compiler build task:
+     ```bash
+     pnpm build
+     ```
+````
+
+</ComponentPreview>
+
 ## Blockquotes
 
 Blockquotes help emphasize notes, quotations, or highlighted content.
 
+<ComponentPreview caption="Clean blockquote typography with standard borders">
+
 > Simplicity is the ultimate sophistication.
+
+```mdx
+> Simplicity is the ultimate sophistication.
+```
+
+</ComponentPreview>
 
 ## Callouts
 
 Callouts help draw attention to important information.
+
+<ComponentPreview caption="A selection of theme-tinted Callout elements">
 
 <Callout type="default">This is a standard informational callout.</Callout>
 
@@ -136,22 +241,14 @@ Callouts help draw attention to important information.
 
 <Callout type="error">Errors indicate problems that require attention.</Callout>
 
-## Component Preview
-
-A robust, interactive wrapper to display rendered components alongside their respective syntax-highlighted source code.
-
-It supports rendering any custom MDX elements or live React components directly inside `<ComponentPreview>`, paired with a standard code block, to render custom ad-hoc previews with a simple, high-fidelity preview canvas and expandable code toggle.
-
-<ComponentPreview caption="A custom warning callout shown inside the component preview">
-
-<Callout type="warning">
-  This warning callout is rendered dynamically inside the preview canvas!
-</Callout>
-
 ```mdx
-<Callout type="warning">
-  This warning callout is rendered dynamically inside the preview canvas!
-</Callout>
+<Callout type="default">This is a standard informational callout.</Callout>
+
+<Callout type="success">Use success callouts for completed steps or positive outcomes.</Callout>
+
+<Callout type="warning">Warnings highlight important considerations before continuing.</Callout>
+
+<Callout type="error">Errors indicate problems that require attention.</Callout>
 ```
 
 </ComponentPreview>
@@ -159,6 +256,8 @@ It supports rendering any custom MDX elements or live React components directly 
 ## Steps
 
 The custom `Steps` component provides a structured way to document workflows.
+
+<ComponentPreview caption="Custom Steps workflow display">
 
 <Steps>
 
@@ -185,9 +284,40 @@ Wrap your Markdown or MDX content with the provided typography classes.
 
 </Steps>
 
+````mdx
+<Steps>
+
+<Step>Install the package</Step>
+
+Install your project dependencies.
+
+```bash
+pnpm install
+```
+
+<Step>Configure the styles</Step>
+
+Import the stylesheet into your application.
+
+```css
+@import "tailwindcss";
+@import "./typeset.css";
+```
+
+<Step>Start writing</Step>
+
+Wrap your Markdown or MDX content with the provided typography classes.
+
+</Steps>
+````
+
+</ComponentPreview>
+
 ## Math
 
 Both inline and display equations are rendered using KaTeX.
+
+<ComponentPreview caption="Inline and block equations rendered via KaTeX">
 
 - **Inline Math**: You can write equations inline like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ within continuous prose.
 - **Display Math**: For complex equations, use display block rendering. Here is Maxwell's equations as an example:
@@ -196,9 +326,22 @@ $$
 \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
 $$
 
+```mdx
+- **Inline Math**: You can write equations inline like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ within continuous prose.
+- **Display Math**: For complex equations, use display block rendering. Here is Maxwell's equations as an example:
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+$$
+```
+
+</ComponentPreview>
+
 ## Mermaid Diagrams
 
 You can generate dynamic, interactive diagrams and flowcharts directly inside MDX using standard Mermaid code blocks.
+
+<ComponentPreview caption="Flowchart rendered dynamically using Mermaid.js">
 
 ```mermaid
 flowchart TD
@@ -208,9 +351,23 @@ flowchart TD
     D --> B
 ```
 
+````mdx
+```mermaid
+flowchart TD
+    A[Start] --> B{Is it working?}
+    B -- Yes --> C[Great!]
+    B -- No --> D[Debug code]
+    D --> B
+```
+````
+
+</ComponentPreview>
+
 ## GitHub Flavored Markdown
 
 Additional GFM features are fully supported.
+
+<ComponentPreview caption="Standard GFM formatting features">
 
 - ~~Strikethrough~~
 - Task lists
@@ -219,7 +376,24 @@ Additional GFM features are fully supported.
   - [ ] Deployment
 - Footnotes[^1]
 
+[^1]: This is an example footnote.
+
+```mdx
+- ~~Strikethrough~~
+- Task lists
+  - [x] Typography
+  - [x] Components
+  - [ ] Deployment
+- Footnotes[^1]
+
+[^1]: This is an example footnote.
+```
+
+</ComponentPreview>
+
 Native GitHub alerts are also supported.
+
+<ComponentPreview caption="GFM native alert blockquotes converted to custom Callouts">
 
 > [!NOTE]
 > Useful information for readers.
@@ -233,4 +407,18 @@ Native GitHub alerts are also supported.
 > [!CAUTION]
 > Actions that may have unintended consequences.
 
-[^1]: This is an example footnote.
+```mdx
+> [!NOTE]
+> Useful information for readers.
+
+> [!TIP]
+> Helpful suggestions or best practices.
+
+> [!WARNING]
+> Important information that should not be ignored.
+
+> [!CAUTION]
+> Actions that may have unintended consequences.
+```
+
+</ComponentPreview>
