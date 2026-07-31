@@ -80,7 +80,7 @@ function CodeBlock({
   };
 
   return (
-    <div className="not-typeset group relative my-6 overflow-hidden rounded-[18px] border border-border bg-[#f8f8f8] dark:bg-[#161616]">
+    <div className="not-typeset group relative my-6 overflow-hidden rounded-[18px] border border-border bg-[oklch(0.982_0_0)] dark:bg-[oklch(0.21_0_0)]">
       {/* Title bar */}
       {title && (
         <div className="flex items-center justify-between border-b border-border/40 bg-transparent px-4 py-2">
@@ -88,7 +88,7 @@ function CodeBlock({
           <button
             type="button"
             onClick={handleCopy}
-            className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-[#f2f2f2] hover:text-foreground dark:hover:bg-[#262626]"
+            className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-[oklch(0.95_0_0)] hover:text-foreground dark:hover:bg-[oklch(0.25_0_0)]"
             title="Copy code"
           >
             {copied ? (
@@ -120,7 +120,7 @@ function CodeBlock({
           <button
             type="button"
             onClick={handleCopy}
-            className="absolute top-3 right-3 z-10 flex size-7 items-center justify-center rounded-md border border-border bg-[#f8f8f8] text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100 hover:bg-[#f2f2f2] hover:text-foreground focus-visible:opacity-100 dark:bg-[#161616] dark:hover:bg-[#262626]"
+            className="absolute top-3 right-3 z-10 flex size-7 items-center justify-center rounded-md border border-border bg-[oklch(0.982_0_0)] text-muted-foreground opacity-80 transition-all duration-200 hover:bg-[oklch(0.95_0_0)] hover:text-foreground hover:opacity-100 focus-visible:opacity-100 dark:bg-[oklch(0.21_0_0)] dark:hover:bg-[oklch(0.25_0_0)]"
             title="Copy code"
           >
             {copied ? (
