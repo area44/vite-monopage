@@ -69,7 +69,9 @@ export function ComponentPreview({
 
   if (codeElement) {
     rawCodeText = extractText(codeElement).trim();
-    renderedCodeElement = codeElement;
+    renderedCodeElement = React.cloneElement(codeElement as React.ReactElement, {
+      "data-in-preview": "true",
+    });
   }
 
   // If there's no preview content or code, render a warning/placeholder

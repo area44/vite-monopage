@@ -2,6 +2,7 @@ import katex from "katex";
 import React from "react";
 
 import { Callout } from "@/components/ui/callout";
+import { CodeBlock, type CodeBlockProps } from "@/components/ui/code-block";
 import { ComponentPreview } from "@/components/ui/component-preview";
 import { Mermaid } from "@/components/ui/mermaid";
 import { Step, Steps } from "@/components/ui/steps";
@@ -73,7 +74,7 @@ export const components = {
     }
     return <blockquote {...props}>{children}</blockquote>;
   },
-  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement> & CodeBlockProps) => {
     if (React.isValidElement(children)) {
       const childProps = children.props as any;
       if (childProps?.className?.includes("math-display")) {
@@ -82,7 +83,7 @@ export const components = {
         );
       }
     }
-    return <pre {...props}>{children}</pre>;
+    return <CodeBlock {...props}>{children}</CodeBlock>;
   },
   code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
     const isInlineMath = className?.includes("math-inline");

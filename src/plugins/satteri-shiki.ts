@@ -31,7 +31,11 @@ export const satteriShiki = defineHastPlugin({
           .join("");
       };
 
-      const code = getRawText(codeNode.children);
+      let code = getRawText(codeNode.children);
+      // Remove trailing single newline to prevent Shiki from generating an empty last line
+      if (code.endsWith("\n")) {
+        code = code.slice(0, -1);
+      }
 
       const mermaidKeywords = [
         "graph ",
@@ -97,6 +101,20 @@ export const satteriShiki = defineHastPlugin({
         const pre = hast.children[0];
         pre.properties = pre.properties || {};
         pre.properties["data-lang"] = lang || "text";
+
+        // Parse meta properties
+        const meta = codeNode.data?.meta;
+        if (typeof meta === "string") {
+          const titleMatch = meta.match(/title=(?:"([^"]*)"|'([^']*)'|([^\s]+))/);
+          if (titleMatch) {
+            pre.properties["data-title"] = titleMatch[1] || titleMatch[2] || titleMatch[3];
+          }
+
+          if (/\bshowLineNumber(s)?\b/.test(meta)) {
+            pre.properties["data-show-line-number"] = "true";
+          }
+        }
+
         return pre;
       }
     },
