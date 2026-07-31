@@ -31,7 +31,11 @@ export const satteriShiki = defineHastPlugin({
           .join("");
       };
 
-      const code = getRawText(codeNode.children);
+      let code = getRawText(codeNode.children);
+      // Remove trailing single newline to prevent Shiki from generating an empty last line
+      if (code.endsWith("\n")) {
+        code = code.slice(0, -1);
+      }
 
       const mermaidKeywords = [
         "graph ",
