@@ -1,5 +1,5 @@
 import mermaid from "mermaid";
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useState } from "react";
 
 interface MermaidProps {
   chart: string;
@@ -8,9 +8,10 @@ interface MermaidProps {
 export const Mermaid = ({ chart }: MermaidProps) => {
   const id = useId().replace(/:/g, "");
   const [svg, setSvg] = useState("");
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let active = true;
+
     const renderChart = async () => {
       const isDark = document.documentElement.classList.contains("dark");
 
@@ -29,8 +30,11 @@ export const Mermaid = ({ chart }: MermaidProps) => {
       });
 
       try {
-        const { svg: renderedSvg } = await mermaid.render(`mermaid-${id}`, chart);
-        setSvg(renderedSvg);
+        const renderId = `mermaid-${id}-${Math.random().toString(36).slice(2, 9)}`;
+        const { svg: renderedSvg } = await mermaid.render(renderId, chart);
+        if (active) {
+          setSvg(renderedSvg);
+        }
       } catch (error) {
         console.error("Mermaid rendering failed:", error);
       }
@@ -47,18 +51,24 @@ export const Mermaid = ({ chart }: MermaidProps) => {
       attributeFilter: ["class"],
     });
 
-    return () => observer.disconnect();
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
   }, [chart, id]);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.innerHTML = svg;
-    }
-  }, [svg]);
+  const setContainerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node) {
+        node.innerHTML = svg;
+      }
+    },
+    [svg],
+  );
 
   return (
     <div
-      ref={containerRef}
+      ref={setContainerRef}
       className="mermaid not-typeset my-6 flex justify-center overflow-hidden rounded-xl border border-border bg-muted/20 p-6 shadow-[rgba(0,0,0,0.03)_0px_2px_4px]"
     />
   );
