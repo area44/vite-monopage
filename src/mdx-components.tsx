@@ -55,7 +55,10 @@ function CodeBlock({
   if (inPreview === "true") {
     return (
       <pre
-        className={cn("overflow-x-auto px-0 py-4 text-[13px] leading-relaxed", mergedClassName)}
+        className={cn(
+          "overflow-x-auto bg-transparent! px-0 py-3.5 font-mono text-sm leading-[24.5px]",
+          mergedClassName,
+        )}
         {...props}
       >
         {children}
@@ -77,17 +80,15 @@ function CodeBlock({
   };
 
   return (
-    <div className="not-typeset group relative my-6 overflow-hidden rounded-2xl border border-border bg-muted/40 dark:bg-muted/10">
+    <div className="not-typeset group relative my-6 overflow-hidden rounded-[18px] border border-border bg-[#f8f8f8] dark:bg-[#161616]">
       {/* Title bar */}
       {title && (
-        <div className="flex items-center justify-between border-b border-border bg-muted/10 px-4 py-2.5">
-          <span className="font-sans text-xs font-medium text-muted-foreground select-none">
-            {title}
-          </span>
+        <div className="flex items-center justify-between border-b border-border/40 bg-transparent px-4 py-2">
+          <span className="font-mono text-sm font-medium text-foreground select-none">{title}</span>
           <button
             type="button"
             onClick={handleCopy}
-            className="flex size-7 items-center justify-center rounded-md border border-transparent text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground"
+            className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-[#f2f2f2] hover:text-foreground dark:hover:bg-[#262626]"
             title="Copy code"
           >
             {copied ? (
@@ -105,7 +106,7 @@ function CodeBlock({
           data-title={title}
           data-show-line-number={showLineNumber}
           className={cn(
-            "overflow-x-auto px-0 py-4 text-[13px] leading-relaxed",
+            "overflow-x-auto bg-transparent! px-0 py-3.5 font-mono text-sm leading-[24.5px]",
             showLineNumber === "true" && "show-line-numbers",
             mergedClassName,
           )}
@@ -119,10 +120,14 @@ function CodeBlock({
           <button
             type="button"
             onClick={handleCopy}
-            className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100 hover:bg-muted hover:text-foreground focus-visible:opacity-100"
+            className="absolute top-3 right-3 z-10 flex size-7 items-center justify-center rounded-md border border-border bg-[#f8f8f8] text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100 hover:bg-[#f2f2f2] hover:text-foreground focus-visible:opacity-100 dark:bg-[#161616] dark:hover:bg-[#262626]"
             title="Copy code"
           >
-            {copied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
+            {copied ? (
+              <Check className="size-3.5 text-emerald-500" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
           </button>
         )}
       </div>
