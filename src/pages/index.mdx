@@ -128,8 +128,6 @@ Blockquotes help emphasize notes, quotations, or highlighted content.
 
 Callouts help draw attention to important information.
 
-<ComponentPreview caption="A selection of theme-tinted Callout elements">
-
 <Callout type="default">This is a standard informational callout.</Callout>
 
 <Callout type="success">Use success callouts for completed steps or positive outcomes.</Callout>
@@ -137,18 +135,6 @@ Callouts help draw attention to important information.
 <Callout type="warning">Warnings highlight important considerations before continuing.</Callout>
 
 <Callout type="error">Errors indicate problems that require attention.</Callout>
-
-```mdx
-<Callout type="default">This is a standard informational callout.</Callout>
-
-<Callout type="success">Use success callouts for completed steps or positive outcomes.</Callout>
-
-<Callout type="warning">Warnings highlight important considerations before continuing.</Callout>
-
-<Callout type="error">Errors indicate problems that require attention.</Callout>
-```
-
-</ComponentPreview>
 
 ## Component Preview
 
@@ -174,8 +160,6 @@ It supports rendering any custom MDX elements or live React components directly 
 
 The custom `Steps` component provides a structured way to document workflows.
 
-<ComponentPreview caption="Custom Steps workflow display">
-
 <Steps>
 
 <Step>Install the package</Step>
@@ -200,35 +184,6 @@ Import the stylesheet into your application.
 Wrap your Markdown or MDX content with the provided typography classes.
 
 </Steps>
-
-````mdx
-<Steps>
-
-<Step>Install the package</Step>
-
-Install your project dependencies.
-
-```bash
-pnpm install
-```
-
-<Step>Configure the styles</Step>
-
-Import the stylesheet into your application.
-
-```css
-@import "tailwindcss";
-@import "./typeset.css";
-```
-
-<Step>Start writing</Step>
-
-Wrap your Markdown or MDX content with the provided typography classes.
-
-</Steps>
-````
-
-</ComponentPreview>
 
 ## Math
 
@@ -245,8 +200,6 @@ $$
 
 You can generate dynamic, interactive diagrams and flowcharts directly inside MDX using standard Mermaid code blocks.
 
-<ComponentPreview caption="Flowchart rendered dynamically using Mermaid.js">
-
 ```mermaid
 flowchart TD
     A[Start] --> B{Is it working?}
@@ -254,18 +207,6 @@ flowchart TD
     B -- No --> D[Debug code]
     D --> B
 ```
-
-````mdx
-```mermaid
-flowchart TD
-    A[Start] --> B{Is it working?}
-    B -- Yes --> C[Great!]
-    B -- No --> D[Debug code]
-    D --> B
-```
-````
-
-</ComponentPreview>
 
 ## GitHub Flavored Markdown
 
