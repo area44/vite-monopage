@@ -57,11 +57,14 @@ export const Mermaid = ({ chart }: MermaidProps) => {
     };
   }, [chart, id]);
 
-  const setContainerRef = useCallback((node: HTMLDivElement | null) => {
-    if (node) {
-      node.innerHTML = svg;
-    }
-  }, [svg]);
+  const setContainerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node) {
+        node.innerHTML = svg;
+      }
+    },
+    [svg],
+  );
 
   return (
     <div
