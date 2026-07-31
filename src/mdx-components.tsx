@@ -82,6 +82,56 @@ export const components = {
           <div className="my-6 overflow-x-auto overflow-y-hidden py-4 text-center">{children}</div>
         );
       }
+
+      // Detect if this is a Mermaid diagram
+      const className = childProps?.className;
+      const lang = Array.isArray(className)
+        ? className.find((c: string) => c.startsWith("language-"))?.replace("language-", "")
+        : typeof className === "string" && className.startsWith("language-")
+          ? className.replace("language-", "")
+          : undefined;
+
+      const getRawText = (node: React.ReactNode): string => {
+        if (!node) return "";
+        if (typeof node === "string" || typeof node === "number") {
+          return String(node);
+        }
+        if (Array.isArray(node)) {
+          return node.map(getRawText).join("");
+        }
+        if (React.isValidElement(node)) {
+          const props = node.props as any;
+          if (props && "children" in props) {
+            return getRawText(props.children);
+          }
+        }
+        return "";
+      };
+
+      const codeContent = getRawText(childProps?.children);
+
+      const mermaidKeywords = [
+        "graph ",
+        "graph\n",
+        "flowchart ",
+        "flowchart\n",
+        "sequenceDiagram",
+        "gantt",
+        "classDiagram",
+        "stateDiagram",
+        "erDiagram",
+        "journey",
+        "pie",
+        "quadrantChart",
+        "mindmap",
+        "timeline",
+        "zenuml",
+        "architecture",
+      ];
+
+      if (lang === "mermaid" || mermaidKeywords.some((kw) => codeContent.trim().startsWith(kw))) {
+        return <Mermaid chart={codeContent} />;
+      }
     }
     return <CodeBlock {...props}>{children}</CodeBlock>;
   },
