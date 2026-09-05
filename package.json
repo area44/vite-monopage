@@ -41,5 +41,5 @@
     "vite": "^8.2.2",
     "vite-plugin-satteri": "^0.3.5"
   },
-  "packageManager": "pnpm@11.25.0"
+  "packageManager": "pnpm@12.3.4"
 }
